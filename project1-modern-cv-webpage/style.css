@@ -173,3 +173,120 @@ footer {
   font-size: 0.875rem;
   text-align: center;
 }
+
+/* ==========================================================================
+   5. Components
+   ========================================================================== */
+
+/* --- Sidebar: general ---------------------------------------------------- */
+
+/* Headings and their accent bar use the light blue, which is readable on navy */
+.sidebar h2 {
+  color: var(--color-sidebar-accent);
+}
+
+.sidebar h2::after {
+  background-color: var(--color-sidebar-accent);
+}
+
+/* Links are light and underlined, so they don't rely on colour alone */
+.sidebar a {
+  color: var(--color-sidebar-text);
+  text-underline-offset: 0.2em;
+}
+
+/* Sidebar lists are plain: no bullets, no indent */
+.sidebar ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* --- Profile ------------------------------------------------------------- */
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+/* Round photo with an accent ring. object-fit: cover crops instead of squashing. */
+.profile-photo {
+  border: 4px solid var(--color-sidebar-accent);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-title {
+  color: var(--color-sidebar-accent);
+  font-weight: 500;
+}
+
+/* --- Contact list -------------------------------------------------------- */
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Icon on the left, text on the right; the text wraps without going under the icon */
+.contact-list li {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* Fixed icon width keeps the text aligned. Font Awesome sets line-height: 1,
+   so we inherit the body's 1.6 to line the icon up with the first line of text. */
+.contact-list i {
+  flex-shrink: 0;
+  width: 1.25rem;
+  color: var(--color-sidebar-accent);
+  line-height: inherit;
+  text-align: center;
+}
+
+/* --- Skills -------------------------------------------------------------- */
+
+/* Group label (Technologies, Databases, ...) */
+.skills h3 {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
+  color: var(--color-sidebar-muted);
+  font-size: 0.875rem;
+}
+
+/* No extra space above the first group, it already sits under the h2 */
+.skills h2 + h3 {
+  margin-top: 0;
+}
+
+/* Skills sit side by side and wrap onto new lines as needed */
+.skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+/* Small check icon before each skill, drawn with CSS so the HTML stays clean.
+   The first content line is a fallback for browsers that don't know the
+   second form; " / ''" gives the icon an empty text alternative, so screen
+   readers skip it. */
+.skills li::before {
+  content: "\f00c";
+  content: "\f00c" / "";
+  margin-right: var(--space-1);
+  color: var(--color-sidebar-accent);
+  font-family: "Font Awesome 6 Free";
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* --- Languages ----------------------------------------------------------- */
+
+.languages-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
