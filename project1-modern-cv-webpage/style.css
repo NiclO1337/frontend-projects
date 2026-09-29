@@ -79,6 +79,13 @@ a {
   color: var(--color-accent);
 }
 
+/* Visible focus ring for keyboard users. :focus-visible only shows the ring
+   when the browser thinks it's needed (keyboard), not on every mouse click. */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 /* ==========================================================================
    3. Typography
    ========================================================================== */
@@ -193,6 +200,11 @@ footer {
 .sidebar a {
   color: var(--color-sidebar-text);
   text-underline-offset: 0.2em;
+}
+
+/* The normal accent blue is too dark on navy, so the ring turns light blue */
+.sidebar :focus-visible {
+  outline-color: var(--color-sidebar-accent);
 }
 
 /* Sidebar lists are plain: no bullets, no indent */
@@ -367,5 +379,50 @@ footer {
 }
 
 .entry-list li::marker {
+  color: var(--color-accent);
+}
+
+/* --- Buttons (the only elements with hover effects) ---------------------- */
+
+/* Download CV: filled accent button with icon + text.
+   min-height 2.5rem (40px) keeps a comfortable touch target. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* color-mix blends the accent with a bit of black, so the hover colour is
+   worked out from the token instead of a hard-coded hex value. */
+.btn:hover {
+  background-color: color-mix(in srgb, var(--color-accent), black 15%);
+}
+
+/* Theme toggle: round 40x40 icon button with an outline.
+   The border uses the muted text colour so it's easy to see against the page. */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  border-color: var(--color-accent);
   color: var(--color-accent);
 }
