@@ -426,3 +426,49 @@ footer {
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
+
+/* ==========================================================================
+   7. Media queries (mobile first: min-width only, smallest breakpoint first)
+   ========================================================================== */
+
+/* --- Tablet: 768px and up ------------------------------------------------ */
+
+@media (min-width: 768px) {
+  /* The toolbar lines up with the edges of the card below it */
+  .toolbar {
+    padding-inline: var(--space-4);
+  }
+
+  /* The CV becomes a card with side margins and rounded corners.
+     overflow: hidden clips the navy sidebar to the rounded corners. */
+  .cv {
+    margin-inline: var(--space-4);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .sidebar,
+  .content {
+    padding: var(--space-5);
+  }
+
+  /* Sidebar becomes a grid: the profile spans the full width, then
+     contact, skills and languages sit side by side in three columns.
+     minmax(0, 1fr) lets a column shrink below its content's width,
+     so a long word can't push the layout wider than the card. */
+  .sidebar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  /* 1 / -1 means "from the first grid line to the last" = all columns */
+  .profile {
+    grid-column: 1 / -1;
+  }
+
+  /* On a wide card, a full-width summary would make very long lines */
+  .profile-summary {
+    max-width: 60ch;
+  }
+}
