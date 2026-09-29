@@ -30,6 +30,7 @@
 
   /* Shapes */
   --radius: 8px;
+  --shadow-card: 0 10px 30px rgb(15 31 61 / 0.12);
 }
 
 /* ==========================================================================
@@ -470,5 +471,42 @@ footer {
   /* On a wide card, a full-width summary would make very long lines */
   .profile-summary {
     max-width: 60ch;
+  }
+}
+
+/* --- Desktop: 1024px and up ---------------------------------------------- */
+
+@media (min-width: 1024px) {
+  /* Toolbar and card share one width: at most 1100px, but never closer than
+     --space-4 to the screen edges. min() picks the smaller of the two values.
+     Auto side margins centre them. */
+  .toolbar,
+  .cv {
+    width: min(1100px, 100% - 2 * var(--space-4));
+    margin-inline: auto;
+  }
+
+  .toolbar {
+    padding-inline: 0;
+  }
+
+  /* Two columns: fixed 320px navy sidebar, the main column takes the rest.
+     Grid items stretch by default, so the sidebar is as tall as the card. */
+  .cv {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Back to a single stacked column inside the narrow sidebar.
+     The tablet grid set align-items: start, which would shrink the
+     children in a flex column, so it is reset to stretch. */
+  .sidebar {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .content {
+    padding: var(--space-6);
   }
 }
