@@ -31,6 +31,42 @@
   /* Shapes */
   --radius: 8px;
   --shadow-card: 0 10px 30px rgb(15 31 61 / 0.12);
+
+  /* Tells the browser which theme the page uses, so its own UI
+     (scrollbars, form controls) matches */
+  color-scheme: light;
+}
+
+/* Dark theme. The same values appear twice because there are two ways to get
+   here: 1) the visitor's OS prefers dark and they haven't chosen light with
+   the toggle, 2) the visitor chose dark with the toggle (script.js sets
+   data-theme on <html>). The sidebar colours stay the same in both themes. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #0b1426;
+    --color-surface: #13223f;
+    --color-sidebar: #0a1630;
+    --color-text: #e6edf7;
+    --color-text-muted: #a3b1c7;
+    --color-accent: #8cc4ff;
+    --color-on-accent: #0a1630;
+    --color-border: #24375a;
+    --shadow-card: 0 10px 30px rgb(0 0 0 / 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #0b1426;
+  --color-surface: #13223f;
+  --color-sidebar: #0a1630;
+  --color-text: #e6edf7;
+  --color-text-muted: #a3b1c7;
+  --color-accent: #8cc4ff;
+  --color-on-accent: #0a1630;
+  --color-border: #24375a;
+  --shadow-card: 0 10px 30px rgb(0 0 0 / 0.4);
+  color-scheme: dark;
 }
 
 /* ==========================================================================
