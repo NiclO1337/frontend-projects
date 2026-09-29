@@ -129,3 +129,47 @@ p + p {
 .content p {
   max-width: 70ch;
 }
+
+/* ==========================================================================
+   4. Layout (mobile first: one column, the sidebar sits on top)
+   ========================================================================== */
+
+/* Row above the CV "paper", buttons pushed to the right */
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+/* The CV card fills the full width on small screens */
+.cv {
+  background-color: var(--color-surface);
+}
+
+/* Both columns are a flex column: children stack, with an even gap between them.
+   Using gap instead of margins means spacing only exists *between* items. */
+.sidebar,
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+}
+
+.sidebar {
+  background-color: var(--color-sidebar);
+  color: var(--color-sidebar-text);
+}
+
+/* Space between a section heading and its content */
+section > h2 {
+  margin-bottom: var(--space-3);
+}
+
+footer {
+  padding: var(--space-4) var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
