@@ -29,7 +29,183 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Page structure is added in step 2 -->
+    <!-- Toolbar sits above the CV "paper".
+         The Download CV link is added in step 13, when the PDF exists. -->
+    <div class="toolbar">
+      <button
+        class="btn-icon theme-toggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- The CV card: a single column on mobile, two columns on desktop -->
+    <div class="cv">
+      <!-- Navy sidebar. A div, not an aside: contact and skills are core CV content -->
+      <div class="sidebar">
+        <header class="profile">
+          <!-- Placeholder image is added in step 4 -->
+          <img
+            class="profile-photo"
+            src="assets/images/profile-placeholder.webp"
+            alt="Portrait of Niclas Hugdahl"
+            width="160"
+            height="160"
+          />
+          <h1>Niclas Hugdahl</h1>
+          <p class="profile-title">TODO professional title</p>
+          <p class="profile-summary">
+            TODO short summary of two to three sentences.
+          </p>
+        </header>
+
+        <section aria-labelledby="contact-heading">
+          <h2 id="contact-heading">Contact</h2>
+          <address>
+            <ul class="contact-list">
+              <li>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:hello@example.com">hello@example.com</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <a href="tel:+46700000000">+46 70 000 00 00</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                <span>TODO city, country</span>
+              </li>
+              <li>
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                <!-- TODO: replace with the real LinkedIn URL -->
+                <a
+                  href="https://www.linkedin.com/in/your-profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn profile (opens in a new tab)</a
+                >
+              </li>
+              <li>
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                <a
+                  href="https://github.com/NiclO1337"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub profile (opens in a new tab)</a
+                >
+              </li>
+            </ul>
+          </address>
+        </section>
+
+        <section aria-labelledby="skills-heading">
+          <h2 id="skills-heading">Skills</h2>
+          <h3>Frontend</h3>
+          <ul>
+            <li>TODO skill</li>
+            <li>TODO skill</li>
+          </ul>
+          <h3>Backend</h3>
+          <ul>
+            <li>TODO skill</li>
+            <li>TODO skill</li>
+          </ul>
+          <h3>Tools</h3>
+          <ul>
+            <li>TODO skill</li>
+            <li>TODO skill</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="languages-heading">
+          <h2 id="languages-heading">Languages</h2>
+          <ul>
+            <li>Swedish – Native</li>
+            <li>English – Fluent</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- White main column. Dates below are example values, replaced in step 3 -->
+      <main class="content">
+        <section id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading">About Me</h2>
+          <p>TODO first short paragraph about me.</p>
+          <p>TODO second short paragraph about me.</p>
+        </section>
+
+        <section id="experience" aria-labelledby="experience-heading">
+          <h2 id="experience-heading">Experience</h2>
+          <ol class="timeline">
+            <li>
+              <article>
+                <div class="entry-header">
+                  <h3>TODO role</h3>
+                  <p class="entry-dates">
+                    <time datetime="2024-08">Aug 2024</time> –
+                    <time datetime="2025-06">Jun 2025</time>
+                  </p>
+                </div>
+                <p class="entry-place">TODO company, location</p>
+                <p>TODO one to three sentences about the role.</p>
+              </article>
+            </li>
+            <li>
+              <article>
+                <div class="entry-header">
+                  <h3>TODO role</h3>
+                  <p class="entry-dates">
+                    <time datetime="2023-01">Jan 2023</time> –
+                    <time datetime="2024-07">Jul 2024</time>
+                  </p>
+                </div>
+                <p class="entry-place">TODO company, location</p>
+                <p>TODO one to three sentences about the role.</p>
+              </article>
+            </li>
+          </ol>
+        </section>
+
+        <section id="education" aria-labelledby="education-heading">
+          <h2 id="education-heading">Education</h2>
+          <ol class="timeline">
+            <li>
+              <article>
+                <div class="entry-header">
+                  <h3>TODO programme</h3>
+                  <p class="entry-dates">
+                    <time datetime="2024-08">Aug 2024</time> –
+                    <time datetime="2026-06">Jun 2026</time>
+                  </p>
+                </div>
+                <p class="entry-place">TODO school, location</p>
+                <p>TODO short note about the programme.</p>
+              </article>
+            </li>
+            <li>
+              <article>
+                <div class="entry-header">
+                  <h3>TODO Lexicon C# course</h3>
+                  <p class="entry-dates">
+                    <time datetime="2023-01">Jan 2023</time> –
+                    <time datetime="2023-12">Dec 2023</time>
+                  </p>
+                </div>
+                <p class="entry-place">Lexicon, TODO location</p>
+                <p>TODO short note about the course.</p>
+              </article>
+            </li>
+          </ol>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2026 Niclas Hugdahl</p>
+    </footer>
 
     <!-- defer: the script runs after the HTML is parsed, so it can find the theme button -->
     <script src="script.js" defer></script>
