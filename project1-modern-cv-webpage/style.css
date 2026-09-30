@@ -479,15 +479,20 @@ footer {
 /* --- Tablet: 768px and up ------------------------------------------------ */
 
 @media (min-width: 768px) {
-  /* The toolbar lines up with the edges of the card below it */
-  .toolbar {
+  /* Side gutters: the body provides the space at the screen edges, so the
+     toolbar, the card and the footer all line up with each other */
+  body {
     padding-inline: var(--space-4);
   }
 
-  /* The CV becomes a card with side margins and rounded corners.
+  /* The body's padding already gives the toolbar its side space */
+  .toolbar {
+    padding-inline: 0;
+  }
+
+  /* The CV becomes a card with rounded corners.
      overflow: hidden clips the navy sidebar to the rounded corners. */
   .cv {
-    margin-inline: var(--space-4);
     border-radius: var(--radius);
     overflow: hidden;
   }
@@ -551,17 +556,13 @@ footer {
 /* --- Desktop: 1024px and up ---------------------------------------------- */
 
 @media (min-width: 1024px) {
-  /* Toolbar and card share one width: at most 1100px, but never closer than
-     --space-4 to the screen edges. min() picks the smaller of the two values.
-     Auto side margins centre them. */
+  /* Toolbar and card share one width: they fill the space inside the body's
+     side padding, but never grow wider than 1100px. Auto side margins
+     centre them once the screen is wider than that. */
   .toolbar,
   .cv {
-    width: min(1100px, 100% - 2 * var(--space-4));
+    max-width: 1100px;
     margin-inline: auto;
-  }
-
-  .toolbar {
-    padding-inline: 0;
   }
 
   /* Two columns: fixed 320px navy sidebar, the main column takes the rest.
