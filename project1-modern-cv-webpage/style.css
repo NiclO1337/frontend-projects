@@ -468,6 +468,10 @@ footer {
   color: var(--color-accent);
 }
 
+.contact-list a:hover {
+  color: var(--color-sidebar-accent);
+}
+
 /* ==========================================================================
    7. Media queries (mobile first: min-width only, smallest breakpoint first)
    ========================================================================== */
