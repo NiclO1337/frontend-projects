@@ -493,19 +493,22 @@ footer {
     padding: var(--space-5);
   }
 
-  /* Sidebar becomes a two-column grid laid out with named areas: the
+  /* Sidebar becomes a three-column grid laid out with named areas: the
      drawing below is the layout. Contact and languages share the second
      row, so languages moves ahead of skills here (the HTML order, which
      mobile and desktop follow, is contact, skills, languages).
+     The "." is an empty cell. Using three columns here, like the skills
+     below, keeps Contact and Languages close together and lines them up
+     with the skill columns.
      minmax(0, 1fr) lets a column shrink below its content's width,
      so a long word can't push the layout wider than the card. */
   .sidebar {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-areas:
-      "profile profile"
-      "contact languages"
-      "skills skills";
+      "profile profile profile"
+      "contact languages ."
+      "skills skills skills";
     align-items: start;
   }
 
