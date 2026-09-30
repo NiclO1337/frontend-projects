@@ -31,8 +31,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Toolbar sits above the CV "paper".
-         The Download CV link is added in step 13, when the PDF exists. -->
+    <!-- Toolbar sits above the CV "paper" -->
     <div class="toolbar">
       <button
         class="btn-icon theme-toggle"
@@ -42,6 +41,11 @@
       >
         <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
+      <!-- The PDF must use the same placeholder contact details as this page -->
+      <a class="btn" href="assets/cv/niclas-hugdahl-cv.pdf" download>
+        <i class="fa-solid fa-download" aria-hidden="true"></i>
+        Download CV
+      </a>
     </div>
 
     <!-- The CV card: a single column on mobile, two columns on desktop -->
