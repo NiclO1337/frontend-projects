@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,8 +6,7 @@
     <title>Niclas Hugdahl – CV</title>
     <meta
       name="description"
-      content="Online CV for Niclas Hugdahl, junior fullstack software developer: profile, skills, experience and education."
-    />
+      content="Online CV for Niclas Hugdahl, junior fullstack software developer: profile, skills, experience and education." />
 
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 
@@ -16,16 +15,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <!-- Font Awesome Free (icons) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+      referrerpolicy="no-referrer" />
 
     <!-- Our own styles -->
     <link rel="stylesheet" href="style.css" />
@@ -37,8 +34,7 @@
         class="btn-icon theme-toggle"
         type="button"
         aria-label="Switch to dark mode"
-        aria-pressed="false"
-      >
+        aria-pressed="false">
         <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
       <!-- The PDF must use the same placeholder contact details as this page -->
@@ -59,31 +55,18 @@
             src="assets/images/profile-placeholder.svg"
             alt="Portrait of Niclas Hugdahl"
             width="160"
-            height="160"
-          />
+            height="160" />
           <h1>Niclas Hugdahl</h1>
           <p class="profile-title">Junior Fullstack Software Developer</p>
           <p class="profile-summary">
-            Diploma from the Code Institute, specializing in predictive
-            analytics and AI. Now focused on software development, I’m eager to
-            contribute to a dynamic team and continue growing in the tech
-            industry.
+            Backend & frontend developer. <br />Problem-solver at heart.
           </p>
         </header>
 
-        <section aria-labelledby="contact-heading">
+        <section class="contact" aria-labelledby="contact-heading">
           <h2 id="contact-heading">Contact</h2>
-          <!-- Email and phone are placeholders on purpose: this repo is public -->
           <address>
             <ul class="contact-list">
-              <li>
-                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                <a href="mailto:hello@example.com">hello@example.com</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                <a href="tel:+46700000000">+46 70 000 00 00</a>
-              </li>
               <li>
                 <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                 <span>Stockholm, Sweden</span>
@@ -94,7 +77,7 @@
                   href="https://www.linkedin.com/in/niclas-hugdahl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >LinkedIn profile (opens in a new tab)</a
+                  >LinkedIn profile</a
                 >
               </li>
               <li>
@@ -103,7 +86,7 @@
                   href="https://github.com/NiclO1337"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >GitHub profile (opens in a new tab)</a
+                  >github.com/NiclO1337</a
                 >
               </li>
             </ul>
@@ -112,47 +95,78 @@
 
         <section class="skills" aria-labelledby="skills-heading">
           <h2 id="skills-heading">Skills</h2>
-          <h3>Technologies</h3>
-          <ul>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>TypeScript</li>
-          </ul>
-          <h3>Databases</h3>
-          <ul>
-            <li>PostgreSQL</li>
-          </ul>
-          <h3>Frameworks</h3>
-          <ul>
-            <li>Django</li>
-            <li>jQuery</li>
-            <li>Bootstrap</li>
-            <li>React</li>
-            <li>Next.js</li>
-          </ul>
-          <h3>Version control</h3>
-          <ul>
-            <li>Git</li>
-            <li>GitHub</li>
-          </ul>
-          <h3>Agile methodologies</h3>
-          <ul>
-            <li>Scrum</li>
-            <li>Kanban</li>
-          </ul>
-          <h3>Programs</h3>
-          <ul>
-            <li>VS Code</li>
-            <li>Gitpod</li>
-            <li>PyCharm</li>
-            <li>Balsamiq</li>
-            <li>Lucidchart</li>
-          </ul>
+          <!-- Three columns of skill groups. Each column stacks its own groups,
+               so the gaps between groups are the same in every column. -->
+          <div class="skill-columns">
+            <div class="skill-column">
+              <div>
+                <h3>Technologies</h3>
+                <ul>
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>JavaScript</li>
+                  <li>Python</li>
+                  <li>TypeScript</li>
+                  <li>C#</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Agile methodologies</h3>
+                <ul>
+                  <li>Scrum</li>
+                  <li>Kanban</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Version control</h3>
+                <ul>
+                  <li>Git</li>
+                  <li>GitHub</li>
+                </ul>
+              </div>
+            </div>
+            <div class="skill-column">
+              <div>
+                <h3>Frameworks</h3>
+                <ul>
+                  <li>Django</li>
+                  <li>Bootstrap</li>
+                  <li>Tailwind</li>
+                  <li>React</li>
+                  <li>Next.js</li>
+                  <li>ASP.NET</li>
+                  <li>Entity Framework</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Databases</h3>
+                <ul>
+                  <li>PostgreSQL</li>
+                  <li>SQL Server</li>
+                </ul>
+              </div>
+            </div>
+            <div class="skill-column">
+              <div>
+                <h3>Programs</h3>
+                <ul>
+                  <li>VS Code</li>
+                  <li>Visual Studio</li>
+                  <li>Gitpod</li>
+                  <li>PyCharm</li>
+                  <li>Balsamiq</li>
+                  <li>Lucidchart</li>
+                  <li>Miro</li>
+                  <li>GitHub Copilot</li>
+                  <li>Claude Code</li>
+                  <li>ChatGPT</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section aria-labelledby="languages-heading">
+        <section class="languages" aria-labelledby="languages-heading">
           <h2 id="languages-heading">Languages</h2>
           <ul class="languages-list">
             <li>Swedish – Native</li>
@@ -165,6 +179,13 @@
       <main class="content">
         <section id="about" aria-labelledby="about-heading">
           <h2 id="about-heading">About Me</h2>
+          <p>
+            I build practical applications that solve real problems. With
+            experience across the full stack—from backend systems to responsive
+            frontends—and a background in supporting users and coordinating
+            complex workflows, I understand both the technical and human side of
+            software development.
+          </p>
           <p>
             I bring 10 years of diverse back-office experience, including
             purchasing, sales support, graphic design, and customer service. I’m
@@ -254,10 +275,9 @@
                     Full Stack C# .NET Web Development with AI-powered
                     development
                   </h3>
-                  <!-- TODO: add the course start date as a <time> element -->
                   <p class="entry-dates">
-                    <time datetime="2026">2026</time> –
-                    Ongoing</p>
+                    <time datetime="2026">2026</time> – Ongoing
+                  </p>
                 </div>
                 <p class="entry-place">Lexicon</p>
                 <p>
@@ -276,7 +296,9 @@
                     <time datetime="2024">2024</time>
                   </p>
                 </div>
-                <p class="entry-place">Code Institute, Dublin, Ireland (Remote)</p>
+                <p class="entry-place">
+                  Code Institute, Dublin, Ireland (Remote)
+                </p>
                 <p>
                   Specialization: Data Engineering, Predictive Analytics and AI.
                   Final grade: Distinction. Accredited by the University of the

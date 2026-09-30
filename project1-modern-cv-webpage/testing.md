@@ -36,12 +36,12 @@ Tested with Chrome DevTools and on real devices.
 
 | Width / device | Layout as expected | Result |
 |----------------|--------------------|--------|
-| 320px (small phone) | One column, no horizontal scroll | TODO |
-| 390px (iPhone) | One column | TODO |
+| 320px (small phone) | One column, no horizontal scroll | PASS |
+| 390px (iPhone) | One column | PASS |
 | 768px (tablet) | Sidebar sections side by side | TODO |
-| 1024px (laptop) | Two-column CV | TODO |
-| 1440px+ (desktop) | Two-column CV, card centred | TODO |
-| Real phone: TODO | | TODO |
+| 1024px (laptop) | Two-column CV | PASS |
+| 1440px+ (desktop) | Two-column CV, card centred | PASS |
+| Real phone: Galaxy Fold 5 | | TODO |
 
 TODO: screenshots
 

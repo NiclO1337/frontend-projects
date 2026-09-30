@@ -298,17 +298,21 @@ footer {
 
 /* --- Skills -------------------------------------------------------------- */
 
+/* Everything stacks in one column with an even gap (mobile and desktop):
+   first the three columns of groups, and inside each of them the groups.
+   The tablet query puts the three columns side by side. */
+.skill-columns,
+.skill-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
 /* Group label (Technologies, Databases, ...) */
 .skills h3 {
-  margin-top: var(--space-3);
   margin-bottom: var(--space-1);
   color: var(--color-sidebar-muted);
   font-size: 0.875rem;
-}
-
-/* No extra space above the first group, it already sits under the h2 */
-.skills h2 + h3 {
-  margin-top: 0;
 }
 
 /* Skills sit side by side and wrap onto new lines as needed */
@@ -489,19 +493,46 @@ footer {
     padding: var(--space-5);
   }
 
-  /* Sidebar becomes a grid: the profile spans the full width, then
-     contact, skills and languages sit side by side in three columns.
+  /* Sidebar becomes a two-column grid laid out with named areas: the
+     drawing below is the layout. Contact and languages share the second
+     row, so languages moves ahead of skills here (the HTML order, which
+     mobile and desktop follow, is contact, skills, languages).
      minmax(0, 1fr) lets a column shrink below its content's width,
      so a long word can't push the layout wider than the card. */
   .sidebar {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "profile profile"
+      "contact languages"
+      "skills skills";
     align-items: start;
   }
 
-  /* 1 / -1 means "from the first grid line to the last" = all columns */
   .profile {
-    grid-column: 1 / -1;
+    grid-area: profile;
+  }
+
+  .contact {
+    grid-area: contact;
+  }
+
+  .languages {
+    grid-area: languages;
+  }
+
+  .skills {
+    grid-area: skills;
+  }
+
+  /* Skills: three columns side by side, one row. Each column stacks its own
+     groups (see the HTML), so every gap between groups is the same size.
+     A shared grid row would make a gap as tall as the tallest neighbour. */
+  .skill-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    align-items: start;
   }
 
   /* On a wide card, a full-width summary would make very long lines */
@@ -536,8 +567,17 @@ footer {
 
   /* Back to a single stacked column inside the narrow sidebar.
      The tablet grid set align-items: start, which would shrink the
-     children in a flex column, so it is reset to stretch. */
+     children in a flex column, so it is reset to stretch.
+     The grid-area and grid-column rules from the tablet query are
+     ignored by flex containers, so they need no reset. */
   .sidebar {
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* The three skill columns also go back to one stacked column.
+     align-items is reset for the same reason as on the sidebar. */
+  .skill-columns {
     display: flex;
     align-items: stretch;
   }

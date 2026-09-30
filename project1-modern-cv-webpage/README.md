@@ -204,7 +204,7 @@ TODO: short description + screenshot
 
 ## Testing
 
-Testing made in separate file [testing.md](testing.md)
+Testing made in separate file [TESTING.md](TESTING.md)
 
 
 ## Deployment
