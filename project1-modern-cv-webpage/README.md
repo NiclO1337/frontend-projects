@@ -4,7 +4,7 @@ TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.
 
 <!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.vercel.app/)
 
 <hr>
 

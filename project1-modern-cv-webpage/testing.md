@@ -59,8 +59,10 @@ TODO: screenshots
 
 - HTML: [W3C Markup Validator](https://validator.w3.org/) – PASSED
 <br>![Passed without errors](./readme-assets/w3c-html-result.png)
-- CSS: [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) – TODO result + screenshot
+- CSS: [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) – PASSED
+<br>![Passed without errors](./readme-assets/w3c-css-result.png)
 <br>The validator reported one false error caused by its outdated CSS support. It was fixed, see [Fixed bugs](#fixed-bugs).
+<br>Jigsaw shows warnings only for var() values and for the Font Awesome CDN file. These are not errors.
 
 
 ## Lighthouse

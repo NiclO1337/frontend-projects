@@ -26,7 +26,7 @@ and CSS plus a tiny bit of vanilla JS.
 - **No navigation menu**, no animations, no skill progress bars, no print
   stylesheet. These were deliberately left out to keep the project small.
 - No unit tests for this project. Testing is manual and documented in
-  `testing.md`.
+  `TESTING.md`.
 - Commit messages start with `project-1: ` and are very short.
 
 ## Files
@@ -39,7 +39,7 @@ and CSS plus a tiny bit of vanilla JS.
 | `assets/images/` | Profile photo (placeholder at first), favicon |
 | `assets/cv/` | The downloadable CV as a PDF |
 | `readme-assets/` | Wireframes, colour scheme and screenshots used by the README – not part of the site |
-| `README.md`, `testing.md` | Project documentation |
+| `README.md`, `TESTING.md` | Project documentation |
 
 ## When writing code
 

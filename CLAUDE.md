@@ -59,6 +59,6 @@ frontend-projects/
 ## Docs
 
 - Each project has `README.md` (following the user's README template),
-  `testing.md`, and `readme-assets/` for wireframes and screenshots.
+  `TESTING.md`, and `readme-assets/` for wireframes and screenshots.
 - Leave `TODO` markers in README sections that can only be filled in later
   (screenshots, live URL, testing results). Don't invent results.

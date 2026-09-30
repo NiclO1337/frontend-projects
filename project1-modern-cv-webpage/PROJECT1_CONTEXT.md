@@ -45,7 +45,7 @@ Submission: GitHub repository URL + live website URL.
 | Optional features | **Dark mode** + **Download CV** button |
 | Left out on purpose | Hover effects (except on buttons), navigation menu, animations, skill bars, print stylesheet |
 | CSS approach | Mobile-first, custom properties, breakpoints **768px** and **1024px** (to be fine-tuned at the end) |
-| README | Same structure as the Strawberry Lovers template, with testing in `testing.md` |
+| README | Same structure as the Strawberry Lovers template, with testing in `TESTING.md` |
 | README images | Stored in the repo in `readme-assets/` (not Cloudinary, not `docs/`, because `docs/` is git-ignored) |
 | Testing | Manual only, no unit tests |
 
@@ -58,7 +58,7 @@ project1-modern-cv-webpage/
 ├── CLAUDE.md
 ├── PROJECT1_CONTEXT.md
 ├── README.md
-├── testing.md
+├── TESTING.md
 ├── index.html
 ├── style.css
 ├── script.js
@@ -270,7 +270,7 @@ email or home address in the repo, since it's public.
 | 13 | Download CV: add PDF (placeholder contacts) + link | `project-1: add cv download` |
 | 14 | Validate HTML/CSS, Lighthouse, WAVE, fixes | `project-1: fix validation issues` |
 | 15 | Deploy to Vercel, add live URL to README | `project-1: add live url` |
-| 16 | Screenshots, finish README + testing.md | `project-1: update readme` |
+| 16 | Screenshots, finish README + TESTING.md | `project-1: update readme` |
 
 Final tweak of breakpoints and spacing happens after step 12 when the real
 content is in place.
