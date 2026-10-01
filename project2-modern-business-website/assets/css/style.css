@@ -262,39 +262,52 @@ figcaption {
   border-radius: var(--bs-border-radius);
 }
 
+/* The caption, indicators and arrows are small by default because the photo
+   is only about 200px tall on a phone. They grow from md (see the media
+   query below). */
+
 /* Caption: a small pill with a dark see-through background, so the text is
    readable on any photo. It sits above the indicators. */
 .carousel-caption {
-  right: 1rem;
-  bottom: 3.25rem;
-  left: 1rem;
+  right: 0.5rem;
+  bottom: 1.85rem;
+  left: 0.5rem;
   padding: 0;
 }
 
 .carousel-caption p {
   display: inline-block;
-  padding: 0.35rem 1rem;
+  padding: 0.2rem 0.75rem;
   border-radius: 50rem;
   background-color: var(--bi-scrim);
   font-family: var(--bi-font-heading);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.775rem;
 }
 
 /* Indicators get the same dark pill, centred, so they show up on bright photos */
 .carousel-indicators {
   width: fit-content;
-  margin: 0 auto 0.75rem;
-  padding: 0.25rem 0.75rem;
+  margin: 0 auto 0.5rem;
+  padding: 0.1rem 0.5rem;
   border-radius: 50rem;
   background-color: var(--bi-scrim);
+}
+
+/* Dots: Bootstrap makes each button taller than the visible bar by adding a
+   transparent top and bottom border (a bigger tap area). We use smaller
+   values on phones. The dots stay about 24px apart, centre to centre. */
+.carousel-indicators [data-bs-target] {
+  width: 18px;
+  border-top-width: 6px;
+  border-bottom-width: 6px;
 }
 
 /* Prev/next arrows get a dark circle behind them for the same reason */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background-color: var(--bi-scrim);
   background-size: 50%;
@@ -310,12 +323,41 @@ figcaption {
 
 @media (min-width: 768px) {
   .carousel-caption {
+    right: 1rem;
     bottom: 3.5rem;
+    left: 1rem;
   }
 
   .carousel-caption p {
+    padding: 0.35rem 1rem;
     font-size: 1.25rem;
   }
+
+  .carousel-indicators {
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .carousel-indicators [data-bs-target] {
+    width: 30px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* --- Prices (menu items and featured dishes) --- */
+
+.price {
+  font-family: var(--bi-font-heading);
+  font-weight: 700;
+  color: var(--bi-mustard);
+  white-space: nowrap; /* keeps "169 kr" on one line */
 }
 
 /* --- Footer --- */
@@ -377,6 +419,14 @@ figcaption {
   .hero-actions {
     max-width: none;
   }
+}
+
+/* --- Home: call-to-action band --- */
+
+/* A thin ketchup line separates the band from the content above it */
+.cta-band {
+  border-top: 3px solid var(--bi-ketchup);
+  border-bottom: 3px solid var(--bi-ketchup);
 }
 
 

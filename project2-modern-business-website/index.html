@@ -143,7 +143,79 @@
       </div>
     </section>
 
-    <!-- Welcome, featured dishes and CTA band go here (step 8) -->
+    <!-- WELCOME: two paragraphs and a photo (side by side from lg) -->
+    <section class="pb-5" aria-labelledby="welcome-heading">
+      <div class="container">
+        <div class="row align-items-center gy-4 gx-lg-5">
+          <div class="col-lg-6">
+            <h2 id="welcome-heading">Welcome to Bun Intended</h2>
+            <p>We're a small burger restaurant on Götgatan in Södermalm. We smash our beef fresh on a very hot grill, bake our buns every morning and make our sauces from scratch.</p>
+            <p class="mb-0">Come with friends after work, bring a date or celebrate something big. You'll get table service, local craft beer and a menu that's a little bit cheesy, in the best way.</p>
+          </div>
+          <div class="col-lg-6">
+            <img src="assets/images/welcome.webp" class="img-fluid rounded" width="800" height="600" loading="lazy" alt="Close-up of cheeseburgers with caramelized onions being prepared on a grill">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND: last thing before the footer -->
+    <section class="cta-band bg-body-secondary text-center pt-3 pb-4" aria-labelledby="cta-heading">
+      <div class="container">
+        <h2 id="cta-heading">Hungry yet?</h2>
+        <p>Save a seat and we'll do the smashing.</p>
+        <a class="btn btn-primary btn-lg" href="book.html">Book a table</a>
+      </div>
+    </section>
+
+    <!-- FEATURED DISHES: names, descriptions and prices must match menu.html -->
+    <section class="pb-5" aria-labelledby="featured-heading">
+      <div class="container">
+        <h2 id="featured-heading" class="text-center my-4">Featured dishes</h2>
+
+        <!-- row-cols-1 = one card per row on phones, row-cols-md-3 = three per row from md -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <article class="card h-100">
+              <img src="assets/images/dish-classic-pun.webp" class="card-img-top h-auto" width="800" height="600" loading="lazy" alt="Close-up of a delicious cheeseburger with onion rings and pickles">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline gap-3">
+                  <h3 class="h5 mb-0">The Classic Pun</h3>
+                  <p class="price mb-0">169 kr</p>
+                </div>
+                <p class="text-body-secondary mt-2 mb-0">Double smashed beef, cheddar, pickles, onion, house sauce</p>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100">
+              <img src="assets/images/dish-kale-me-maybe.webp" class="card-img-top h-auto" width="800" height="600" loading="lazy" alt="An appetizing plant-based burger with cheese, lettuce, tomato, and onion against a colorful background">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline gap-3">
+                  <h3 class="h5 mb-0">Kale Me Maybe</h3>
+                  <p class="price mb-0">175 kr</p>
+                </div>
+                <p class="text-body-secondary mt-2 mb-0">Plant-based patty, vegan cheese, avocado, kale</p>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100">
+              <img src="assets/images/dish-shake-it-off.webp" class="card-img-top h-auto" width="800" height="600" loading="lazy" alt="A pink milkshake topped with whipped cream in a clear glass, set in a warm-lit café">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-baseline gap-3">
+                  <h3 class="h5 mb-0">Shake It Off</h3>
+                  <p class="price mb-0">79 kr</p>
+                </div>
+                <p class="text-body-secondary mt-2 mb-0">Thick vanilla, chocolate or strawberry milkshake</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <p class="text-center mt-4 mb-0"><a class="btn btn-outline-warning" href="menu.html">See full menu</a></p>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER: copied into every page. Opening hours here must match the hours table and hours.js. -->
