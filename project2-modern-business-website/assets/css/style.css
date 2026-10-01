@@ -238,9 +238,23 @@ figcaption {
 
 /* --- Image slider (Bootstrap carousel) --- */
 
-.carousel {
-  --bs-carousel-caption-color: var(--bi-text);
-  --bs-carousel-indicator-active-bg: var(--bi-mustard); /* inactive dots are the same colour, half see-through */
+/* In dark mode Bootstrap 5.3 turns the carousel "dark": black captions, black
+   indicators and inverted (black) arrows, meant for light photos. Our pills
+   are dark, so we need light content. Same selectors as Bootstrap's own rules
+   (they are fairly specific), placed later so ours win. */
+[data-bs-theme="dark"] .carousel .carousel-caption {
+  color: var(--bi-text);
+}
+
+/* Dots are mustard: the active one fully, the others half see-through (Bootstrap's opacity) */
+[data-bs-theme="dark"] .carousel .carousel-indicators [data-bs-target] {
+  background-color: var(--bi-mustard);
+}
+
+/* Remove the colour inversion so the arrows stay white */
+[data-bs-theme="dark"] .carousel .carousel-control-prev-icon,
+[data-bs-theme="dark"] .carousel .carousel-control-next-icon {
+  filter: none;
 }
 
 /* Rounded corners (the inner box already hides anything that sticks out) */
