@@ -97,7 +97,53 @@
       </div>
     </section>
 
-    <!-- Image slider, welcome, featured dishes and CTA band go here (steps 7–8) -->
+    <!-- IMAGE SLIDER: Bootstrap carousel. No data-bs-ride attribute, so it never autoplays. -->
+    <section class="pb-5" aria-labelledby="slider-heading">
+      <div class="container">
+        <h2 id="slider-heading" class="visually-hidden">Photos of our food and restaurant</h2>
+
+        <div id="home-slider" class="carousel slide">
+          <!-- Indicators: data-bs-slide-to is the slide number (starting at 0) the button jumps to -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#home-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#home-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#home-slider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#home-slider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+
+          <div class="carousel-inner">
+            <!-- Slide 1 loads right away. Slides 2-4 use loading="lazy" and only load when needed. -->
+            <div class="carousel-item active">
+              <img src="assets/images/slider-1.webp" class="d-block w-100 h-auto" width="1600" height="900" alt="Four gourmet burgers with fries">
+              <div class="carousel-caption"><p class="mb-0">Lettuce begin.</p></div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/images/slider-2.webp" class="d-block w-100 h-auto" width="1600" height="900" loading="lazy" alt="Stylish burger restaurant interior with neon signs and colorful decor">
+              <div class="carousel-caption"><p class="mb-0">A bun-derful place to be.</p></div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/images/slider-3.webp" class="d-block w-100 h-auto" width="1600" height="900" loading="lazy" alt="A delectable spread of burgers, fries, and vibrant beverages on a rustic table">
+              <div class="carousel-caption"><p class="mb-0">Fry-day feeling, any day.</p></div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/images/slider-4.webp" class="d-block w-100 h-auto" width="1600" height="900" loading="lazy" alt="Three friends laughing and enjoying burgers in a restaurant">
+              <div class="carousel-caption"><p class="mb-0">Good friends. Relish the moment.</p></div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#home-slider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous slide</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#home-slider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next slide</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Welcome, featured dishes and CTA band go here (step 8) -->
   </main>
 
   <!-- FOOTER: copied into every page. Opening hours here must match the hours table and hours.js. -->

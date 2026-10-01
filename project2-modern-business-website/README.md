@@ -308,7 +308,7 @@ Link to live website: TODO add Vercel URL
 #### Slider (home carousel)
 - slider-1.webp Photo by Eric Moura: [Four gourmet burgers with fries](https://www.pexels.com/photo/delicious-burger-feast-with-coca-cola-33068080/)
 - slider-2.webp Photo by Allan González: [Stylish burger restaurant interior with neon signs and colorful decor](https://www.pexels.com/photo/modern-burger-restaurant-interior-in-mexico-31650325/)
-- slider-3.webp Photo by Rachel Claire: [A delectable spread of burgers, fries, and vibrant beverages on a rustic table.](https://www.pexels.com/photo/burgers-and-fries-on-restaurant-table-5864595/)
+- slider-3.webp Photo by Rachel Claire: [A delectable spread of burgers, fries, and vibrant beverages on a rustic table](https://www.pexels.com/photo/burgers-and-fries-on-restaurant-table-5864595/)
 - slider-4.webp Photo by Allan González: [Three friends laughing and enjoying burgers in a restaurant](https://www.pexels.com/photo/friends-enjoying-burgers-at-a-cafe-31650401/)
 
 #### Featured dishes

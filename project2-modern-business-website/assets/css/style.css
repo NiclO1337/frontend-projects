@@ -21,6 +21,7 @@
   --bi-bg: #141111;               /* page background (charcoal) */
   --bi-surface: #1f1a18;          /* cards, navbar, footer */
   --bi-surface-2: #2a2320;        /* inputs, table stripes, raised areas */
+  --bi-scrim: rgba(20, 17, 17, 0.8); /* see-through dark layer behind text and controls on photos */
 
   /* Text */
   --bi-text: #f5efe6;             /* body text (warm cream) */
@@ -233,6 +234,74 @@ figcaption {
 /* The toggler gets our mustard focus ring (see section 2), not Bootstrap's glow */
 .navbar-toggler:focus {
   box-shadow: none;
+}
+
+/* --- Image slider (Bootstrap carousel) --- */
+
+.carousel {
+  --bs-carousel-caption-color: var(--bi-text);
+  --bs-carousel-indicator-active-bg: var(--bi-mustard); /* inactive dots are the same colour, half see-through */
+}
+
+/* Rounded corners (the inner box already hides anything that sticks out) */
+.carousel-inner {
+  border-radius: var(--bs-border-radius);
+}
+
+/* Caption: a small pill with a dark see-through background, so the text is
+   readable on any photo. It sits above the indicators. */
+.carousel-caption {
+  right: 1rem;
+  bottom: 3.25rem;
+  left: 1rem;
+  padding: 0;
+}
+
+.carousel-caption p {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 50rem;
+  background-color: var(--bi-scrim);
+  font-family: var(--bi-font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Indicators get the same dark pill, centred, so they show up on bright photos */
+.carousel-indicators {
+  width: fit-content;
+  margin: 0 auto 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50rem;
+  background-color: var(--bi-scrim);
+}
+
+/* Prev/next arrows get a dark circle behind them for the same reason */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background-color: var(--bi-scrim);
+  background-size: 50%;
+}
+
+/* Bootstrap removes the outline on focus. Put our mustard ring back,
+   drawn inside the button (negative offset) so it isn't cut off. */
+.carousel-control-prev:focus-visible,
+.carousel-control-next:focus-visible {
+  outline: 3px solid var(--bi-mustard);
+  outline-offset: -3px;
+}
+
+@media (min-width: 768px) {
+  .carousel-caption {
+    bottom: 3.5rem;
+  }
+
+  .carousel-caption p {
+    font-size: 1.25rem;
+  }
 }
 
 /* --- Footer --- */
