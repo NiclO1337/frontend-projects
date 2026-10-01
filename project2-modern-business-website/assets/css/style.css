@@ -8,3 +8,153 @@
    5. Page-specific
    6. Animations and reduced motion
    ========================================================================== */
+
+
+/* ==========================================================================
+   1. Tokens and Bootstrap variable overrides
+   ========================================================================== */
+
+/* Our own design tokens (prefix --bi- = Bun Intended).
+   Every colour in the site is defined here, nowhere else. */
+:root {
+  /* Surfaces */
+  --bi-bg: #141111;               /* page background (charcoal) */
+  --bi-surface: #1f1a18;          /* cards, navbar, footer */
+  --bi-surface-2: #2a2320;        /* inputs, table stripes, raised areas */
+
+  /* Text */
+  --bi-text: #f5efe6;             /* body text (warm cream) */
+  --bi-text-muted: #b8aa9a;       /* descriptions, captions */
+  --bi-white: #fff;               /* text on red buttons */
+
+  /* Mustard: headings, prices, links, focus ring */
+  --bi-mustard: #f2b705;
+  --bi-mustard-rgb: 242, 183, 5;  /* Bootstrap wants links as "r, g, b" */
+  --bi-mustard-light-rgb: 255, 214, 92;
+  --bi-on-mustard: #141111;       /* text on mustard backgrounds */
+
+  /* Ketchup: bright red is for the logo and large text only (4.5:1 on bg) */
+  --bi-ketchup: #e63b2e;
+  --bi-ketchup-dark: #c8281c;     /* primary button background */
+  --bi-ketchup-darker: #a91f15;   /* primary button hover/active */
+  --bi-ketchup-light: #ff6b5e;    /* red text on dark, e.g. error messages */
+
+  /* Lettuce: diet labels and success messages */
+  --bi-lettuce: #7cc35a;
+
+  /* Borders */
+  --bi-border: #3d332e;           /* decorative dividers only */
+  --bi-input-border: #8c7b6e;     /* form borders (3.8:1, meets the 3:1 UI rule) */
+
+  /* Fonts (fallbacks come after the Google font) */
+  --bi-font-heading: "Merienda", cursive, serif;
+  --bi-font-ui: "M PLUS Rounded 1c", system-ui, sans-serif;
+  --bi-font-body: "Noto Sans", system-ui, sans-serif;
+}
+
+/* Map our tokens onto Bootstrap's variables. Bootstrap defines its dark
+   colours on [data-bs-theme="dark"]; we use the same selector and load
+   later, so ours win without needing !important. */
+:root,
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--bi-bg);
+  --bs-body-color: var(--bi-text);
+  --bs-body-font-family: var(--bi-font-body);
+  --bs-body-line-height: 1.6;
+  --bs-secondary-color: var(--bi-text-muted);
+  --bs-secondary-bg: var(--bi-surface);
+  --bs-tertiary-bg: var(--bi-surface-2);
+  --bs-border-color: var(--bi-border);
+  --bs-heading-color: var(--bi-text);
+  --bs-link-color: var(--bi-mustard);
+  --bs-link-color-rgb: var(--bi-mustard-rgb);
+  --bs-link-hover-color-rgb: var(--bi-mustard-light-rgb);
+  --bs-border-radius: 0.75rem;    /* friendly, rounded "bun" feel */
+}
+
+/* Primary button: the darker red, because white text on the bright
+   ketchup red is only 4.2:1 and fails WCAG AA */
+.btn-primary {
+  --bs-btn-bg: var(--bi-ketchup-dark);
+  --bs-btn-border-color: var(--bi-ketchup-dark);
+  --bs-btn-color: var(--bi-white);
+  --bs-btn-hover-bg: var(--bi-ketchup-darker);
+  --bs-btn-hover-border-color: var(--bi-ketchup-darker);
+  --bs-btn-hover-color: var(--bi-white);
+  --bs-btn-active-bg: var(--bi-ketchup-darker);
+  --bs-btn-active-border-color: var(--bi-ketchup-darker);
+  --bs-btn-active-color: var(--bi-white);
+}
+
+/* Secondary button: Bootstrap's outline "warning" button, re-tinted to
+   mustard. Hover fills with mustard and switches to dark text. */
+.btn-outline-warning {
+  --bs-btn-color: var(--bi-mustard);
+  --bs-btn-border-color: var(--bi-mustard);
+  --bs-btn-hover-bg: var(--bi-mustard);
+  --bs-btn-hover-border-color: var(--bi-mustard);
+  --bs-btn-hover-color: var(--bi-on-mustard);
+  --bs-btn-active-bg: var(--bi-mustard);
+  --bs-btn-active-border-color: var(--bi-mustard);
+  --bs-btn-active-color: var(--bi-on-mustard);
+}
+
+/* All buttons: rounded UI font and pill shape */
+.btn {
+  --bs-btn-font-family: var(--bi-font-ui);
+  --bs-btn-font-weight: 700;
+  --bs-btn-border-radius: 50rem;
+}
+
+/* Cards sit on the surface colour so they stand out from the page */
+.card {
+  --bs-card-bg: var(--bi-surface);
+  --bs-card-border-color: var(--bi-border);
+}
+
+
+/* ==========================================================================
+   2. Base and typography
+   ========================================================================== */
+
+/* Headings: Merienda. h1 is cream (inherited), h2 is mustard. */
+h1, h2, h3,
+.h1, .h2, .h3 {
+  font-family: var(--bi-font-heading);
+  font-weight: 700;
+}
+
+h2,
+.h2 {
+  --bs-heading-color: var(--bi-mustard);
+}
+
+/* Links, navigation and badges: rounded UI font */
+a,
+.nav-link,
+.badge {
+  font-family: var(--bi-font-ui);
+  font-weight: 500;
+}
+
+/* Small text and captions: Noto Sans in the muted colour */
+small,
+.small,
+figcaption {
+  color: var(--bi-text-muted);
+}
+
+/* Visible focus ring on everything that can be focused. :focus-visible
+   only shows it for keyboard users, not on mouse clicks. */
+:focus-visible {
+  outline: 3px solid var(--bi-mustard);
+  outline-offset: 3px;
+}
+
+/* Bootstrap hides the outline on buttons and uses a box-shadow instead.
+   We want the same mustard ring as everywhere else. */
+.btn:focus-visible {
+  outline: 3px solid var(--bi-mustard);
+  outline-offset: 3px;
+  box-shadow: none;
+}
