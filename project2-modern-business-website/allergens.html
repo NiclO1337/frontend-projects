@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- data-bs-theme="dark" switches Bootstrap to its dark colour mode (dark theme only, no toggle) -->
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <!-- Makes the page scale properly on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Allergens – Bun Intended</title>
+  <meta name="description" content="Allergen guide for the Bun Intended menu. See which dishes contain gluten, milk, egg, mustard, sesame, soy and nuts.">
+
+  <!-- Google Fonts: preconnect makes the font request start earlier, display=swap shows text right away in a fallback font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=M+PLUS+Rounded+1c:wght@500;700&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS first, then Font Awesome, then our own stylesheet last so it can override Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<!-- d-flex flex-column min-vh-100 + flex-grow-1 on <main> keeps the footer at the bottom of the window on short pages -->
+<body class="d-flex flex-column min-vh-100">
+  <!-- Skip link: first focusable element, only visible when focused with the keyboard -->
+  <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+
+  <!-- NAVBAR: copied into every page. Only the "active" link and aria-current change per page. -->
+  <!-- sticky-top is on the header (not the nav) so the bar stays visible for the whole page -->
+  <header class="sticky-top">
+    <!-- data-bs-theme="dark" on the navbar makes Bootstrap draw the light toggler icon -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary border-bottom" data-bs-theme="dark" aria-label="Main navigation">
+      <div class="container">
+        <!-- The logo links to Home. -->
+        <a class="navbar-brand brand-name d-flex align-items-center gap-2" href="index.html">
+          <!-- Burger logo: five layers, bottom to top in the code (later = drawn on top).
+               aria-hidden because the text "Bun Intended" is the accessible name. -->
+          <svg class="logo-burger" width="40" height="32" viewBox="0 0 100 80" aria-hidden="true">
+            <g class="bun-bottom"><path d="M10 62 H90 V66 Q90 74 80 74 H20 Q10 74 10 66 Z"/></g>
+            <g class="patty"><rect x="8" y="49" width="84" height="13" rx="6.5"/></g>
+            <g class="cheese"><path d="M12 43 H88 V48 H72 L66 56 L60 48 H12 Z"/></g>
+            <g class="lettuce"><path d="M6 37 Q15 31 24 37 T42 37 T60 37 T78 37 T94 37 V43 H6 Z"/></g>
+            <g class="bun-top">
+              <path d="M10 36 C10 14 28 6 50 6 C72 6 90 14 90 36 Z"/>
+              <ellipse class="seed" cx="34" cy="20" rx="2.4" ry="1.3" transform="rotate(-25 34 20)"/>
+              <ellipse class="seed" cx="50" cy="14" rx="2.4" ry="1.3"/>
+              <ellipse class="seed" cx="66" cy="20" rx="2.4" ry="1.3" transform="rotate(25 66 20)"/>
+              <ellipse class="seed" cx="42" cy="28" rx="2.4" ry="1.3" transform="rotate(-15 42 28)"/>
+              <ellipse class="seed" cx="58" cy="28" rx="2.4" ry="1.3" transform="rotate(15 58 28)"/>
+            </g>
+          </svg>
+          Bun Intended
+        </a>
+
+        <!-- Toggler: Bootstrap's JS opens and closes the element named in data-bs-target -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+            <li class="nav-item"><a class="nav-link" href="hours-location.html">Hours &amp; Location</a></li>
+            <li class="nav-item mt-2 mt-lg-0 ms-lg-2"><a class="btn btn-primary" href="book.html">Book a table</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="flex-grow-1">
+    <div class="container py-5">
+      <h1>Allergens</h1>
+      <!-- Allergens content goes here (step 12) -->
+    </div>
+  </main>
+
+  <!-- FOOTER: copied into every page. Opening hours here must match the hours table and hours.js. -->
+  <footer class="bg-body-secondary border-top py-5">
+    <div class="container">
+      <!-- Three columns from lg, stacked below -->
+      <div class="row gy-4 ">
+        <!-- Column 1: brand and contact -->
+        <div class="col-md-5 col-lg-4 ms-auto">
+          <!-- Same burger as in the navbar, but static (it is not a link) -->
+          <p class="brand-name fs-4 mb-1 d-flex align-items-center gap-2">
+            <svg class="logo-burger" width="40" height="32" viewBox="0 0 100 80" aria-hidden="true">
+              <g class="bun-bottom"><path d="M10 62 H90 V66 Q90 74 80 74 H20 Q10 74 10 66 Z"/></g>
+              <g class="patty"><rect x="8" y="49" width="84" height="13" rx="6.5"/></g>
+              <g class="cheese"><path d="M12 43 H88 V48 H72 L66 56 L60 48 H12 Z"/></g>
+              <g class="lettuce"><path d="M6 37 Q15 31 24 37 T42 37 T60 37 T78 37 T94 37 V43 H6 Z"/></g>
+              <g class="bun-top">
+                <path d="M10 36 C10 14 28 6 50 6 C72 6 90 14 90 36 Z"/>
+                <ellipse class="seed" cx="34" cy="20" rx="2.4" ry="1.3" transform="rotate(-25 34 20)"/>
+                <ellipse class="seed" cx="50" cy="14" rx="2.4" ry="1.3"/>
+                <ellipse class="seed" cx="66" cy="20" rx="2.4" ry="1.3" transform="rotate(25 66 20)"/>
+                <ellipse class="seed" cx="42" cy="28" rx="2.4" ry="1.3" transform="rotate(-15 42 28)"/>
+                <ellipse class="seed" cx="58" cy="28" rx="2.4" ry="1.3" transform="rotate(15 58 28)"/>
+              </g>
+            </svg>
+            Bun Intended
+          </p>
+          <p class="text-body-secondary">Smash burgers. Seriously good puns.</p>
+          <address class="mb-0">
+            Götgatan 42<br>
+            118 26 Stockholm<br>
+            <a href="tel:+4680000000">+46 8 000 00 00</a><br>
+            <a href="mailto:hello@bunintended.example">hello@bunintended.example</a>
+          </address>
+        </div>
+
+        <!-- Column 2: short opening hours and info links -->
+        <div class="col-md-4 col-lg-3">
+          <h2 class="h5">Opening hours</h2>
+          <ul class="list-unstyled mb-4">
+            <li>Mon–Thu: 11:00–22:00</li>
+            <li>Fri: 11:00–23:00</li>
+            <li>Sat: 12:00–23:00</li>
+            <li>Sun: 12:00–21:00</li>
+          </ul>
+
+          <h2 class="h5">Info</h2>
+          <nav aria-label="Info links">
+            <ul class="list-unstyled mb-0">
+              <li><a href="allergens.html">Allergens</a></li>
+              <li><a href="book.html">Book a table</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Column 3: social links and copyright -->
+        <div class="col-md-3 col-lg-2 me-auto">
+          <h2 class="h5">Follow us</h2>
+          <!-- Icon-only links need an aria-label. The icons themselves are decorative. -->
+          <ul class="list-unstyled d-flex gap-2 mb-4">
+            <li><a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+            <li><a class="social-link" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in a new tab)"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
+          </ul>
+          <p class="small mb-0">&copy; 2026 Bun Intended. A fictional restaurant made for a school project.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap's JS bundle (includes Popper) powers the navbar toggle and the carousel. defer = run after the HTML is parsed -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

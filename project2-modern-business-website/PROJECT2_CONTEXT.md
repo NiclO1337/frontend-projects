@@ -120,11 +120,15 @@ See `readme-assets/sitemap.svg` and `readme-assets/wireframes/`.
 2. **Image slider:** Bootstrap carousel, 4 slides (signature burger, dining
    room, fries & shakes, friends at a table), short captions, indicators and
    prev/next controls. **No autoplay**, because moving content without a
-   pause button is an accessibility problem.
+   pause button is an accessibility problem. Captions: "Lettuce begin.",
+   "A bun-derful place to be.", "Fry-day feeling, any day.", "Good friends.
+   Relish the moment." Caption, dots and arrows are smaller on phones.
 3. **Welcome:** 2 short paragraphs + photo (two columns from `lg`).
-4. **Featured dishes:** 3 cards (image, name, short description, price),
+4. **CTA band:** "Hungry yet?" + *Book a table* button. Placed here, above
+   the featured dishes, so it doesn't blend into the footer. This differs
+   from the home wireframe on purpose.
+5. **Featured dishes:** 3 cards (image, name, short description, price),
    1 → 3 columns. "See full menu" button.
-5. **CTA band:** "Hungry yet?" + *Book a table* button.
 
 ### Menu – `menu.html`
 - Intro text + filter bar: **All · Starters · Burgers · Sides · Desserts · Drinks**
@@ -210,6 +214,8 @@ variables. All text pairs meet WCAG AA, and UI borders meet 3:1.
 | `--bi-bg` | `#141111` | Page background (charcoal) |
 | `--bi-surface` | `#1f1a18` | Cards, navbar, footer |
 | `--bi-surface-2` | `#2a2320` | Inputs, table stripes, raised areas |
+| `--bi-surface-3` | `#352d29` | Lightest surface: the light end of the header and footer gradients (muted text on it 5.9:1) |
+| `--bi-scrim` | `rgba(20, 17, 17, 0.8)` | See-through dark layer behind captions and controls on photos |
 | `--bi-text` | `#f5efe6` | Body text (warm cream), 16.4:1 on bg |
 | `--bi-text-muted` | `#b8aa9a` | Descriptions, captions, 7.6:1 on surface |
 | `--bi-mustard` | `#f2b705` | Headings, prices, links, focus ring, 10.3:1 on bg |
@@ -218,7 +224,9 @@ variables. All text pairs meet WCAG AA, and UI borders meet 3:1.
 | `--bi-ketchup-dark` | `#c8281c` | Primary button background (white text 5.6:1) |
 | `--bi-ketchup-darker` | `#a91f15` | Primary button hover/active (7.3:1) |
 | `--bi-ketchup-light` | `#ff6b5e` | Red *text* on dark, e.g. error messages (6.7:1 on bg) |
-| `--bi-lettuce` | `#7cc35a` | Diet labels, success messages (8.1:1 on surface) |
+| `--bi-lettuce` | `#7cc35a` | Diet labels, success messages (8.1:1 on surface), logo lettuce |
+| `--bi-white` | `#fff` | Text on the red primary button |
+| `--bi-bun`, `--bi-patty` | `#e0a75e`, `#5a2e1c` | Logo bun and patty (cheese, lettuce and seeds reuse other tokens) |
 | `--bi-border` | `#3d332e` | Decorative dividers only |
 | `--bi-input-border` | `#8c7b6e` | Form control borders (3.8:1, meets the 3:1 UI rule) |
 
@@ -249,6 +257,15 @@ Bootstrap mapping (in `style.css`, after Bootstrap):
 Secondary button: `.btn-outline-warning` re-tinted to mustard
 (text mustard, hover = mustard background + charcoal text).
 
+> ⚠️ Some Bootstrap classes read a separate `-rgb` variable, not the plain
+> one. `.bg-body-secondary` uses `--bs-secondary-bg-rgb`, so mapping only
+> `--bs-secondary-bg` leaves Bootstrap's own blue-grey. That is why
+> `--bi-surface-rgb` and `--bi-surface-2-rgb` exist and are mapped onto
+> `--bs-secondary-bg-rgb` and `--bs-tertiary-bg-rgb`.
+>
+> Bootstrap 5.3 also turns carousel captions, dots and arrows black in dark
+> mode. `style.css` overrides these with the same selectors, placed later.
+
 ### Typography
 
 Google Fonts (one `<link>` with `preconnect`, `display=swap`):
@@ -264,7 +281,15 @@ Google Fonts (one `<link>` with `preconnect`, `display=swap`):
 ### Shapes and spacing
 - Use Bootstrap spacing utilities (`py-5`, `gap-3`, …) for spacing.
 - Radius: `--bs-border-radius: 0.75rem` (friendly, rounded "bun" feel).
-  Buttons are pill-shaped (`rounded-pill`).
+  Buttons are pill-shaped (set once on `.btn` in `style.css`, so no
+  `rounded-pill` class is needed in the HTML).
+- Header and footer have a diagonal gradient (`to bottom right`) built from
+  the surface tokens: the header goes from `--bi-surface` to
+  `--bi-surface-3`, the footer the other way round.
+- Page background: a faint repeating food pattern on `<main>` (cream at 3%
+  opacity). It is the "I Love Food" pattern by Steve Schoger from Hero
+  Patterns (CC BY 4.0), credited in the README and in `style.css`. The
+  navbar, footer and cards stay solid.
 - Photos: `img-fluid`, `object-fit: cover`, fixed aspect ratios
   (`.ratio` or `aspect-ratio`), `width`/`height` attributes,
   `loading="lazy"` on everything except the first slide.
