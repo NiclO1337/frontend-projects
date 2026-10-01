@@ -447,7 +447,8 @@ project2-modern-business-website/
 2. **Root Directory:** `project2-modern-business-website`.
 3. Framework Preset: **Other**, no build command.
 4. Deploy, then add the live URL to the README.
-5. Settings → Git → **Ignored Build Step**: `git diff HEAD^ HEAD --quiet -- .`
+5. Settings → Build and Deployment → **Ignored Build Step** set: <br>
+Behaviour: `Only build if there are changes in a folder`<br>Command: `git diff HEAD^ HEAD --quiet -- .`<br>
    (so pushes to other projects don't redeploy this one).
 
 ---

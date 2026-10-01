@@ -284,9 +284,9 @@ content is in place.
 3. Framework Preset: **Other**. No build command, no output directory
    (static files are served as they are).
 4. Deploy, then copy the live URL into the README.
-5. Optional: so pushes to other projects don't redeploy this one, set
-   Settings → Git → **Ignored Build Step** to
-   `git diff HEAD^ HEAD --quiet -- .`
+5. Settings → Build and Deployment → **Ignored Build Step** set: <br>
+Behaviour: `Only build if there are changes in a folder`<br>Command: `git diff HEAD^ HEAD --quiet -- .`<br>
+   (so pushes to other projects don't redeploy this one).
 
 ---
 
