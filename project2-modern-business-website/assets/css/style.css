@@ -158,3 +158,87 @@ figcaption {
   outline-offset: 3px;
   box-shadow: none;
 }
+
+
+/* ==========================================================================
+   3. Layout helpers
+   ========================================================================== */
+
+/* (none yet) */
+
+
+/* ==========================================================================
+   4. Components
+   ========================================================================== */
+
+/* Brand name: the restaurant name in Merienda (navbar and footer) */
+.brand-name {
+  font-family: var(--bi-font-heading);
+  font-weight: 700;
+}
+
+/* --- Navbar --- */
+
+/* The navbar has data-bs-theme="dark", and Bootstrap sets its colours on
+   .navbar[data-bs-theme="dark"]. We use the same selector (and load later)
+   so our values win. */
+.navbar[data-bs-theme="dark"] {
+  --bs-navbar-color: var(--bi-text);
+  --bs-navbar-hover-color: var(--bi-mustard);
+  --bs-navbar-active-color: var(--bi-mustard);
+  --bs-navbar-brand-color: var(--bi-text);
+  --bs-navbar-brand-hover-color: var(--bi-mustard);
+  --bs-navbar-brand-active-color: var(--bi-text);
+  --bs-navbar-toggler-border-color: var(--bi-input-border);
+}
+
+/* The current page is bold as well as coloured, so colour is not the only signal */
+.navbar-nav .nav-link.active {
+  font-weight: 700;
+}
+
+/* The toggler gets our mustard focus ring (see section 2), not Bootstrap's glow */
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* --- Footer --- */
+
+/* Round icon links for social media. 2.75rem (44px) is a comfortable touch size. */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--bi-input-border);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background-color: var(--bi-mustard);
+  border-color: var(--bi-mustard);
+  color: var(--bi-on-mustard);
+}
+
+
+/* ==========================================================================
+   5. Page-specific
+   ========================================================================== */
+
+/* (none yet) */
+
+
+/* ==========================================================================
+   6. Animations and reduced motion
+   ========================================================================== */
+
+/* Transitions only run for visitors who have NOT asked for reduced motion.
+   Wrapping them like this means reduced-motion users never get them. */
+@media (prefers-reduced-motion: no-preference) {
+  .social-link {
+    transition: background-color 0.4s, border-color 0.4s, color 0.4s;
+  }
+}

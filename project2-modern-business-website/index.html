@@ -18,21 +18,91 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<!-- d-flex flex-column min-vh-100 + flex-grow-1 on <main> keeps the footer at the bottom of the window on short pages -->
+<body class="d-flex flex-column min-vh-100">
   <!-- Skip link: first focusable element, only visible when focused with the keyboard -->
   <a class="visually-hidden-focusable" href="#main">Skip to content</a>
 
-  <header>
-    <!-- Navbar goes here (step 3) -->
+  <!-- NAVBAR: copied into every page. Only the "active" link and aria-current change per page. -->
+  <!-- sticky-top is on the header (not the nav) so the bar stays visible for the whole page -->
+  <header class="sticky-top">
+    <!-- data-bs-theme="dark" on the navbar makes Bootstrap draw the light toggler icon -->
+    <nav class="navbar navbar-expand-lg bg-body-secondary border-bottom" data-bs-theme="dark" aria-label="Main navigation">
+      <div class="container">
+        <!-- The logo links to Home. On this page it is the current page. -->
+        <a class="navbar-brand brand-name" href="index.html" aria-current="page">Bun Intended</a>
+
+        <!-- Toggler: Bootstrap's JS opens and closes the element named in data-bs-target -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-story.html">Our Story</a></li>
+            <li class="nav-item"><a class="nav-link" href="hours-location.html">Hours &amp; Location</a></li>
+            <li class="nav-item mt-2 mt-lg-0 ms-lg-2"><a class="btn btn-primary" href="book.html">Book a table</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main id="main">
+  <main id="main" class="flex-grow-1">
     <h1>Bun Intended</h1>
     <!-- Hero, slider and home content go here (steps 5–8) -->
   </main>
 
-  <footer>
-    <!-- Footer goes here (step 3) -->
+  <!-- FOOTER: copied into every page. Opening hours here must match the hours table and hours.js. -->
+  <footer class="bg-body-secondary border-top py-5">
+    <div class="container">
+      <!-- Three columns from lg, stacked below -->
+      <div class="row gy-4">
+        <!-- Column 1: brand and contact -->
+        <div class="col-lg-4">
+          <p class="brand-name fs-4 mb-1">Bun Intended</p>
+          <p class="text-body-secondary">Smash burgers. Seriously good puns.</p>
+          <address class="mb-0">
+            Götgatan 42<br>
+            118 26 Stockholm<br>
+            <a href="tel:+4680000000">+46 8 000 00 00</a><br>
+            <a href="mailto:hello@bunintended.example">hello@bunintended.example</a>
+          </address>
+        </div>
+
+        <!-- Column 2: short opening hours and info links -->
+        <div class="col-lg-4">
+          <h2 class="h5">Opening hours</h2>
+          <ul class="list-unstyled mb-4">
+            <li>Mon–Thu: 11:00–22:00</li>
+            <li>Fri: 11:00–23:00</li>
+            <li>Sat: 12:00–23:00</li>
+            <li>Sun: 12:00–21:00</li>
+          </ul>
+
+          <h2 class="h5">Info</h2>
+          <nav aria-label="Info links">
+            <ul class="list-unstyled mb-0">
+              <li><a href="allergens.html">Allergens</a></li>
+              <li><a href="book.html">Book a table</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- Column 3: social links and copyright -->
+        <div class="col-lg-4">
+          <h2 class="h5">Follow us</h2>
+          <!-- Icon-only links need an aria-label. The icons themselves are decorative. -->
+          <ul class="list-unstyled d-flex gap-2 mb-4">
+            <li><a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a class="social-link" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook (opens in a new tab)"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
+            <li><a class="social-link" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok (opens in a new tab)"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></li>
+          </ul>
+          <p class="small mb-0">&copy; 2026 Bun Intended. A fictional restaurant made for a school project.</p>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <!-- Bootstrap's JS bundle (includes Popper) powers the navbar toggle and the carousel. defer = run after the HTML is parsed -->
