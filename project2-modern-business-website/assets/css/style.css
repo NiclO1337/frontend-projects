@@ -39,8 +39,12 @@
   --bi-ketchup-darker: #a91f15;   /* primary button hover/active */
   --bi-ketchup-light: #ff6b5e;    /* red text on dark, e.g. error messages */
 
-  /* Lettuce: diet labels and success messages */
+  /* Lettuce: diet labels, success messages and the logo lettuce */
   --bi-lettuce: #7cc35a;
+
+  /* Burger logo colours (lettuce, cheese and seeds reuse the tokens above) */
+  --bi-bun: #e0a75e;
+  --bi-patty: #5a2e1c;
 
   /* Borders */
   --bi-border: #3d332e;           /* decorative dividers only */
@@ -177,6 +181,35 @@ figcaption {
   font-weight: 700;
 }
 
+/* --- Burger logo (inline SVG, colours set here so they use our tokens) --- */
+
+/* overflow: visible lets the top bun lift above the SVG's box without being clipped */
+.logo-burger {
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.logo-burger .bun-top,
+.logo-burger .bun-bottom {
+  fill: var(--bi-bun);
+}
+
+.logo-burger .seed {
+  fill: var(--bi-text);
+}
+
+.logo-burger .lettuce {
+  fill: var(--bi-lettuce);
+}
+
+.logo-burger .cheese {
+  fill: var(--bi-mustard);
+}
+
+.logo-burger .patty {
+  fill: var(--bi-patty);
+}
+
 /* --- Navbar --- */
 
 /* The navbar has data-bs-theme="dark", and Bootstrap sets its colours on
@@ -238,6 +271,18 @@ figcaption {
 /* Transitions only run for visitors who have NOT asked for reduced motion.
    Wrapping them like this means reduced-motion users never get them. */
 @media (prefers-reduced-motion: no-preference) {
+  /* The top bun lifts when the logo link is hovered or focused.
+     Inside an SVG, "px" in a transform means SVG units: the logo is 100 units
+     wide and shown at 40px, so 8 units is about 3px on screen. */
+  .navbar-brand .bun-top {
+    transition: transform 0.25s ease;
+  }
+
+  .navbar-brand:hover .bun-top,
+  .navbar-brand:focus-visible .bun-top {
+    transform: translateY(-8px);
+  }
+
   .social-link {
     transition: background-color 0.4s, border-color 0.4s, color 0.4s;
   }

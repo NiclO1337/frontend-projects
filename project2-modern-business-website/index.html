@@ -30,7 +30,25 @@
     <nav class="navbar navbar-expand-lg bg-body-secondary border-bottom" data-bs-theme="dark" aria-label="Main navigation">
       <div class="container">
         <!-- The logo links to Home. On this page it is the current page. -->
-        <a class="navbar-brand brand-name" href="index.html" aria-current="page">Bun Intended</a>
+        <a class="navbar-brand brand-name d-flex align-items-center gap-2" href="index.html" aria-current="page">
+          <!-- Burger logo: five layers, bottom to top in the code (later = drawn on top).
+               aria-hidden because the text "Bun Intended" is the accessible name. -->
+          <svg class="logo-burger" width="40" height="32" viewBox="0 0 100 80" aria-hidden="true">
+            <g class="bun-bottom"><path d="M10 62 H90 V66 Q90 74 80 74 H20 Q10 74 10 66 Z"/></g>
+            <g class="patty"><rect x="8" y="49" width="84" height="13" rx="6.5"/></g>
+            <g class="cheese"><path d="M12 43 H88 V48 H72 L66 56 L60 48 H12 Z"/></g>
+            <g class="lettuce"><path d="M6 37 Q15 31 24 37 T42 37 T60 37 T78 37 T94 37 V43 H6 Z"/></g>
+            <g class="bun-top">
+              <path d="M10 36 C10 14 28 6 50 6 C72 6 90 14 90 36 Z"/>
+              <ellipse class="seed" cx="34" cy="20" rx="2.4" ry="1.3" transform="rotate(-25 34 20)"/>
+              <ellipse class="seed" cx="50" cy="14" rx="2.4" ry="1.3"/>
+              <ellipse class="seed" cx="66" cy="20" rx="2.4" ry="1.3" transform="rotate(25 66 20)"/>
+              <ellipse class="seed" cx="42" cy="28" rx="2.4" ry="1.3" transform="rotate(-15 42 28)"/>
+              <ellipse class="seed" cx="58" cy="28" rx="2.4" ry="1.3" transform="rotate(15 58 28)"/>
+            </g>
+          </svg>
+          Bun Intended
+        </a>
 
         <!-- Toggler: Bootstrap's JS opens and closes the element named in data-bs-target -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +79,24 @@
       <div class="row gy-4">
         <!-- Column 1: brand and contact -->
         <div class="col-lg-4">
-          <p class="brand-name fs-4 mb-1">Bun Intended</p>
+          <!-- Same burger as in the navbar, but static (it is not a link) -->
+          <p class="brand-name fs-4 mb-1 d-flex align-items-center gap-2">
+            <svg class="logo-burger" width="40" height="32" viewBox="0 0 100 80" aria-hidden="true">
+              <g class="bun-bottom"><path d="M10 62 H90 V66 Q90 74 80 74 H20 Q10 74 10 66 Z"/></g>
+              <g class="patty"><rect x="8" y="49" width="84" height="13" rx="6.5"/></g>
+              <g class="cheese"><path d="M12 43 H88 V48 H72 L66 56 L60 48 H12 Z"/></g>
+              <g class="lettuce"><path d="M6 37 Q15 31 24 37 T42 37 T60 37 T78 37 T94 37 V43 H6 Z"/></g>
+              <g class="bun-top">
+                <path d="M10 36 C10 14 28 6 50 6 C72 6 90 14 90 36 Z"/>
+                <ellipse class="seed" cx="34" cy="20" rx="2.4" ry="1.3" transform="rotate(-25 34 20)"/>
+                <ellipse class="seed" cx="50" cy="14" rx="2.4" ry="1.3"/>
+                <ellipse class="seed" cx="66" cy="20" rx="2.4" ry="1.3" transform="rotate(25 66 20)"/>
+                <ellipse class="seed" cx="42" cy="28" rx="2.4" ry="1.3" transform="rotate(-15 42 28)"/>
+                <ellipse class="seed" cx="58" cy="28" rx="2.4" ry="1.3" transform="rotate(15 58 28)"/>
+              </g>
+            </svg>
+            Bun Intended
+          </p>
           <p class="text-body-secondary">Smash burgers. Seriously good puns.</p>
           <address class="mb-0">
             Götgatan 42<br>
