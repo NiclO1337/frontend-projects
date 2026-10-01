@@ -328,6 +328,8 @@ Link to live website: TODO add Vercel URL
 - Logo and favicon: Claude Code SVG drawing
 - Icons from [Font Awesome](https://fontawesome.com/)
 - Fonts from [Google Fonts](https://fonts.google.com/): Merienda, M PLUS Rounded 1c and Noto Sans
+- Background pattern "I Love Food" by [Steve Schoger](https://www.steveschoger.com/) from [Hero Patterns](https://heropatterns.com/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Colour and opacity adjusted.
+
 
 ### Code
 - [Bootstrap 5.3 documentation](https://getbootstrap.com/docs/5.3/) for the navbar, carousel, grid and form validation
