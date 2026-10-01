@@ -219,7 +219,7 @@ The site is deployed to Vercel as its own project. The steps to deploy are as fo
 - Set **Framework Preset** to **Other** (no build command is needed for a static site)
 - Click **Deploy**. Vercel redeploys automatically on every push to `main`
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.vercel.app/)
 
 ### Local development
 
