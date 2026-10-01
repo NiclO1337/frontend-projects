@@ -255,8 +255,11 @@ TODO: screenshot
 - Font Awesome
 - Google Maps (embed)
 - VS Code
-- Claude Code
-- TODO: add image tools used (resizing / WebP conversion), favicon tools, etc.
+- Claude (planning)
+- Claude Code (implementation)
+- ChatGPT (image edit)
+- Paint.NET (cropping images)
+- Squoosh (resizing / WebP conversion)
 
 ## Testing
 
@@ -267,8 +270,7 @@ Testing made in separate file [TESTING.md](TESTING.md)
 
 This project lives in the monorepo
 [frontend-projects](https://github.com/NiclO1337/frontend-projects), in the
-folder `project2-modern-business-website`. Changes were continuously pushed
-to GitHub for source control.<br>
+folder `project2-modern-business-website`.<br>
 The site is deployed to Vercel as its own project. The steps to deploy are as follows:
 - Log in to Vercel with GitHub, click **Add New → Project** and import the `frontend-projects` repository
 - Set **Root Directory** to `project2-modern-business-website`
@@ -299,11 +301,31 @@ Link to live website: TODO add Vercel URL
 ## Credits
 
 ### Content
-- Bun Intended is a fictional restaurant. All text, menu items, prices and history were written for this project.
+- Bun Intended is a fictional restaurant. All text, menu items, prices and history were written by Claude for this project.
 
 ### Media
-- TODO: credit every photo (photographer + link to Pexels/Unsplash) per page
-- Logo and favicon: own SVG drawing
+
+#### Slider (home carousel)
+- slider-1.webp Photo by Eric Moura: [Four gourmet burgers with fries](https://www.pexels.com/photo/delicious-burger-feast-with-coca-cola-33068080/)
+- slider-2.webp Photo by Allan González: [Stylish burger restaurant interior with neon signs and colorful decor](https://www.pexels.com/photo/modern-burger-restaurant-interior-in-mexico-31650325/)
+- slider-3.webp Photo by Rachel Claire: [A delectable spread of burgers, fries, and vibrant beverages on a rustic table.](https://www.pexels.com/photo/burgers-and-fries-on-restaurant-table-5864595/)
+- slider-4.webp Photo by Allan González: [Three friends laughing and enjoying burgers in a restaurant](https://www.pexels.com/photo/friends-enjoying-burgers-at-a-cafe-31650401/)
+
+#### Featured dishes
+- dish-classic-pun.webp Photo by Eddie O.: [Close-up of a delicious cheeseburger with onion rings and pickles](https://www.pexels.com/sv-se/foto/saftig-cheeseburgare-med-lokringar-och-pickles-36377444/)
+- dish-kale-me-maybe.webp Photo by ᗩᑎᑌᑭKᑌᗰᎪᏒ PATEL: [An appetizing plant-based burger with cheese, lettuce, tomato, and onion against a colorful background](https://www.pexels.com/sv-se/foto/smorgas-picknick-middag-lunch-20722029/)
+- dish-shake-it-off.webp Photo by mohammad mohebbi: [A pink milkshake topped with whipped cream in a clear glass, set in a warm-lit café](https://www.pexels.com/photo/pink-milkshake-in-elegant-glass-at-cozy-cafe-35119724/)
+
+#### Other pages
+- welcome.webp Photo by Hert Niks: [Close-up of cheeseburgers with caramelized onions being prepared on a grill](https://www.pexels.com/photo/delicious-cheeseburgers-with-caramelized-onions-on-grill-38138831/)
+- story-1.webp Photo by Erik Mclean: [Night view of a cozy burger food truck in an urban area with outdoor seating](https://www.pexels.com/photo/food-truck-with-burgers-12727636/)
+- story-2.webp Photo by Pavel Danilyuk: [Close-up of a bartender pouring a cold draft beer into a glass mug at a bar](https://www.pexels.com/photo/bartender-pouring-beer-into-pint-glass-5858056/)
+- location-1.webp Photo by SONIC: [Warmly lit restaurant entrance at night featuring wooden doors and a modern glass facade](https://www.pexels.com/photo/brown-building-with-glass-doors-and-window-12103061/)
+- location-2.webp Photo by Allan González: [Joyful group of friends enjoying time together at an indoor burger restaurant](https://www.pexels.com/photo/young-friends-socializing-at-a-burger-restaurant-31650322/)
+- location-3.webp Photo by Engin Akyurt: [A mouth-watering hamburger served with fries, accompanied by a glass of beer on a wooden table](https://www.pexels.com/photo/clear-glass-mug-with-brown-liquid-3356410/)
+
+#### Icons and fonts
+- Logo and favicon: Claude Code SVG drawing
 - Icons from [Font Awesome](https://fontawesome.com/)
 - Fonts from [Google Fonts](https://fonts.google.com/): Merienda, M PLUS Rounded 1c and Noto Sans
 
