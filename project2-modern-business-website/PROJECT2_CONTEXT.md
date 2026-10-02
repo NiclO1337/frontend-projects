@@ -458,9 +458,9 @@ project2-modern-business-website/
 | 16 | Booking form markup + info card | `project-2: add booking form` |
 | 17 | Booking validation, time slots, confirmation | `project-2: add booking validation` |
 | 18 | Favicon + apple-touch-icon on all pages | `project-2: add favicon` |
-| 19 | Responsive pass: every page at 375 / 768 / 1024 / 1440px | `project-2: refine responsive layout` |
-| 20 | W3C, Jigsaw, Lighthouse, WAVE + fixes | `project-2: fix validation issues` |
-| 21 | Deploy to Vercel, add live URL | `project-2: add live url` |
+| 19 | Deploy to Vercel, add live URL | `project-2: add live url` |
+| 20 | Responsive pass: every page at 375 / 768 / 1024 / 1440px | `project-2: refine responsive layout` |
+| 21 | W3C, Jigsaw, Lighthouse, WAVE + fixes | `project-2: fix validation issues` |
 | 22 | Screenshots, finish README + TESTING.md | `project-2: update readme` |
 
 ---

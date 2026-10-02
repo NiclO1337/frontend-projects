@@ -4,7 +4,7 @@ TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.
 
 <!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Bun Intended](https://frontend-projects-project2-modern-b.vercel.app/)
 
 <hr>
 
@@ -277,7 +277,7 @@ The site is deployed to Vercel as its own project. The steps to deploy are as fo
 - Set **Framework Preset** to **Other** (no build command is needed for a static site)
 - Click **Deploy**. Vercel redeploys automatically on every push to `main`
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Bun Intended](https://frontend-projects-project2-modern-b.vercel.app/)
 
 ### Local development
 
