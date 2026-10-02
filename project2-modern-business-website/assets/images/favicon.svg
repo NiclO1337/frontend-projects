@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -10 100 100">
+  <title>Bun Intended</title>
+  <!-- The finished burger, not animated: browsers only show the first frame of a favicon anyway -->
+  <g fill="#e0a75e"><path d="M10 62 H90 V66 Q90 74 80 74 H20 Q10 74 10 66 Z"/></g>
+  <g fill="#5a2e1c"><rect x="8" y="49" width="84" height="13" rx="6.5"/></g>
+  <g fill="#f2b705"><path d="M12 43 H88 V48 H72 L66 56 L60 48 H12 Z"/></g>
+  <g fill="#7cc35a"><path d="M6 37 Q15 31 24 37 T42 37 T60 37 T78 37 T94 37 V43 H6 Z"/></g>
+  <g fill="#e0a75e">
+    <path d="M10 36 C10 14 28 6 50 6 C72 6 90 14 90 36 Z"/>
+    <g fill="#f5efe6">
+      <ellipse cx="34" cy="20" rx="2.4" ry="1.3" transform="rotate(-25 34 20)"/>
+      <ellipse cx="50" cy="14" rx="2.4" ry="1.3"/>
+      <ellipse cx="66" cy="20" rx="2.4" ry="1.3" transform="rotate(25 66 20)"/>
+      <ellipse cx="42" cy="28" rx="2.4" ry="1.3" transform="rotate(-15 42 28)"/>
+      <ellipse cx="58" cy="28" rx="2.4" ry="1.3" transform="rotate(15 58 28)"/>
+    </g>
+  </g>
+</svg>
