@@ -73,7 +73,18 @@
       <p class="lead mb-1">Smashed to order and made from scratch, from the buns to the sauces. All prices are in SEK.</p>
       <p class="small mb-4">V = vegetarian, VG = vegan, GF = gluten-free.</p>
 
-      <!-- The category filter bar goes here (step 11) -->
+      <!-- FILTER BAR: hidden until menu-filter.js runs, so visitors without JavaScript just see the full menu.
+           data-filter must match the data-category of a section below. -->
+      <div id="menu-filter" class="filter-bar mb-4" role="group" aria-label="Filter menu by category" hidden>
+        <button type="button" class="btn btn-outline-warning" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="starters" aria-pressed="false">Starters</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="burgers" aria-pressed="false">Burgers</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="sides" aria-pressed="false">Sides</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="desserts" aria-pressed="false">Desserts</button>
+        <button type="button" class="btn btn-outline-warning" data-filter="drinks" aria-pressed="false">Drinks</button>
+      </div>
+      <!-- Screen readers announce changes to this text (aria-live="polite" waits until they finish speaking) -->
+      <p id="menu-filter-status" class="visually-hidden" aria-live="polite"></p>
 
       <!-- MENU: this is the master list. allergens.html and the featured dishes on the home page must use the same names and prices.
            data-category is read by the filter script in step 11. -->
@@ -320,5 +331,6 @@
 
   <!-- Bootstrap's JS bundle (includes Popper) powers the navbar toggle and the carousel. defer = run after the HTML is parsed -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/menu-filter.js" defer></script>
 </body>
 </html>

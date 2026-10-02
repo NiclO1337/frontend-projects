@@ -417,6 +417,23 @@ figcaption {
   }
 }
 
+/* Filter bar. The "hidden" attribute (removed by menu-filter.js) only works if
+   nothing else sets display with !important. Bootstrap's d-flex does, and it
+   would beat "hidden", so the flex layout is written here instead. */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* The selected category is filled with mustard. JS only changes aria-pressed,
+   and this rule turns that into the visual state. */
+.filter-bar .btn[aria-pressed="true"] {
+  background-color: var(--bi-mustard);
+  border-color: var(--bi-mustard);
+  color: var(--bi-on-mustard);
+}
+
 /* A thin decorative line between items */
 .menu-item {
   padding: 1rem 0;
