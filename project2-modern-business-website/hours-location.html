@@ -71,7 +71,8 @@
     <div class="container py-5">
       <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
         <h1 class="mb-0">Hours &amp; Location</h1>
-        <!-- The open-now badge goes here (step 15) -->
+        <!-- Open-now badge: empty until open-status.js fills it in. role="status" makes screen readers announce changes. -->
+        <p id="open-status" class="open-badge mb-0" role="status"></p>
       </div>
 
       <!-- HOURS AND ADDRESS: side by side from lg, equal height (h-100) -->
@@ -83,7 +84,7 @@
                 <h2 class="h4">Opening hours</h2>
                 <!-- These hours must match OPENING_HOURS in assets/js/hours.js and the footer.
                      data-day lists the days a row covers (0 = Sunday ... 6 = Saturday, like Date.getDay()). -->
-                <table class="table mb-0">
+                <table class="table hours-table mb-0">
                   <caption class="visually-hidden">Opening hours by day</caption>
                   <tbody>
                     <tr data-day="1 2 3 4"><th scope="row">Monday – Thursday</th><td class="text-end">11:00 – 22:00</td></tr>
@@ -216,5 +217,7 @@
 
   <!-- Bootstrap's JS bundle (includes Popper) powers the navbar toggle and the carousel. defer = run after the HTML is parsed -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/hours.js" defer></script>
+  <script src="assets/js/open-status.js" defer></script>
 </body>
 </html>

@@ -715,6 +715,39 @@ footer {
   font-size: 2.5rem;
 }
 
+/* --- Hours & Location page --- */
+
+/* Open-now badge. open-status.js adds is-open or is-closed. The text colours
+   pass AA on the surface colour, and the icon and text carry the meaning too. */
+.open-badge {
+  padding: 0.35rem 1rem;
+  border: 1px solid currentColor;
+  border-radius: 50rem;
+  background-color: var(--bi-surface);
+  font-family: var(--bi-font-ui);
+  font-weight: 700;
+}
+
+/* Until the script has filled it in (or when JavaScript is off) there is nothing to show */
+.open-badge:empty {
+  display: none;
+}
+
+.open-badge.is-open {
+  color: var(--bi-lettuce);
+}
+
+.open-badge.is-closed {
+  color: var(--bi-ketchup-light);
+}
+
+/* Today's row in the hours table gets Bootstrap's table-active class from
+   the script. We set what that class looks like. */
+.hours-table {
+  --bs-table-active-bg: var(--bi-surface-2);
+  --bs-table-active-color: var(--bi-mustard);
+}
+
 /* ==========================================================================
    6. Animations and reduced motion
    ========================================================================== */
