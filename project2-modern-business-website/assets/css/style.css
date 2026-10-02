@@ -532,6 +532,90 @@ footer {
   border-bottom: 3px solid var(--bi-ketchup);
 }
 
+/* --- Allergens page --- */
+
+/* The table has 8 narrow columns, so it scrolls inside its own box. The box has
+   a maximum height, so it scrolls down as well as sideways. That is what lets
+   the column titles stick to the top of the box (see below): a sticky cell
+   sticks to its nearest scrolling box, not to the page.
+   position: relative is needed for the visually hidden "contains" texts.
+   Bootstrap makes them position: absolute, and without a positioned parent
+   they are placed relative to the whole page, so they are not clipped by this
+   box and stretch the page sideways. */
+.allergen-scroll {
+  position: relative;
+  max-height: 75vh;
+  overflow: auto;
+}
+
+/* Sticky cells lose their borders when the table uses collapsing borders,
+   so each cell draws its own border instead */
+.allergen-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Everything is centred except the dish names */
+.allergen-table th,
+.allergen-table td {
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+
+/* Column titles stay at the top while scrolling down. Sticky cells need a
+   solid background, otherwise the rows scrolling past would show through.
+   z-index keeps them above the rows. */
+.allergen-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--bi-bg);
+  font-family: var(--bi-font-ui);
+  font-size: 0.875rem;
+}
+
+/* The dish names stay at the left while scrolling sideways, so you always
+   know which row you are reading */
+.allergen-table thead th:first-child,
+.allergen-table tbody th[scope="row"] {
+  position: sticky;
+  left: 0;
+  min-width: 11rem;
+  background-color: var(--bi-bg);
+  font-weight: 600;
+  text-align: start;
+}
+
+.allergen-table tbody th[scope="row"] {
+  z-index: 1;
+}
+
+/* The top-left "Dish" cell sticks in both directions, so it goes on top of everything */
+.allergen-table thead th:first-child {
+  z-index: 3;
+}
+
+/* Category heading rows. The text sits in a span that is sticky itself,
+   because the cell is as wide as the whole table and could not stick. */
+.allergen-group th {
+  padding-top: 1.5rem;
+  text-align: start;
+}
+
+.allergen-group-name {
+  position: sticky;
+  left: 0.5rem;
+  display: inline-block;
+  color: var(--bi-mustard);
+  font-family: var(--bi-font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.allergen-table .fa-check {
+  color: var(--bi-mustard);
+}
+
 /* ==========================================================================
    6. Animations and reduced motion
    ========================================================================== */

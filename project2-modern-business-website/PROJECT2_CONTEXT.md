@@ -158,7 +158,7 @@ Starter menu content (Claude Code may polish the wording):
 | Sides | Truffle Parm Fries | Truffle oil, parmesan, parsley | 69 kr | V, GF |
 | Sides | Slaw | Crunchy cabbage slaw, lime dressing | 39 kr | VG, GF |
 | Desserts | Shake It Off | Thick vanilla, chocolate or strawberry milkshake | 79 kr | V, GF |
-| Desserts | Brownie Points | Warm chocolate brownie, vanilla ice cream | 89 kr | V |
+| Desserts | Brownie Points | Warm chocolate brownie with walnuts, vanilla ice cream | 89 kr | V |
 | Drinks | Södermalm Pale Ale | Local craft beer, 40 cl | 89 kr | VG |
 | Drinks | House Lemonade | Lemon, ginger or raspberry | 49 kr | VG, GF |
 | Drinks | Soft Drinks | Coca-Cola, Fanta, Sprite | 35 kr | VG, GF |

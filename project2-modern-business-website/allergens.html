@@ -70,7 +70,62 @@
   <main id="main" class="flex-grow-1">
     <div class="container py-5">
       <h1>Allergens</h1>
-      <!-- Allergens content goes here (step 12) -->
+      <p class="lead">Tell your server about allergies. We'll help you choose.</p>
+      <p>A tick means the dish contains that allergen. The full menu is on the <a href="menu.html">menu page</a>.</p>
+      <p class="small d-md-none">Swipe the table sideways to see every allergen.</p>
+
+      <!-- The scrolling box is focusable (tabindex="0") so keyboard users can scroll it with the arrow keys -->
+      <div class="table-responsive allergen-scroll" role="region" aria-labelledby="allergen-caption" tabindex="0">
+        <table class="table allergen-table align-middle caption-top">
+          <caption id="allergen-caption">Allergens in each dish</caption>
+          <thead>
+            <tr><th scope="col">Dish</th><th scope="col">Gluten</th><th scope="col">Milk</th><th scope="col">Egg</th><th scope="col">Mustard</th><th scope="col">Sesame</th><th scope="col">Soy</th><th scope="col">Nuts</th></tr>
+          </thead>
+          <tbody>
+            <tr class="allergen-group"><th scope="rowgroup" colspan="8"><span class="allergen-group-name">Starters</span></th></tr>
+            <tr><th scope="row">Onion Rings of Power</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Wings, No Strings</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Halloumi Fries</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+          <tbody>
+            <tr class="allergen-group"><th scope="rowgroup" colspan="8"><span class="allergen-group-name">Burgers</span></th></tr>
+            <tr><th scope="row">The Classic Pun</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td></tr>
+            <tr><th scope="row">Brie-lieve It</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td></tr>
+            <tr><th scope="row">Smoke Me If You Can</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td></tr>
+            <tr><th scope="row">Hot Mess</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td></tr>
+            <tr><th scope="row">Kale Me Maybe</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td></tr>
+            <tr><th scope="row">Mush Ado About Nothing</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td></tr>
+          </tbody>
+          <tbody>
+            <tr class="allergen-group"><th scope="rowgroup" colspan="8"><span class="allergen-group-name">Sides</span></th></tr>
+            <tr><th scope="row">Fries</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Sweet Potato Fries</th><td></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Truffle Parm Fries</th><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Slaw</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+          <tbody>
+            <tr class="allergen-group"><th scope="rowgroup" colspan="8"><span class="allergen-group-name">Desserts</span></th></tr>
+            <tr><th scope="row">Shake It Off</th><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Brownie Points</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td></tr>
+          </tbody>
+          <tbody>
+            <tr class="allergen-group"><th scope="rowgroup" colspan="8"><span class="allergen-group-name">Drinks</span></th></tr>
+            <tr><th scope="row">Södermalm Pale Ale</th><td><i class="fa-solid fa-check" aria-hidden="true"></i><span class="visually-hidden">contains</span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">House Lemonade</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Soft Drinks</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="h4 mt-5">Good to know</h2>
+      <ul>
+        <li>A gluten-free bun (+15 kr) removes the gluten from the bun only. Burgers with onion rings, fried chicken or the plant-based patty still contain gluten.</li>
+        <li>Our fries are cooked in the same fryers as the onion rings, wings and halloumi fries, so even fries marked GF can pick up traces of gluten.</li>
+        <li>Our kitchen handles all 14 allergens listed in EU rules, so we can't promise that any dish is completely free of an allergen. Please always tell your server about allergies.</li>
+      </ul>
+      <p class="small">Bun Intended is a fictional restaurant, and this allergen information is made up for a school project. Please don't use it to make decisions about real food.</p>
+
+      <a class="btn btn-outline-warning" href="menu.html">Back to the menu</a>
     </div>
   </main>
 
