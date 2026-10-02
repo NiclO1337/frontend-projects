@@ -576,13 +576,14 @@ abbr.diet-label[title] {
   box-shadow: 0 0 0 0.2rem var(--bi-mustard);
 }
 
-/* Bootstrap has its own, more specific focus rules for validated fields
-   (red and green glow). We keep the red or green border but use the same
-   mustard ring, so the focused field is always easy to find. */
-.was-validated .form-control:valid:focus,
-.was-validated .form-control:invalid:focus,
-.was-validated .form-select:valid:focus,
-.was-validated .form-select:invalid:focus {
+/* Bootstrap has its own, more specific focus rules for fields marked valid or
+   invalid (red and green glow). booking-form.js adds the classes is-valid and
+   is-invalid to each checked field. We keep the red or green border but use
+   the same mustard ring, so the focused field is always easy to find. */
+.form-control.is-valid:focus,
+.form-control.is-invalid:focus,
+.form-select.is-valid:focus,
+.form-select.is-invalid:focus {
   box-shadow: 0 0 0 0.2rem var(--bi-mustard);
 }
 
@@ -748,6 +749,13 @@ footer {
 .value-icon {
   color: var(--bi-mustard);
   font-size: 2.5rem;
+}
+
+/* --- Book a Table page --- */
+
+/* Green check at the top of the confirmation card */
+.confirmation-icon {
+  color: var(--bi-lettuce);
 }
 
 /* --- Hours & Location page --- */

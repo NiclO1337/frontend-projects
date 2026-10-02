@@ -76,11 +76,11 @@
       <!-- Form on the left (top on phones), info card on the right (below on phones) -->
       <div class="row g-4">
         <div class="col-lg-7">
-          <div class="card">
+          <div class="card" id="booking-form-card">
             <div class="card-body p-4">
               <h2 class="h4 mb-3">Your booking</h2>
 
-              <!-- novalidate turns off the browser's own error bubbles. booking-form.js (step 17) checks the
+              <!-- novalidate turns off the browser's own error bubbles. booking-form.js checks the
                    fields and shows our messages instead, using Bootstrap's validation styles. -->
               <form id="booking-form" novalidate>
                 <div class="row g-3">
@@ -141,6 +141,18 @@
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+
+          <!-- CONFIRMATION: hidden until the form is sent correctly. booking-form.js fills in the texts.
+               The heading has tabindex="-1", so a script can move focus to it without it being a tab stop. -->
+          <div class="card" id="booking-confirmation" hidden>
+            <div class="card-body p-4">
+              <i class="fa-solid fa-circle-check confirmation-icon fs-1 mb-3" aria-hidden="true"></i>
+              <h2 class="h4" id="booking-confirmation-heading" tabindex="-1">Thanks!</h2>
+              <p id="booking-confirmation-summary">Your request is noted.</p>
+              <p class="text-body-secondary">This is a demo site, so no booking was sent.</p>
+              <button type="button" class="btn btn-outline-warning" id="booking-reset">Make another booking</button>
             </div>
           </div>
         </div>
@@ -240,5 +252,7 @@
 
   <!-- Bootstrap's JS bundle (includes Popper) powers the navbar toggle and the carousel. defer = run after the HTML is parsed -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/js/hours.js" defer></script>
+  <script src="assets/js/booking-form.js" defer></script>
 </body>
 </html>
