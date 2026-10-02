@@ -460,6 +460,97 @@ abbr.diet-label[title] {
   font-weight: 700;
 }
 
+/* --- Timeline (Our Story) --- */
+
+/* Phones: one column. The line runs down the left side and each item has a dot on it. */
+.timeline {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.5rem;
+  width: 2px;
+  background-color: var(--bi-ketchup);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 2rem 2.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* The dot. Its centre (0.5625rem) is on the line. The border in the page
+   colour makes a small gap between the dot and the line. */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0.2rem;
+  left: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 3px solid var(--bi-bg);
+  border-radius: 50%;
+  background-color: var(--bi-mustard);
+}
+
+/* "Today" gets a red dot */
+.timeline-item:last-child::before {
+  background-color: var(--bi-ketchup);
+}
+
+.timeline-year {
+  color: var(--bi-mustard);
+  font-family: var(--bi-font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* From lg: the line moves to the middle and the items alternate. Each item is
+   half the width, so its edge sits on the line. Odd items are on the left with
+   right-aligned text, even items on the right. */
+@media (min-width: 992px) {
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    width: 50%;
+    padding: 0 2.5rem 2.5rem 0;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(even) {
+    margin-left: 50%;
+    padding: 0 0 2.5rem 2.5rem;
+    text-align: left;
+  }
+
+  .timeline-item::before {
+    right: -0.5625rem;
+    left: auto;
+  }
+
+  .timeline-item:nth-child(even)::before {
+    right: auto;
+    left: -0.5625rem;
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+}
+
 /* --- Footer --- */
 
 footer {
@@ -614,6 +705,14 @@ footer {
 
 .allergen-table .fa-check {
   color: var(--bi-mustard);
+}
+
+/* --- Our Story page --- */
+
+/* Big mustard icon at the top of each value card */
+.value-icon {
+  color: var(--bi-mustard);
+  font-size: 2.5rem;
 }
 
 /* ==========================================================================

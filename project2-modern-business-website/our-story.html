@@ -69,8 +69,103 @@
 
   <main id="main" class="flex-grow-1">
     <div class="container py-5">
-      <h1>Our Story</h1>
-      <!-- Our Story content goes here (step 13) -->
+      <!-- INTRO: the text and the photo are stacked, never side by side. Each one is its own row with a
+           single centred column (mx-auto). The column gets narrower on bigger screens, and the text is
+           narrower than the photo, which keeps the lines short and easy to read. -->
+      <section class="mb-5">
+        <div class="row gx-lg-5 mb-4">
+          <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+            <h1>Our Story</h1>
+            <p class="lead">Bun Intended started with two friends, Elin and Jonas, and one strong opinion: burgers deserve better ingredients, and puns deserve a restaurant.</p>
+            <p class="mb-0">They met in kitchens around Stockholm and spent their evenings arguing about the perfect smash burger: the right beef, the right heat, the right bun. In 2016 they stopped arguing and bought a food truck.</p>
+          </div>
+        </div>
+        <div class="row gx-lg-5">
+          <div class="col-lg-10 col-xl-8 mx-auto">
+            <figure class="mb-0">
+              <img src="assets/images/story-1.webp" class="img-fluid rounded" width="1000" height="667" alt="Night view of a cozy burger food truck in an urban area with outdoor seating">
+              <figcaption class="mt-2">Where it all started: the food truck days.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIMELINE: an ordered list (the order matters). Single column on phones, alternating sides from lg. -->
+      <section class="mb-5" aria-labelledby="timeline-heading">
+        <h2 id="timeline-heading" class="text-center mb-4">From food truck to Götgatan</h2>
+
+        <ol class="timeline">
+          <li class="timeline-item">
+            <p class="timeline-year mb-1"><time datetime="2016">2016</time></p>
+            <h3 class="h5">The food truck</h3>
+            <p class="text-body-secondary mb-0">We buy a second-hand truck and start smashing burgers at street-food markets around Stockholm. The menu has three items and the queue is long.</p>
+          </li>
+          <li class="timeline-item">
+            <p class="timeline-year mb-1"><time datetime="2018">2018</time></p>
+            <h3 class="h5">Street-food champions</h3>
+            <p class="text-body-secondary mb-0">The Classic Pun wins a local street-food competition. Suddenly everyone wants to know who is behind the pickles.</p>
+          </li>
+          <li class="timeline-item">
+            <p class="timeline-year mb-1"><time datetime="2020">2020</time></p>
+            <h3 class="h5">Götgatan</h3>
+            <p class="text-body-secondary mb-0">We open our own restaurant on Götgatan, with a proper kitchen, table service and a seat for everyone in the queue.</p>
+          </li>
+          <li class="timeline-item">
+            <p class="timeline-year mb-1"><time datetime="2024">2024</time></p>
+            <h3 class="h5">New look, new bar</h3>
+            <p class="text-body-secondary mb-0">We renovate and add a bar with craft beer from local breweries.</p>
+          </li>
+          <li class="timeline-item">
+            <p class="timeline-year mb-1">Today</p>
+            <h3 class="h5">Still smashing, still punning</h3>
+            <p class="text-body-secondary mb-0">Same recipe, same grill, same questionable jokes. Come and say hi.</p>
+          </li>
+        </ol>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8">
+            <figure class="mb-0">
+              <img src="assets/images/story-2.webp" class="img-fluid rounded" width="1000" height="667" loading="lazy" alt="Close-up of a bartender pouring a cold draft beer into a glass mug at a bar">
+              <figcaption class="mt-2">The bar today: local craft beer, poured properly.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUES: three cards, one per column from md -->
+      <section aria-labelledby="values-heading">
+        <h2 id="values-heading" class="text-center mb-4">What we stand for</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <article class="card h-100 text-center">
+              <div class="card-body">
+                <i class="fa-solid fa-cow value-icon mb-3" aria-hidden="true"></i>
+                <h3 class="h5">Swedish beef from local farms</h3>
+                <p class="text-body-secondary mb-0">Our beef comes from farms close to Stockholm. It is ground fresh and smashed to order.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 text-center">
+              <div class="card-body">
+                <i class="fa-solid fa-bread-slice value-icon mb-3" aria-hidden="true"></i>
+                <h3 class="h5">Buns baked fresh every morning</h3>
+                <p class="text-body-secondary mb-0">Every bun is baked in the morning and served the same day. Never frozen, never rushed.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card h-100 text-center">
+              <div class="card-body">
+                <i class="fa-solid fa-face-laugh-beam value-icon mb-3" aria-hidden="true"></i>
+                <h3 class="h5">Puns served free of charge</h3>
+                <p class="text-body-secondary mb-0">The burgers cost money. The puns are on the house, whether you ask for them or not.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
