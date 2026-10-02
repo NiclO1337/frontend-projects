@@ -69,8 +69,80 @@
 
   <main id="main" class="flex-grow-1">
     <div class="container py-5">
-      <h1>Hours &amp; Location</h1>
-      <!-- Hours &amp; Location content goes here (step 14) -->
+      <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+        <h1 class="mb-0">Hours &amp; Location</h1>
+        <!-- The open-now badge goes here (step 15) -->
+      </div>
+
+      <!-- HOURS AND ADDRESS: side by side from lg, equal height (h-100) -->
+      <section class="mb-5">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h2 class="h4">Opening hours</h2>
+                <!-- These hours must match OPENING_HOURS in assets/js/hours.js and the footer.
+                     data-day lists the days a row covers (0 = Sunday ... 6 = Saturday, like Date.getDay()). -->
+                <table class="table mb-0">
+                  <caption class="visually-hidden">Opening hours by day</caption>
+                  <tbody>
+                    <tr data-day="1 2 3 4"><th scope="row">Monday – Thursday</th><td class="text-end">11:00 – 22:00</td></tr>
+                    <tr data-day="5"><th scope="row">Friday</th><td class="text-end">11:00 – 23:00</td></tr>
+                    <tr data-day="6"><th scope="row">Saturday</th><td class="text-end">12:00 – 23:00</td></tr>
+                    <tr data-day="0"><th scope="row">Sunday</th><td class="text-end">12:00 – 21:00</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h2 class="h4">Find us</h2>
+                <address>
+                  Götgatan 42<br>
+                  118 26 Stockholm<br>
+                  <a href="tel:+4680000000">+46 8 000 00 00</a><br>
+                  <a href="mailto:hello@bunintended.example">hello@bunintended.example</a>
+                </address>
+
+                <h3 class="h6">Getting here</h3>
+                <ul class="list-unstyled">
+                  <li><i class="fa-solid fa-train-subway fa-fw me-1" aria-hidden="true"></i> T-bana Medborgarplatsen, 5 minute walk</li>
+                  <li><i class="fa-solid fa-bus fa-fw me-1" aria-hidden="true"></i> Bus 3 and 4</li>
+                </ul>
+
+                <a class="btn btn-primary" href="book.html">Book a table</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MAP: Google Maps embed (no API key). .ratio .ratio-16x9 keeps it 16:9 at every width. -->
+      <section class="mb-5" aria-labelledby="map-heading">
+        <h2 id="map-heading" class="visually-hidden">Map</h2>
+        <div class="ratio ratio-16x9 rounded overflow-hidden">
+          <iframe src="https://www.google.com/maps?q=G%C3%B6tgatan+42,+118+26+Stockholm&amp;output=embed" title="Map showing Bun Intended at Götgatan 42, Stockholm" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+
+      <!-- PHOTOS: one column on phones, three from md -->
+      <section aria-labelledby="photos-heading">
+        <h2 id="photos-heading" class="text-center mb-4">Come on in</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+          <div class="col">
+            <img src="assets/images/location-1.webp" class="img-fluid rounded" width="800" height="600" loading="lazy" alt="Warmly lit restaurant entrance at night featuring wooden doors and a modern glass facade">
+          </div>
+          <div class="col">
+            <img src="assets/images/location-2.webp" class="img-fluid rounded" width="800" height="600" loading="lazy" alt="Joyful group of friends enjoying time together at an indoor burger restaurant">
+          </div>
+          <div class="col">
+            <img src="assets/images/location-3.webp" class="img-fluid rounded" width="800" height="600" loading="lazy" alt="A mouth-watering hamburger served with fries, accompanied by a glass of beer on a wooden table">
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
