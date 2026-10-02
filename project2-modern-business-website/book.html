@@ -70,7 +70,103 @@
   <main id="main" class="flex-grow-1">
     <div class="container py-5">
       <h1>Book a Table</h1>
-      <!-- Book a Table content goes here (step 16) -->
+      <p class="lead">Fill in the form and we'll save you a seat.</p>
+      <p class="small mb-4">This is a demo site, so your request isn't actually sent. Fields marked with * are required.</p>
+
+      <!-- Form on the left (top on phones), info card on the right (below on phones) -->
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="card">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">Your booking</h2>
+
+              <!-- novalidate turns off the browser's own error bubbles. booking-form.js (step 17) checks the
+                   fields and shows our messages instead, using Bootstrap's validation styles. -->
+              <form id="booking-form" novalidate>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label for="booking-name" class="form-label">Name <span aria-hidden="true">*</span></label>
+                    <input type="text" class="form-control" id="booking-name" name="name" autocomplete="name" required>
+                    <div class="invalid-feedback" id="booking-name-error">Please enter your name.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="booking-email" class="form-label">Email <span aria-hidden="true">*</span></label>
+                    <input type="email" class="form-control" id="booking-email" name="email" autocomplete="email" placeholder="name@example.com" required>
+                    <div class="invalid-feedback" id="booking-email-error">Please enter a valid email address.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="booking-phone" class="form-label">Phone (optional)</label>
+                    <input type="tel" class="form-control" id="booking-phone" name="phone" autocomplete="tel" placeholder="+46 …">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="booking-date" class="form-label">Date <span aria-hidden="true">*</span></label>
+                    <input type="date" class="form-control" id="booking-date" name="date" required>
+                    <div class="invalid-feedback" id="booking-date-error">Please choose a date.</div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="booking-time" class="form-label">Time <span aria-hidden="true">*</span></label>
+                    <!-- Disabled until a date is chosen. The script then fills it with times for that weekday. -->
+                    <select class="form-select" id="booking-time" name="time" required disabled>
+                      <option value="">Choose a date first</option>
+                    </select>
+                    <div class="invalid-feedback" id="booking-time-error">Please choose a time.</div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="booking-guests" class="form-label">Guests <span aria-hidden="true">*</span></label>
+                    <select class="form-select" id="booking-guests" name="guests" required>
+                      <option value="1">1 guest</option>
+                      <option value="2" selected>2 guests</option>
+                      <option value="3">3 guests</option>
+                      <option value="4">4 guests</option>
+                      <option value="5">5 guests</option>
+                      <option value="6">6 guests</option>
+                      <option value="7">7 guests</option>
+                      <option value="8">8 guests</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="booking-message" class="form-label">Message (optional)</label>
+                    <textarea class="form-control" id="booking-message" name="message" rows="3" maxlength="300" placeholder="Allergies, celebrations …" aria-describedby="booking-message-help"></textarea>
+                    <div class="form-text" id="booking-message-help">Up to 300 characters.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-lg">Request booking</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card h-100">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3">Good to know</h2>
+              <ul class="list-unstyled">
+                <li class="mb-3"><i class="fa-solid fa-users fa-fw me-2" aria-hidden="true"></i>Groups larger than 8? Please <a href="tel:+4680000000">call us on +46 8 000 00 00</a>.</li>
+                <li class="mb-3"><i class="fa-solid fa-clock fa-fw me-2" aria-hidden="true"></i>The last table is booked one hour before closing.</li>
+                <li><i class="fa-solid fa-calendar-xmark fa-fw me-2" aria-hidden="true"></i>Plans changed? Call or email us as early as you can, so someone else can have your table. We hold tables for 15 minutes.</li>
+              </ul>
+
+              <!-- Must match the footer, the hours table and OPENING_HOURS in assets/js/hours.js -->
+              <h3 class="h6">Opening hours</h3>
+              <ul class="list-unstyled mb-0">
+                <li>Mon–Thu: 11:00–22:00</li>
+                <li>Fri: 11:00–23:00</li>
+                <li>Sat: 12:00–23:00</li>
+                <li>Sun: 12:00–21:00</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 

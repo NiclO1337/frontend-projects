@@ -97,6 +97,13 @@
   --bs-link-color-rgb: var(--bi-mustard-rgb);
   --bs-link-hover-color-rgb: var(--bi-mustard-light-rgb);
   --bs-border-radius: 0.75rem; /* friendly, rounded "bun" feel */
+
+  /* Form validation colours: green when valid, light red when invalid.
+     Both pass AA as text on our dark surfaces. */
+  --bs-form-valid-color: var(--bi-lettuce);
+  --bs-form-valid-border-color: var(--bi-lettuce);
+  --bs-form-invalid-color: var(--bi-ketchup-light);
+  --bs-form-invalid-border-color: var(--bi-ketchup-light);
 }
 
 /* Primary button: the darker red, because white text on the bright
@@ -549,6 +556,34 @@ abbr.diet-label[title] {
   .timeline-item:last-child {
     padding-bottom: 0;
   }
+}
+
+/* --- Forms --- */
+
+/* Inputs sit on the raised surface colour. The border is the lighter
+   --bi-input-border, which meets the 3:1 contrast rule for form controls. */
+.form-control,
+.form-select {
+  background-color: var(--bi-surface-2);
+  border-color: var(--bi-input-border);
+}
+
+/* Focus: Bootstrap's blue glow becomes our mustard ring */
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bi-surface-2);
+  border-color: var(--bi-mustard);
+  box-shadow: 0 0 0 0.2rem var(--bi-mustard);
+}
+
+/* Bootstrap has its own, more specific focus rules for validated fields
+   (red and green glow). We keep the red or green border but use the same
+   mustard ring, so the focused field is always easy to find. */
+.was-validated .form-control:valid:focus,
+.was-validated .form-control:invalid:focus,
+.was-validated .form-select:valid:focus,
+.was-validated .form-select:invalid:focus {
+  box-shadow: 0 0 0 0.2rem var(--bi-mustard);
 }
 
 /* --- Footer --- */
