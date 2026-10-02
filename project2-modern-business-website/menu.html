@@ -70,7 +70,183 @@
   <main id="main" class="flex-grow-1">
     <div class="container py-5">
       <h1>Menu</h1>
-      <!-- Menu content goes here (step 10) -->
+      <p class="lead mb-1">Smashed to order and made from scratch, from the buns to the sauces. All prices are in SEK.</p>
+      <p class="small mb-4">V = vegetarian, VG = vegan, GF = gluten-free.</p>
+
+      <!-- The category filter bar goes here (step 11) -->
+
+      <!-- MENU: this is the master list. allergens.html and the featured dishes on the home page must use the same names and prices.
+           data-category is read by the filter script in step 11. -->
+      <section class="mb-5" data-category="starters" aria-labelledby="starters-heading">
+        <h2 id="starters-heading" class="mb-3">Starters</h2>
+        <ul class="menu-list list-unstyled">
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Onion Rings of Power</h3>
+              <p class="price mb-0">79 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Beer-battered onion rings, chipotle mayo</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Wings, No Strings</h3>
+              <p class="price mb-0">109 kr</p>
+            </div>
+            <p class="text-body-secondary mb-0">Crispy chicken wings, hot honey glaze</p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Halloumi Fries</h3>
+              <p class="price mb-0">95 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Fried halloumi, pomegranate, mint yoghurt</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr></p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-5" data-category="burgers" aria-labelledby="burgers-heading">
+        <h2 id="burgers-heading" class="mb-3">Burgers</h2>
+        <ul class="menu-list list-unstyled">
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">The Classic Pun</h3>
+              <p class="price mb-0">169 kr</p>
+            </div>
+            <p class="text-body-secondary mb-0">Double smashed beef, cheddar, pickles, onion, house sauce</p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Brie-lieve It</h3>
+              <p class="price mb-0">189 kr</p>
+            </div>
+            <p class="text-body-secondary mb-0">Beef, brie, fig jam, rocket</p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Smoke Me If You Can</h3>
+              <p class="price mb-0">195 kr</p>
+            </div>
+            <p class="text-body-secondary mb-0">Beef, smoked bacon, onion rings, smoked cheddar, BBQ sauce</p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Hot Mess</h3>
+              <p class="price mb-0">179 kr</p>
+            </div>
+            <p class="text-body-secondary mb-0">Buttermilk fried chicken, hot honey, slaw</p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Kale Me Maybe</h3>
+              <p class="price mb-0">175 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Plant-based patty, vegan cheese, avocado, kale</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Mush Ado About Nothing</h3>
+              <p class="price mb-0">169 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Portobello, halloumi, truffle mayo</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr></p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-5" data-category="sides" aria-labelledby="sides-heading">
+        <h2 id="sides-heading" class="mb-3">Sides</h2>
+        <ul class="menu-list list-unstyled">
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Fries</h3>
+              <p class="price mb-0">45 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Skin-on fries, sea salt</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Sweet Potato Fries</h3>
+              <p class="price mb-0">55 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">With smoked paprika mayo</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Truffle Parm Fries</h3>
+              <p class="price mb-0">69 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Truffle oil, parmesan, parsley</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Slaw</h3>
+              <p class="price mb-0">39 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Crunchy cabbage slaw, lime dressing</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-5" data-category="desserts" aria-labelledby="desserts-heading">
+        <h2 id="desserts-heading" class="mb-3">Desserts</h2>
+        <ul class="menu-list list-unstyled">
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Shake It Off</h3>
+              <p class="price mb-0">79 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Thick vanilla, chocolate or strawberry milkshake</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Brownie Points</h3>
+              <p class="price mb-0">89 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Warm chocolate brownie, vanilla ice cream</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegetarian">V</abbr></p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-5" data-category="drinks" aria-labelledby="drinks-heading">
+        <h2 id="drinks-heading" class="mb-3">Drinks</h2>
+        <ul class="menu-list list-unstyled">
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Södermalm Pale Ale</h3>
+              <p class="price mb-0">89 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Local craft beer, 40 cl</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">House Lemonade</h3>
+              <p class="price mb-0">49 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Lemon, ginger or raspberry</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+          <li class="menu-item">
+            <div class="d-flex justify-content-between align-items-baseline gap-3">
+              <h3 class="h5 mb-0">Soft Drinks</h3>
+              <p class="price mb-0">35 kr</p>
+            </div>
+            <p class="text-body-secondary mb-1">Coca-Cola, Fanta, Sprite</p>
+            <p class="mb-0"><abbr class="diet-label" title="Vegan">VG</abbr> <abbr class="diet-label" title="Gluten-free">GF</abbr></p>
+          </li>
+        </ul>
+      </section>
+
+      <p class="text-body-secondary mb-0">All burgers come with fries. Gluten-free bun +15 kr. Allergies? See our <a href="allergens.html">allergen guide</a>.</p>
     </div>
   </main>
 

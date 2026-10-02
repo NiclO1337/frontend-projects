@@ -402,6 +402,47 @@ figcaption {
   white-space: nowrap; /* keeps "169 kr" on one line */
 }
 
+/* --- Menu page --- */
+
+/* One column on phones. CSS grid puts the items in two equal columns from lg. */
+.menu-list {
+  display: grid;
+  column-gap: 3rem;
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  .menu-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* A thin decorative line between items */
+.menu-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--bi-border);
+}
+
+/* Diet labels (V, VG, GF): small green outlined pills.
+   Bootstrap gives abbr[title] a dotted underline and a help cursor, and that
+   selector is more specific than a plain class, so we match it here. The
+   legend under the page title explains the letters, because the title
+   tooltip does not work on touch screens. */
+abbr.diet-label[title] {
+  text-decoration: none;
+}
+
+.diet-label {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--bi-lettuce);
+  border-radius: 50rem;
+  color: var(--bi-lettuce);
+  font-family: var(--bi-font-ui);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
 /* --- Footer --- */
 
 footer {
