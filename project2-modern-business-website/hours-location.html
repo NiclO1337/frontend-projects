@@ -87,7 +87,9 @@
               <div class="card-body">
                 <h2 class="h4">Opening hours</h2>
                 <!-- These hours must match OPENING_HOURS in assets/js/hours.js and the footer.
-                     data-day lists the days a row covers (0 = Sunday ... 6 = Saturday, like Date.getDay()). -->
+                     data-day lists the days a row covers (0 = Sunday ... 6 = Saturday, like Date.getDay()).
+                     Without JavaScript the table stays grouped like this. open-status.js splits
+                     "Monday – Thursday" into one row per day and relabels today and tomorrow. -->
                 <table class="table hours-table mb-0">
                   <caption class="visually-hidden">Opening hours by day</caption>
                   <tbody>

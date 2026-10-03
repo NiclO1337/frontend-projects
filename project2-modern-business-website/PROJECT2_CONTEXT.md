@@ -180,7 +180,11 @@ Featured on Home: The Classic Pun, Kale Me Maybe, Shake It Off.
 
 ### Hours & Location – `hours-location.html`
 - `<h1>` + **open-now badge** (JS, see §7).
-- Hours table (`<table>` with `<caption>`; each row has `data-day`).
+- Hours table (`<table>` with `<caption>`; each row has `data-day`). The
+  HTML groups Monday – Thursday in one row (what visitors without JS see).
+  JS splits it into one row per day, then relabels today's row "Today"
+  (highlighted) and the next day's row "Tomorrow". The footer always
+  groups Monday – Thursday.
 - Address card: address, phone, email, "Getting here" (T-bana
   Medborgarplatsen, 5 min walk; bus 3 and 4), *Book a table* button.
 - Google Maps embed: `<iframe src="https://www.google.com/maps?q=Götgatan+42,+118+26+Stockholm&output=embed" title="Map showing Bun Intended at Götgatan 42, Stockholm" loading="lazy" referrerpolicy="no-referrer-when-downgrade">`, responsive with Bootstrap's `.ratio .ratio-16x9`.
