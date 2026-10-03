@@ -96,42 +96,46 @@
 
       <!-- TIMELINE: an ordered list (the order matters). Single column on phones, alternating sides from lg. -->
       <section class="mb-5" aria-labelledby="timeline-heading">
-        <h2 id="timeline-heading" class="text-center mb-4">From food truck to Götgatan</h2>
+        <!-- The column is full width on small screens and 9/12 wide from lg. mx-auto centres it. -->
+        <div class="row">
+          <div class="col-xl-10 col-xxl-8 mx-auto">
+            <h2 id="timeline-heading" class="text-center mb-4">From food truck to Götgatan</h2>
+            <ol class="timeline">
+              <li class="timeline-item">
+                <p class="timeline-year mb-1"><time datetime="2016">2016</time></p>
+                <h3 class="h5">The food truck</h3>
+                <p class="text-body-secondary mb-0">We buy a second-hand truck and start smashing burgers at street-food markets around Stockholm. The menu has three items and the queue is long.</p>
+              </li>
+              <li class="timeline-item">
+                <p class="timeline-year mb-1"><time datetime="2018">2018</time></p>
+                <h3 class="h5">Street-food champions</h3>
+                <p class="text-body-secondary mb-0">The Classic Pun wins a local street-food competition. Suddenly everyone wants to know who is behind the pickles.</p>
+              </li>
+              <li class="timeline-item">
+                <p class="timeline-year mb-1"><time datetime="2020">2020</time></p>
+                <h3 class="h5">Götgatan</h3>
+                <p class="text-body-secondary mb-0">We open our own restaurant on Götgatan, with a proper kitchen, table service and a seat for everyone in the queue.</p>
+              </li>
+              <li class="timeline-item">
+                <p class="timeline-year mb-1"><time datetime="2024">2024</time></p>
+                <h3 class="h5">New look, new bar</h3>
+                <p class="text-body-secondary mb-0">We renovate and add a bar with craft beer from local breweries.</p>
+              </li>
+              <li class="timeline-item">
+                <p class="timeline-year mb-1">Today</p>
+                <h3 class="h5">Still smashing, still punning</h3>
+                <p class="text-body-secondary mb-0">Same recipe, same grill, same questionable jokes. Come and say hi.</p>
+              </li>
+            </ol>
+          </div>
 
-        <ol class="timeline">
-          <li class="timeline-item">
-            <p class="timeline-year mb-1"><time datetime="2016">2016</time></p>
-            <h3 class="h5">The food truck</h3>
-            <p class="text-body-secondary mb-0">We buy a second-hand truck and start smashing burgers at street-food markets around Stockholm. The menu has three items and the queue is long.</p>
-          </li>
-          <li class="timeline-item">
-            <p class="timeline-year mb-1"><time datetime="2018">2018</time></p>
-            <h3 class="h5">Street-food champions</h3>
-            <p class="text-body-secondary mb-0">The Classic Pun wins a local street-food competition. Suddenly everyone wants to know who is behind the pickles.</p>
-          </li>
-          <li class="timeline-item">
-            <p class="timeline-year mb-1"><time datetime="2020">2020</time></p>
-            <h3 class="h5">Götgatan</h3>
-            <p class="text-body-secondary mb-0">We open our own restaurant on Götgatan, with a proper kitchen, table service and a seat for everyone in the queue.</p>
-          </li>
-          <li class="timeline-item">
-            <p class="timeline-year mb-1"><time datetime="2024">2024</time></p>
-            <h3 class="h5">New look, new bar</h3>
-            <p class="text-body-secondary mb-0">We renovate and add a bar with craft beer from local breweries.</p>
-          </li>
-          <li class="timeline-item">
-            <p class="timeline-year mb-1">Today</p>
-            <h3 class="h5">Still smashing, still punning</h3>
-            <p class="text-body-secondary mb-0">Same recipe, same grill, same questionable jokes. Come and say hi.</p>
-          </li>
-        </ol>
-
-        <div class="row justify-content-center mt-5">
-          <div class="col-lg-8">
-            <figure class="mb-0">
-              <img src="assets/images/story-2.webp" class="img-fluid rounded" width="1000" height="667" loading="lazy" alt="Close-up of a bartender pouring a cold draft beer into a glass mug at a bar">
-              <figcaption class="mt-2">The bar today: local craft beer, poured properly.</figcaption>
-            </figure>
+          <div class="row justify-content-center mt-5">
+            <div class="col-lg-8">
+              <figure class="mb-0">
+                <img src="assets/images/story-2.webp" class="img-fluid rounded" width="1000" height="667" loading="lazy" alt="Close-up of a bartender pouring a cold draft beer into a glass mug at a bar">
+                <figcaption class="mt-2">The bar today: local craft beer, poured properly.</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
