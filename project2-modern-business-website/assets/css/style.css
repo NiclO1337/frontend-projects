@@ -828,6 +828,33 @@ footer {
     animation-delay: 1.1s;
   }
 
+  /* Hover: the top bun lifts and tilts to the right, and stays that way while
+     the pointer is over the logo. The other layers stay put.
+     - We use the separate "translate" and "rotate" properties, not
+       "transform". The drop-in animation above keeps control of "transform"
+       (fill-mode "both" holds its last frame), so a hover rule on "transform"
+       would be ignored. These two are their own properties and are applied
+       on top of it.
+     - "px" means SVG units here, so -26px is about 62px on screen at the full
+       15rem size. The lift is big enough that the tilted right edge clears
+       the lettuce. The tilt pivots around the bottom centre of the bun
+       (the transform-origin set above).
+     - The transition is on the base state, so it also plays on mouse out and
+       the bun falls back down. ease-in makes it speed up like gravity. */
+  .hero-logo .bun-top {
+    translate: 0 0;
+    rotate: 0deg;
+    transition:
+      translate 0.2s ease-in,
+      rotate 0.2s ease-in;
+  }
+
+  .hero-logo:hover .bun-top {
+    translate: 0 -26px;
+    rotate: 25deg;
+    transition-timing-function: ease-out;
+  }
+
   /* The top bun lifts when the logo link is hovered or focused.
      Inside an SVG, "px" in a transform means SVG units: the logo is 100 units
      wide and shown at 40px, so 8 units is about 3px on screen. */
