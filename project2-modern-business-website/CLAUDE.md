@@ -64,6 +64,7 @@ commit and mention it. On each page, the current nav link gets
 | `assets/css/style.css` | All custom styles and Bootstrap overrides |
 | `assets/js/hours.js` | `OPENING_HOURS` data + helper functions (shared) |
 | `assets/js/open-status.js` | Open now / Closed badge (hours page) |
+| `assets/js/map.js` | Reveals the Google Map (hours page) |
 | `assets/js/menu-filter.js` | Category filter (menu page) |
 | `assets/js/booking-form.js` | Booking form validation + confirmation (book page) |
 | `assets/images/` | Logo, favicon, photos (WebP) |
