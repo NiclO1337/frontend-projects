@@ -859,14 +859,14 @@ footer {
      Inside an SVG, "px" in a transform means SVG units: the logo is 100 units
      wide and shown at 40px, so 8 units is about 3px on screen. */
   .navbar-brand .bun-top,
-  .brand-name .bun-top {
+  .logo-burger .bun-top {
     transition: transform 0.25s ease;
   }
 
   .navbar-brand:hover .bun-top,
   .navbar-brand:focus-visible .bun-top,
-  .brand-name:hover .bun-top,
-  .brand-name:focus-visible .bun-top {
+  .logo-burger:hover .bun-top,
+  .logo-burger:focus-visible .bun-top {
     transform: translateY(-8px);
   }
 
