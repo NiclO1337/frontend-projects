@@ -46,7 +46,7 @@ Submission: GitHub repository URL + live website URL.
 | Images | Free photos from Pexels/Unsplash, resized, WebP, credited in README |
 | Breakpoints | Bootstrap's: 576 / 768 / 992 / 1200px. Navbar collapses below 992px |
 | Header/footer | Copied into every page (kept in sync manually) |
-| Hover effects | Links and buttons only |
+| Hover effects | Links and buttons only. Exception: the burger logo (`.logo-burger`) may always have hover animations (navbar, footer, hero) |
 | Folders | HTML pages at the top level; `assets/css/`, `assets/js/`, `assets/images/` |
 | README | Same template structure as Project 1, with `TESTING.md` and `readme-assets/` |
 | Testing | Manual only |
@@ -303,8 +303,12 @@ Google Fonts (one `<link>` with `preconnect`, `display=swap`):
   patty `#5a2e1c`, tomato/ketchup `#e63b2e`.
 - **Hero (home):** the layers drop in one by one on page load (staggered
   `animation-delay`) and land with a small squash. Runs once.
-- **Navbar:** small static burger. When the logo link is hovered or
-  focused, the top bun lifts a few pixels (CSS `transition`).
+- **Navbar and footer:** small static burger. When the logo link is hovered
+  or focused, the top bun lifts a few pixels (CSS `transition`).
+- **Hero hover:** when the big burger is hovered, the top bun lifts and
+  tilts 25° to the right and stays there until the pointer leaves, then
+  falls back down. Hover animations are always OK on `.logo-burger`, even
+  where it isn't a link.
 - Inline SVGs get `aria-hidden="true"` because the text "Bun Intended"
   next to them is the accessible name.
 - `@media (prefers-reduced-motion: reduce)`: no drop-in, no lift.

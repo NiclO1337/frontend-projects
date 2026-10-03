@@ -28,8 +28,10 @@ Södermalm in Stockholm: a bit more upscale than fast food, with a dark
   with `!important`.
 - **Use Bootstrap's breakpoints** (576 / 768 / 992 / 1200px) and its grid.
   Navbar collapses below `lg` (992px).
-- **Hover effects only on links and buttons** (including the logo link).
-  Menu items, cards and images don't change on hover.
+- **Hover effects only on links and buttons** (including the logo link),
+  with one exception: the burger logo (`.logo-burger`) may always have hover
+  animations, wherever it appears (navbar, footer, hero). Menu items, cards
+  and images don't change on hover.
 - Every animation must stop under `prefers-reduced-motion: reduce`.
 - No unit tests – testing is manual and documented in `TESTING.md`.
 - Commit messages start with `project-2: ` and are very short.
