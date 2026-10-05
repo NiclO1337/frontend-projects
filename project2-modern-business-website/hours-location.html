@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Google's map needs JavaScript to draw itself. Without JavaScript this hides the empty map box;
-       the <noscript> link in the map section is shown instead. The box is otherwise always in the
+       the link under the map is all that is left. The box is otherwise always in the
        layout, so nothing jumps when the page loads. -->
   <noscript><style>#map-frame { display: none; }</style></noscript>
 </head>
@@ -134,17 +134,17 @@
 
       <!-- MAP: Google Maps embed (no API key). .ratio .ratio-16x9 keeps it 16:9 at every width.
            The box is always in the layout, so the photos below don't move when the map loads.
-           Without JavaScript, the <noscript> style in <head> hides it and the link below is shown. -->
+           Without JavaScript, the <noscript> style in <head> hides it. The link below is always shown:
+           it replaces the map without JavaScript, gives keyboard users an alternative to the
+           map's many tab stops and gives phone users a way into the Maps app. -->
       <section class="mb-5" aria-labelledby="map-heading">
         <h2 id="map-heading" class="visually-hidden">Map</h2>
         <div id="map-frame" class="ratio ratio-16x9 rounded overflow-hidden">
           <iframe src="https://www.google.com/maps?q=G%C3%B6tgatan+42,+118+26+Stockholm&amp;output=embed" title="Map showing Bun Intended at Götgatan 42, Stockholm" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <noscript>
-          <p class="text-center mb-0">
-            <a href="https://www.google.com/maps/search/?api=1&amp;query=G%C3%B6tgatan+42,+118+26+Stockholm" target="_blank" rel="noopener noreferrer">Open Götgatan 42 in Google Maps (opens in a new tab)</a>
-          </p>
-        </noscript>
+        <p class="text-center mt-3 mb-0">
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=G%C3%B6tgatan+42,+118+26+Stockholm" target="_blank" rel="noopener noreferrer">Open Götgatan 42 in Google Maps (opens in a new tab)</a>
+        </p>
       </section>
 
       <!-- PHOTOS: one column on phones, three from md -->
