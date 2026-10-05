@@ -97,7 +97,7 @@ Tested with Chrome DevTools and on real devices.
 | 1200px+ (desktop) | PASS |
 | Real phone: Galaxy Fold 5 | PASS |
 
-TODO: screenshots
+![Responsiveness](readme-assets/responsiveness.png)
 
 
 ## Browser compatibility

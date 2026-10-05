@@ -168,7 +168,7 @@ screen readers, the open-now badge uses text and an icon (not just colour),
 and the booking form shows clear error messages connected to each field.
 All animations respect the visitor's reduced-motion setting.
 
-TODO: add screenshot examples of responsive behaviour from mobile to tablet to desktop.
+![Responsiveness](readme-assets/responsiveness.png)
 
 
 ## Features
@@ -179,7 +179,7 @@ The sticky navigation bar looks the same on every page, with the logo, links
 to all main pages and a *Book a table* button. The current page is
 highlighted. On mobile and tablet the links collapse into a toggle menu.
 
-TODO: screenshot (desktop + mobile open)
+![Navbar](readme-assets/navbar.png)
 
 ### The home page and image slider
 
@@ -188,7 +188,7 @@ buttons (menu and booking), followed by an image slider of the food and the
 restaurant, a short welcome, three featured dishes and a "Hungry yet?"
 call to action.
 
-TODO: screenshot
+![Logo animation](readme-assets/logo-animation.png)
 
 ### The menu page and category filter
 
