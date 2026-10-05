@@ -59,9 +59,6 @@ This project has no automated tests. All testing was done manually.
 | Friday 23:30 | Closed · opens tomorrow at 12:00 | PASS |
 | Friday 23:00 exactly | Closed · opens tomorrow at 12:00 | PASS |
 
-Tip: test other times by temporarily changing the date passed to the helper
-in `hours.js`, or by changing the computer's clock.
-
 ### Hours table
 
 | Situation | Expected result | Result |
@@ -124,7 +121,7 @@ TODO: screenshots
   Each file starts with `/* jshint esversion: 6 */` so that `const`, `let` and arrow functions are accepted.
 
   | File | Errors | Warnings | Result |
-  |------|--------|----------|--------|
+  |------|:------:|:--------:|--------|
   | `hours.js` | 0 | 0 | PASS |
   | `open-status.js` | 0 | 0 | PASS |
   | `menu-filter.js` | 0 | 0 | PASS |
@@ -135,8 +132,31 @@ TODO: screenshots
 
 ## Lighthouse
 
-TODO: mobile and desktop scores per page (Performance, Accessibility, Best Practices, SEO) + screenshots
+![Lighthouse results](./readme-assets/lighthouse-result-home.png)
 
+| Page | Performance | Accessibility | Best Practices | SEO |
+|------|:-----------:|:-------------:|:--------------:|:---:|
+| **Home page** | | | | |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile (initial) | 74 | 100 | 100 | 100 |
+| Mobile (after optimization) | 94 | 100 | 100 | 100 |
+| **Menu page** | | | | |
+| Desktop | 99 | 100 | 100 | 100 |
+| Mobile | 94 | 100 | 100 | 100 |
+| **Our Story page** | | | | |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 92 | 100 | 100 | 100 |
+| **Hours & Location page** | | | | |
+| Desktop (initial)  | 83 | 100 | 100 | 100 |
+| Desktop (after optimization) | 99 | 100 | 100 | 100 |
+| Mobile (initial) | 74 | 100 | 100 | 100 |
+| Mobile (after optimization) | 87 | 100 | 100 | 100 |
+| **Book a Table page** | | | | |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 95 | 100 | 100 | 100 |
+| **Allergens page** | | | | |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 96 | 100 | 100 | 100 |
 
 ## Accessibility
 
