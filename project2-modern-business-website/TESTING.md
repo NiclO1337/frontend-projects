@@ -69,7 +69,7 @@ in `hours.js`, or by changing the computer's clock.
 | Load Hours & Location | "Monday – Thursday" is split into four rows, 7 rows in total | PASS |
 | Any day | Today's row says "Today" and is highlighted, the next day's row says "Tomorrow", the rest keep their day names | PASS |
 | Today is Saturday | Saturday row says "Today", Sunday row says "Tomorrow" | PASS |
-| Page open past midnight | Labels move to the new today and tomorrow within a minute, and the old rows get their day names back | TODO |
+| Page open past midnight | Labels move to the new today and tomorrow within a minute, and the old rows get their day names back | PASS |
 | JavaScript disabled | Four rows with "Monday – Thursday" grouped, no labels | PASS |
 | Footer (any page) | Still shows "Monday – Thursday" grouped | PASS |
 
@@ -111,14 +111,27 @@ TODO: screenshots
 | Chrome | PASS |
 | Firefox | PASS |
 | Edge | PASS |
-| Safari (iOS) | TODO |
 
 
 ## Validator testing
 
-- HTML: [W3C Markup Validator](https://validator.w3.org/) – TODO result for all 6 pages + screenshots
-- CSS: [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) – TODO result for `style.css` + screenshot
-- JavaScript: [JSHint](https://jshint.com/) – TODO result for each file
+- HTML: [W3C Markup Validator](https://validator.w3.org/) – Result for all 6 pages - PASSED
+<br>![Passed without errors](./readme-assets/w3c-html-result.png)
+- CSS: [W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) – Result for `style.css` – PASSED
+<br>![Passed without errors](./readme-assets/w3c-css-result.png)
+- JavaScript: [JSHint](https://jshint.com/) – every file PASSED with no errors or warnings.
+  JSHint only lists problems, so a clean file shows nothing but the metrics panel.
+  Each file starts with `/* jshint esversion: 6 */` so that `const`, `let` and arrow functions are accepted.
+
+  | File | Errors | Warnings | Result |
+  |------|--------|----------|--------|
+  | `hours.js` | 0 | 0 | PASS |
+  | `open-status.js` | 0 | 0 | PASS |
+  | `map.js` | 0 | 0 | PASS |
+  | `menu-filter.js` | 0 | 0 | PASS |
+  | `booking-form.js` | 0 | 0 | PASS |
+
+  ![JSHint result for booking-form.js, no warnings](./readme-assets/jshint-result.png)
 
 
 ## Lighthouse
