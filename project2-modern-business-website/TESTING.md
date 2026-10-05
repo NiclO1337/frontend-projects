@@ -136,7 +136,13 @@ TODO: mobile and desktop scores per page (Performance, Accessibility, Best Pract
 ## Bugs
 
 ### Fixed bugs
-- TODO
+- **Guests select failed W3C HTML validation** (`book.html`): the validator reported that the first option of a `<select required>` must have an empty value or no text. The guests select always has a value (2 guests is preselected and cannot be cleared), so `required` did nothing. Fixed by removing the `required` attribute. The `*` stays in the label because the field is still mandatory in practice.
+- **Slider text and controls were black** (`style.css`): in dark mode Bootstrap 5.3 makes the carousel "dark", with black captions, black dots and inverted arrows, which are unreadable on our dark caption pills. Fixed by overriding those rules with the same selectors, placed after Bootstrap's CSS.
+- **Burger logo had a gap between the cheese and the patty** (all pages and `favicon.svg`): the cheese ended one SVG unit above the patty, which left a thin line of background showing. Fixed by changing the cheese path so it touches the patty.
+- **Map showed an empty white box without JavaScript** (`hours-location.html`): Google's embedded map needs JavaScript to draw itself. Fixed by hiding the map in the HTML, revealing it with `map.js`, and showing a `<noscript>` link to Google Maps instead.
+- **Footer logo lifted when hovering the text** (`style.css`): the top bun reacted to hover on the whole "Bun Intended" name in the footer, which broke the rule that hover effects are only for links, buttons and the burger itself. Fixed by tying the hover effect to `.logo-burger` instead of `.brand-name`.
+- **Hero logo hover was instant and too strong** (`style.css`): the small-logo hover rules also matched the big hero logo (both have the class `logo-burger`) and replaced its own transition, so the top bun jumped instead of moving smoothly. Fixed by excluding `.hero-logo` from those rules, and by making the hero effect slower (0.35s) and gentler (lift 16 units, tilt 13°).
+- **Timeline dots sat too high** (`style.css`): the dots were not aligned with the year text next to them. Fixed by moving them down (`top: 0.4rem`).
 
 ### Unfixed bugs
-- TODO
+- None known
