@@ -172,7 +172,7 @@ failures) and alerts (things a human should check). Errors must be 0. Each alert
 | Home | 0 | 0 | 7 (6 after fix) | 9.9 |
 | Menu | 0 | 0 | 0 | 10 |
 | Our Story | 0 | 0 | 5 | 9.9 |
-| Hours & Location | 0 | 0 | 2 (1 after fix, TODO re-test) | 10 |
+| Hours & Location | 0 | 0 | 2 (1 after fix) | 10 |
 | Book a Table | 0 | 0 | 1 | 10 |
 | Allergens | 0 | 0 | 1 | 10 |
 

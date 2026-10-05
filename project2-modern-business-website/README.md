@@ -2,7 +2,7 @@
 
 TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.png`
 
-<!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
+![Am I Responsive image](readme-assets/am-i-responsive.png)
 
 Link to live website: [Bun Intended](https://frontend-projects-project2-modern-b.vercel.app/)
 
@@ -133,11 +133,24 @@ navbar the top bun lifts slightly when the logo is hovered or focused.
 Animations are turned off for visitors who prefer reduced motion. The same
 hamburger is used as the favicon.
 
-TODO: screenshot / GIF of the logo animation
+![Logo animation](readme-assets/logo-animation.gif)
 
 ### Images
 
-TODO: describe the chosen photos (burgers, dining room, team) and why they were chosen. All photos are resized and converted to WebP for fast loading.
+All photos are free to use from [Pexels](https://www.pexels.com/) and are credited in the [Credits](#credits) section. Bun Intended is a fictional restaurant, so the photos are stand-ins, chosen to feel like one place: warm light, a relaxed mood and food that looks good enough to order.
+
+- **Home slider:** four wide photos that set the mood: the signature burgers, the dining room, a table full of fries and shakes, and friends laughing together. Together they show both the food and the atmosphere, which is what a first-time visitor wants to know.
+- **Home page welcome section and cards:** burgers on a grill in the welcome section, then close-ups of a meat burger, a plant-based burger and a milkshake for the three featured dishes. The plant-based burger gets the same attention as the classic.
+- **Our Story:** a food truck and a bartender pouring a beer. They fit the story of the street-food start and the later bar.
+- **Hours & Location:** the restaurant entrance, friends at a table and a burger with a beer, so visitors know what to look for when they arrive.
+
+The photos were cropped in Paint.NET, resized and converted to WebP in Squoosh, and some were edited with ChatGPT. To keep the pages fast:
+
+- The big slider photos are 1600px wide and have a smaller 800px version. The browser picks the one that fits the screen (`srcset`), so phones and tablets don't download the large file.
+- The other photos are 800px wide (1000px on Our Story), which is enough for their size on the page.
+- Every `<img>` has `width` and `height`, so the browser reserves the space and the layout doesn't jump when images load.
+- Everything except the first slide uses `loading="lazy"`, so images below the fold are only loaded when the visitor scrolls to them.
+- Every photo has descriptive alt text. The logo and icons are decorative and hidden from screen readers.
 
 ### Wireframes
 
