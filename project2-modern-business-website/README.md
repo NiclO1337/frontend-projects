@@ -1,7 +1,5 @@
 # Bun Intended – Smash burgers. Seriously good puns.
 
-TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.png`
-
 ![Am I Responsive image](readme-assets/am-i-responsive.png)
 
 Link to live website: [Bun Intended](https://frontend-projects-project2-modern-b.vercel.app/)
@@ -243,18 +241,33 @@ shown. This is a demo site, so no booking is actually sent.
 
 ### The allergens page
 
-TODO: short description + screenshot
+A table that shows which of seven allergens (gluten, milk, egg, mustard, sesame, soy and nuts)
+each dish on the menu contains. The dishes are grouped by the same categories as on the menu
+page. A tick means the dish contains the allergen. Each tick also has hidden text, so a screen
+reader says "contains" instead of reading an icon. On small screens the table scrolls sideways
+and can be scrolled with the arrow keys. Below the table, a "Good to know" list explains the
+gluten-free bun, shared fryers and cross-contamination. Because the restaurant is fictional, a
+note says the information is made up.
+
+![The allergens page](readme-assets/allergens.png)
 
 ### The footer
 
 The footer appears on every page with the address, phone number, email,
 opening hours, links to the info pages and social media icons.
 
-TODO: screenshot
-
+![The footer](readme-assets/footer.png)
 
 ## Future features
-- TODO: add ideas that come up during development (more info pages, online ordering, real booking backend …)
+- **Real booking system:** send bookings to a backend, check free tables and email a confirmation. Today the form only validates and shows a demo confirmation.
+- **Online ordering:** order takeaway or delivery from the menu.
+- **Allergen filter on the menu:** let visitors tick the allergens they avoid and hide the dishes that contain them, using the same data as the allergens page.
+- **Menu and allergens from one data file:** the menu, the allergens table and the featured dishes are now written by hand in three places. One data file would keep names and prices in sync automatically.
+- **Swedish version:** the restaurant is in Stockholm, so the site could be offered in Swedish as well as English.
+- **Gift cards and a newsletter:** sell gift cards and let visitors sign up for news and offers.
+- **Guest reviews:** show a few quotes from guests, or a link to real reviews.
+- **Light theme and theme toggle:** the site is dark only by design, but visitors could choose.
+- **More photos:** a gallery page, and photos of every menu item.
 
 
 ## Technologies used
@@ -353,4 +366,3 @@ Link to live website: [Bun Intended](https://frontend-projects-project2-modern-b
 ### Code
 - [Bootstrap 5.3 documentation](https://getbootstrap.com/docs/5.3/) for the navbar, carousel, grid and form validation
 - Took inspiration from Kera Cudmore's very comprehensive README guide: [Readme examples.](https://github.com/kera-cudmore/readme-examples)
-- TODO: add tutorials, videos or articles used during development
