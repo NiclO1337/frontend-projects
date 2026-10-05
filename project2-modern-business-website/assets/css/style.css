@@ -280,9 +280,16 @@ figcaption {
   font-weight: 700;
 }
 
-/* The toggler gets our mustard focus ring (see section 2), not Bootstrap's glow */
+/* Bootstrap removes the toggler's outline on :focus and draws a glow instead.
+   That rule is more specific than our global :focus-visible rule, so it wins.
+   We remove the glow and put our mustard ring back (see section 2). */
 .navbar-toggler:focus {
   box-shadow: none;
+}
+
+.navbar-toggler:focus-visible {
+  outline: 3px solid var(--bi-mustard);
+  outline-offset: 3px;
 }
 
 /* --- Image slider (Bootstrap carousel) --- */
