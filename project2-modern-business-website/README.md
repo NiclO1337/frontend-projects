@@ -201,7 +201,7 @@ buttons (menu and booking), followed by an image slider of the food and the
 restaurant, a short welcome, three featured dishes and a "Hungry yet?"
 call to action.
 
-![Logo animation](readme-assets/logo-animation.png)
+![Image slider](readme-assets/slider.png)
 
 ### The menu page and category filter
 
@@ -210,11 +210,17 @@ labels (V, VG, GF). Filter buttons show one category at a time (Starters,
 Burgers, Sides, Desserts, Drinks) or everything. The buttons only appear
 when JavaScript is available, so the full menu is always readable.
 
-TODO: screenshot
+![Menu](readme-assets/menu.png)
 
 ### The Our Story page
 
-TODO: short description + screenshot
+The story of the fictional restaurant, told by its two founders, Elin and Jonas. The page opens with
+a short introduction and a photo of the food truck where it all started. Below it, a timeline
+from the food truck in 2016 to the restaurant today shows how Bun Intended grew. The timeline
+is a single column on phones and alternates left and right from large screens. The page ends
+with three cards about what the restaurant stands for: local beef, fresh buns and free puns.
+
+![The food truck photo on the Our Story page](readme-assets/foodtruck.png)
 
 ### The Hours & Location page and open-now badge
 
@@ -223,7 +229,7 @@ shows whether the restaurant is **open right now** and when it closes or
 opens next. It's calculated from the opening hours in Stockholm time, so it
 is correct even for visitors in another time zone.
 
-TODO: screenshot
+![Hours & location page](readme-assets/hours-and-location.png)
 
 ### The booking form
 
@@ -233,7 +239,7 @@ past dates are blocked, and every field is validated with a clear message.
 When the form is valid, a confirmation with a summary of the booking is
 shown. This is a demo site, so no booking is actually sent.
 
-TODO: screenshot of validation + confirmation
+![Booking page](readme-assets/book.png)
 
 ### The allergens page
 
