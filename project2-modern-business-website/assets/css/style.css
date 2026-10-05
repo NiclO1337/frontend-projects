@@ -845,28 +845,32 @@ footer {
     translate: 0 0;
     rotate: 0deg;
     transition:
-      translate 0.2s ease-in,
-      rotate 0.2s ease-in;
+      translate 0.35s ease-in,
+      rotate 0.35s ease-in;
   }
 
   .hero-logo:hover .bun-top {
-    translate: 0 -26px;
-    rotate: 25deg;
+    translate: 0 -16px;
+    rotate: 13deg;
     transition-timing-function: ease-out;
   }
 
   /* The top bun lifts when the logo link is hovered or focused.
      Inside an SVG, "px" in a transform means SVG units: the logo is 100 units
-     wide and shown at 40px, so 8 units is about 3px on screen. */
+     wide and shown at 40px, so 8 units is about 3px on screen.
+     - ":not(.hero-logo)" keeps these rules away from the big hero logo, which
+       also has the "logo-burger" class. Without it, this "transition" would
+       come later with the same specificity and replace the hero's own
+       transition above, so the hero bun would move instantly. */
   .navbar-brand .bun-top,
-  .logo-burger .bun-top {
+  .logo-burger:not(.hero-logo) .bun-top {
     transition: transform 0.25s ease;
   }
 
   .navbar-brand:hover .bun-top,
   .navbar-brand:focus-visible .bun-top,
-  .logo-burger:hover .bun-top,
-  .logo-burger:focus-visible .bun-top {
+  .logo-burger:not(.hero-logo):hover .bun-top,
+  .logo-burger:not(.hero-logo):focus-visible .bun-top {
     transform: translateY(-8px);
   }
 
