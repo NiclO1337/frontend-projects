@@ -4,7 +4,7 @@ TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.
 
 <!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Niclas Portfolio](https://frontend-projects-phi-topaz.vercel.app/)
 
 <hr>
 
@@ -315,7 +315,7 @@ The site is deployed to Vercel as its own project. The steps to deploy are as fo
 page like `/projects` would give a 404, because the routes only exist in
 React Router, not as files.
 
-Link to live website: TODO add Vercel URL
+Link to live website: [Niclas Portfolio](https://frontend-projects-phi-topaz.vercel.app/)
 
 ### Local development
 
