@@ -19,6 +19,11 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // Tell ESLint that describe/it/expect/vi are globals in test files.
+    files: ["**/*.test.{js,jsx}", "src/test/**/*.{js,jsx}"],
+    languageOptions: { globals: { ...globals.browser, ...globals.vitest } },
+  },
   // Must come last: turns off ESLint rules that clash with Prettier's formatting.
   eslintConfigPrettier,
 ]);
