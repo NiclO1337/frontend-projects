@@ -1,19 +1,12 @@
 import { profile } from "../../data/profile.js";
-import SocialLinks from "../SocialLinks/SocialLinks.jsx";
 import styles from "./Footer.module.css";
 
-/**
- * Bottom of the content column. The year is read when the page renders.
- * Social links are shown on small screens only: on desktop the sidebar has them.
- */
+/** Bottom of the content column. The year is read when the page renders. */
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.social}>
-        <SocialLinks />
-      </div>
       <p>
         Designed &amp; built by {profile.name} using Claude · &copy;&nbsp;{year}
       </p>
