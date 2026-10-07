@@ -1,13 +1,18 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import MobileHeader from "./MobileHeader.jsx";
 
 // MobileHeader uses Link and NavLink, so it needs a router around it.
-function renderMobileHeader() {
-  const router = createMemoryRouter([{ path: "*", element: <MobileHeader /> }]);
-  render(<RouterProvider router={router} />);
+function renderMobileHeader(url = "/") {
+  const router = createMemoryRouter(
+    [{ path: "*", element: <MobileHeader /> }],
+    {
+      initialEntries: [url],
+    },
+  );
+  return { router, ...render(<RouterProvider router={router} />) };
 }
 
 const getMenuButton = () => screen.getByRole("button", { name: "Menu" });
@@ -64,6 +69,37 @@ describe("MobileHeader", () => {
 
     await user.click(getMenuButton());
     await user.click(screen.getByRole("link", { name: "Projects" }));
+
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("closes when the link of the current page is clicked", async () => {
+    const user = userEvent.setup();
+    renderMobileHeader("/about");
+
+    await user.click(getMenuButton());
+    await user.click(screen.getByRole("link", { name: "About" }));
+
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("closes when the route changes without a click, like browser back", async () => {
+    const user = userEvent.setup();
+    const { router } = renderMobileHeader();
+
+    await user.click(getMenuButton());
+    await act(() => router.navigate("/about"));
+
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("closes when the empty space around the links is clicked", async () => {
+    const user = userEvent.setup();
+    renderMobileHeader();
+
+    await user.click(getMenuButton());
+    // The <nav> spans the full width, so clicking it hits no link.
+    await user.click(screen.getByRole("navigation", { name: "Main" }));
 
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
   });

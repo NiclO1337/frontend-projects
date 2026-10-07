@@ -1,6 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { Link } from "react-router";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { Link, useLocation } from "react-router";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 import styles from "./MobileHeader.module.css";
 
@@ -8,11 +7,23 @@ const MENU_ID = "mobile-menu";
 
 /**
  * Top bar for tablet and mobile: name (link home) and the menu button.
- * It owns the open/closed state, so the logo link can close the menu too.
+ * It owns the open/closed state, so the menu closes on any navigation.
  */
 export default function MobileHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef(null);
+
+  // Close the menu whenever the route changes (menu links, logo, browser
+  // back/forward). `location.key` is new on every navigation, even to the page
+  // you are already on, so it catches more than the pathname would. Setting
+  // state while rendering is React's recommended way to reset state when
+  // something changes: it avoids an extra render with stale state.
+  const { key } = useLocation();
+  const [previousKey, setPreviousKey] = useState(key);
+  if (key !== previousKey) {
+    setPreviousKey(key);
+    setIsOpen(false);
+  }
 
   // useCallback keeps the same function between renders, so MobileMenu's
   // Escape listener isn't removed and re-added on every render.
@@ -25,7 +36,7 @@ export default function MobileHeader() {
   return (
     <>
       <header className={styles.header}>
-        <Link to="/" className={styles.name} onClick={() => setIsOpen(false)}>
+        <Link to="/" className={styles.name}>
           Niclas Hugdahl
         </Link>
         <button
@@ -37,11 +48,9 @@ export default function MobileHeader() {
           aria-controls={MENU_ID}
           onClick={() => setIsOpen((open) => !open)}
         >
-          {isOpen ? (
-            <FaXmark aria-hidden="true" />
-          ) : (
-            <FaBars aria-hidden="true" />
-          )}
+          {/* Two lines. The CSS turns them into an X while the menu is open. */}
+          <span className={styles.line} aria-hidden="true" />
+          <span className={styles.line} aria-hidden="true" />
         </button>
       </header>
       {isOpen && <MobileMenu id={MENU_ID} onClose={closeMenu} />}

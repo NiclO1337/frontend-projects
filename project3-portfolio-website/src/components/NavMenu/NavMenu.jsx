@@ -12,17 +12,14 @@ const links = [
 /**
  * Main navigation. NavLink adds `aria-current="page"` to the link that matches
  * the current URL, and the CSS styles the active link from that attribute.
- * @param {object} props
- * @param {() => void} [props.onNavigate] called when a link is clicked
- *   (the mobile menu uses it to close itself)
  */
-export default function NavMenu({ onNavigate }) {
+export default function NavMenu() {
   return (
     <nav aria-label="Main">
       <ul className={styles.list}>
         {links.map(({ to, label }, index) => (
           <li key={to}>
-            <NavLink to={to} className={styles.link} onClick={onNavigate}>
+            <NavLink to={to} className={styles.link}>
               {/* Decorative number and line: hidden from screen readers. */}
               <span className={styles.number} aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}.

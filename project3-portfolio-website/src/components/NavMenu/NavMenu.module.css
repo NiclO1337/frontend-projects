@@ -7,8 +7,12 @@
   list-style: none;
 }
 
+/* fit-content: only the visible link is clickable, so empty space beside it
+   counts as "outside the menu" (the mobile menu closes when you click there).
+   TODO: re-evaluate if fit-content still feels right later */
 .link {
   display: flex;
+  width: fit-content;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-2) 0;

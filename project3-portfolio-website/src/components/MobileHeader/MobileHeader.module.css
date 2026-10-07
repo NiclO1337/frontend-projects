@@ -26,32 +26,82 @@
   text-shadow: var(--glow-sm);
 }
 
+/*
+  Menu button: no box, just two lines (like the nav's line indicator). The
+  short line grows on hover, and while the menu is open both lines
+  rotate into an X. Only `transform` is animated.
+*/
 .button {
-  display: grid;
-  place-items: center;
-  width: var(--space-6);
+  --line-height: 2px;
+  --line-gap: var(--space-1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--line-gap);
+  width: var(--space-5);
   height: var(--space-6);
   padding: 0;
   color: var(--color-text);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: none;
+  border: 0;
   border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: color var(--transition);
+}
+
+.line {
+  width: 100%;
+  height: var(--line-height);
+  background: currentColor;
+  transform: translateY(0) rotate(0) scaleX(1);
   transition:
-    color var(--transition),
-    border-color var(--transition),
+    transform var(--transition),
+    transform-origin var(--transition),
     box-shadow var(--transition);
+}
+
+/* The second line starts short and is anchored to the right. */
+.line:last-child {
+  transform: translateY(0) rotate(0) scaleX(0.6);
+  transform-origin: right;
 }
 
 .button:hover,
 .button:focus-visible {
   color: var(--color-accent);
-  border-color: var(--color-accent);
+}
+
+.button:hover .line,
+.button:focus-visible .line {
   box-shadow: var(--glow-sm);
 }
 
+.button:hover .line:last-child,
+.button:focus-visible .line:last-child {
+  transform: translateY(0) rotate(0) scaleX(1);
+}
+
+/*
+  Open: move each line half the distance between them towards the middle,
+  then rotate. Keeping the same transform functions in the same order as
+  above lets the browser animate each one smoothly.
+*/
+.button[aria-expanded="true"] .line:first-child {
+  transform: translateY(calc((var(--line-height) + var(--line-gap)) / 2))
+    rotate(45deg) scaleX(0.7);
+}
+
+.button[aria-expanded="true"] .line:last-child {
+  transform: translateY(calc((var(--line-height) + var(--line-gap)) / -2))
+    rotate(-45deg) scaleX(0.7);
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .button {
+  .button,
+  .line {
     transition: none;
   }
 }

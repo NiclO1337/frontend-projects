@@ -8,6 +8,7 @@ import styles from "./MobileMenu.module.css";
  * @param {object} props
  * @param {string} props.id id the menu button points to with aria-controls
  * @param {() => void} props.onClose asks the parent to close the menu
+ *   (Escape or a click outside the links)
  */
 export default function MobileMenu({ id, onClose }) {
   const menuRef = useRef(null);
@@ -28,9 +29,16 @@ export default function MobileMenu({ id, onClose }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  // A click anywhere except on a link dismisses the menu. Links don't need
+  // handling here: clicking one navigates, and MobileHeader closes the menu
+  // on every navigation. Keyboard users have Escape and the menu button.
+  function handleClick(event) {
+    if (!event.target.closest("a")) onClose();
+  }
+
   return (
-    <div id={id} ref={menuRef} className={styles.menu}>
-      <NavMenu onNavigate={onClose} />
+    <div id={id} ref={menuRef} className={styles.menu} onClick={handleClick}>
+      <NavMenu />
     </div>
   );
 }
