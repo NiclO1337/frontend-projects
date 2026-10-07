@@ -1,0 +1,61 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+
+.number {
+  color: var(--color-accent);
+}
+
+/*
+  The line is always 64px wide but drawn at half size. Scaling it up with
+  `transform` is cheap for the browser (animating `width` would force a
+  re-layout on every frame).
+*/
+.line {
+  width: var(--space-7);
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0.5);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+/* Hover, keyboard focus and the active page share one neon look. */
+.link:hover,
+.link:focus-visible,
+.link[aria-current="page"] {
+  color: var(--color-accent);
+  text-shadow: var(--glow-sm);
+}
+
+.link:hover .line,
+.link:focus-visible .line,
+.link[aria-current="page"] .line {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .line {
+    transition: none;
+  }
+}

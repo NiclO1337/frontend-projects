@@ -1,0 +1,52 @@
+/* Small screens: a normal block above the page. Step 8 swaps it for a menu. */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.name {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.name:hover,
+.name:focus-visible {
+  color: var(--color-accent);
+  text-shadow: var(--glow-sm);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.tagline {
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 1024px) {
+  /*
+    Sticky column: it stays in view while the right column scrolls.
+    `align-self: start` stops the grid from stretching it to the full page
+    height, which would leave sticky nothing to move within.
+  */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    justify-content: space-between;
+    height: 100dvh;
+    padding: var(--space-8) var(--space-6);
+  }
+}

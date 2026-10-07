@@ -1,0 +1,16 @@
+.main {
+  padding: var(--space-4);
+}
+
+/* Desktop: sidebar on the left, the current page on the right. */
+@media (min-width: 1024px) {
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+
+  .main {
+    max-width: var(--content-max);
+    padding: var(--space-8) var(--space-6);
+  }
+}
