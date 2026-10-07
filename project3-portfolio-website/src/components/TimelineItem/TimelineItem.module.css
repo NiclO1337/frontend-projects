@@ -1,0 +1,69 @@
+/*
+  Every item draws its own piece of the vertical line (its left border) and a
+  glowing dot on it. The pieces join up because each item's bottom padding
+  fills the gap to the next one.
+*/
+.item {
+  --date-column: calc(var(--space-7) * 2);
+  --dot-size: var(--space-2-5);
+
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  margin-left: var(--space-2);
+  padding-bottom: var(--space-6);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-border);
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+/* Positioned from the padding edge, which is 1px (half the border) to the
+   right of the line's centre. */
+.item::before {
+  content: "";
+  position: absolute;
+  top: var(--space-1);
+  left: calc(-1px - var(--dot-size) / 2);
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: var(--glow-sm);
+}
+
+.dates {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+
+.place {
+  color: var(--color-text-muted);
+}
+
+.bullets {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+}
+
+.bullets li + li {
+  margin-top: var(--space-1);
+}
+
+/* Date column on the left, details on the right. */
+@media (min-width: 768px) {
+  .item {
+    grid-template-columns: var(--date-column) 1fr;
+    gap: var(--space-4);
+  }
+}

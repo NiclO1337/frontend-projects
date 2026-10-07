@@ -1,0 +1,6 @@
+/* The line and dots are drawn by each TimelineItem. */
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
