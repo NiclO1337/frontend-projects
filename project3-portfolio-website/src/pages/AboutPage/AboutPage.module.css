@@ -1,0 +1,30 @@
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.skillsHeading {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+/*
+  The skill tiles have very different heights (2 to 8 chips). In a grid every
+  tile in a row would get the same height, leaving some tiles mostly empty.
+  Columns let each tile keep its own height and stack under the previous one.
+  `column-width` means "as many columns as fit, each at least this wide", so
+  the number of columns follows the available space with no breakpoints.
+*/
+.skills {
+  column-width: 15rem;
+  column-gap: var(--space-3);
+}
+
+/* Columns have no row gap, so tiles get a bottom margin. `break-inside` stops
+   a tile from being split between two columns. */
+.skills > * {
+  margin-bottom: var(--space-3);
+  break-inside: avoid;
+}

@@ -15,7 +15,7 @@ export default function Footer() {
         <SocialLinks />
       </div>
       <p>
-        Designed &amp; built by {profile.name} · React + Vite · &copy; {year}
+        Designed &amp; built by {profile.name} using Claude · &copy;&nbsp;{year}
       </p>
     </footer>
   );

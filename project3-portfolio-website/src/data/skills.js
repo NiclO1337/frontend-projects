@@ -61,14 +61,6 @@ export const skillGroups = [
     ],
   },
   {
-    id: "databases",
-    name: "Databases",
-    items: [
-      { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "SQL Server", icon: DiMsqlServer },
-    ],
-  },
-  {
     id: "version-control",
     name: "Version control",
     items: [
@@ -82,6 +74,15 @@ export const skillGroups = [
     items: [
       { name: "Scrum", icon: FaArrowsRotate },
       { name: "Kanban", icon: FaTableColumns },
+    ],
+  },
+  {
+    id: "ai-tools",
+    name: "AI tools",
+    items: [
+      { name: "GitHub Copilot", icon: SiGithubcopilot },
+      { name: "Claude Code", icon: SiClaudecode },
+      { name: "ChatGPT", icon: RiOpenaiFill },
     ],
   },
   {
@@ -99,12 +100,11 @@ export const skillGroups = [
     ],
   },
   {
-    id: "ai-tools",
-    name: "AI tools",
+    id: "databases",
+    name: "Databases",
     items: [
-      { name: "GitHub Copilot", icon: SiGithubcopilot },
-      { name: "Claude Code", icon: SiClaudecode },
-      { name: "ChatGPT", icon: RiOpenaiFill },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "SQL Server", icon: DiMsqlServer },
     ],
   },
 ];

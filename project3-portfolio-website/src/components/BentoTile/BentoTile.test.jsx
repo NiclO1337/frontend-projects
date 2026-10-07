@@ -15,6 +15,14 @@ describe("BentoTile", () => {
     expect(screen.getByText("Learning C#")).toBeInTheDocument();
   });
 
+  it("can use a different heading level for the title", () => {
+    render(<BentoTile title="Tools" headingLevel={3} />);
+
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Tools" }),
+    ).toBeInTheDocument();
+  });
+
   it("has no heading when no title is given", () => {
     render(
       <BentoTile>
