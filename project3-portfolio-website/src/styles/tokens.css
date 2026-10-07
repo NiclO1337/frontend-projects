@@ -50,6 +50,7 @@
   --radius-pill: 999px;
   --sidebar-width: min(40vw, 480px);
   --content-max: 760px;
+  --mobile-header-height: 4rem;
 
   --transition: 200ms ease;
 }

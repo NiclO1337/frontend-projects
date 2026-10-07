@@ -1,0 +1,30 @@
+/* Covers the whole screen. The header (z-index 2) stays on top of it. */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow-y: auto;
+  padding: calc(var(--mobile-header-height) + var(--space-5)) var(--space-4)
+    var(--space-4);
+  background: var(--color-bg);
+}
+
+/*
+  Lock page scrolling while the menu is open. `:has()` lets the body react to
+  the menu being present, and `:global` is needed because "body" is not a
+  class from this file.
+*/
+:global(body):has(.menu) {
+  overflow: hidden;
+}
+
+/* On desktop the sidebar is shown, so an open menu must not stay on screen. */
+@media (min-width: 1024px) {
+  .menu {
+    display: none;
+  }
+
+  :global(body):has(.menu) {
+    overflow: visible;
+  }
+}
