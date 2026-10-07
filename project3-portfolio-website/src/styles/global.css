@@ -68,6 +68,15 @@ textarea {
   box-shadow: var(--glow-sm);
 }
 
+/*
+  After navigation, code moves focus to the page heading (see useRouteFocus).
+  Nobody can type or click on a heading, so it doesn't need a focus ring.
+*/
+h1:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Hidden on screen, still read by screen readers. */
 .visually-hidden {
   position: absolute;
