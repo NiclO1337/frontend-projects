@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { skillGroups } from "../../data/skills.js";
+import { shuffle } from "../../utils/shuffle.js";
 import styles from "./TechMarquee.module.css";
 
 // The marquee shows the technologies and frameworks, taken from the skills data.
@@ -8,11 +10,17 @@ const techItems = skillGroups
   .flatMap((group) => group.items);
 
 /**
- * A row of tech icons that scrolls slowly and forever. The list is rendered
- * twice and the track slides left by exactly one list's width, then restarts,
- * so the jump back is invisible. Screen readers skip the second copy.
+ * A row of tech icons that scrolls slowly and forever, in a new random order
+ * each time it appears. The list is rendered twice and the track slides left
+ * by exactly one list's width, then restarts, so the jump back is invisible.
+ * Screen readers skip the second copy.
  */
 export default function TechMarquee() {
+  // useState with a function runs it only on the first render. Shuffling
+  // directly in the component body would reshuffle on every re-render, and
+  // the icons would jump around. Both copies use this one order.
+  const [items] = useState(() => shuffle(techItems));
+
   return (
     <div className={styles.marquee}>
       <div className={styles.track}>
@@ -22,7 +30,7 @@ export default function TechMarquee() {
             className={styles.list}
             aria-hidden={copy === "copy" ? "true" : undefined}
           >
-            {techItems.map(({ name, icon: Icon }) => (
+            {items.map(({ name, icon: Icon }) => (
               <li key={name} className={styles.item}>
                 <Icon className={styles.icon} aria-hidden="true" />
                 {name}
