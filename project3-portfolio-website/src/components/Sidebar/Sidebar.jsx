@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { profile } from "../../data/profile.js";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import ThemeToggle from "../ThemeToggle/ThemeToggle.jsx";
 import styles from "./Sidebar.module.css";
@@ -12,12 +13,10 @@ export default function Sidebar() {
     <header className={styles.sidebar}>
       <div className={styles.intro}>
         <Link to="/" className={styles.name}>
-          Niclas Hugdahl
+          {profile.name}
         </Link>
-        <p className={styles.title}>Junior Fullstack Software Developer</p>
-        <p className={styles.tagline}>
-          I build practical, accessible web apps.
-        </p>
+        <p className={styles.title}>{profile.title}</p>
+        <p className={styles.tagline}>{profile.tagline}</p>
       </div>
       <NavMenu />
       <div className={styles.controls}>

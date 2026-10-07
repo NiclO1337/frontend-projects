@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
+import { profile } from "../../data/profile.js";
 import MobileMenu from "../MobileMenu/MobileMenu.jsx";
 import styles from "./MobileHeader.module.css";
 
@@ -37,7 +38,7 @@ export default function MobileHeader() {
     <>
       <header className={styles.header}>
         <Link to="/" className={styles.name}>
-          Niclas Hugdahl
+          {profile.name}
         </Link>
         <button
           ref={buttonRef}
