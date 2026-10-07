@@ -10,6 +10,11 @@
 }
 
 .name {
+  /* fit-content: the link (and its focus ring) is only as wide as the text,
+     not the whole column. Padding and negative margin as in MobileHeader. */
+  width: fit-content;
+  padding: var(--space-1) var(--space-2-5);
+  margin-left: calc(var(--space-2-5) * -1);
   color: var(--color-text);
   font-family: var(--font-heading);
   font-size: var(--text-h2);

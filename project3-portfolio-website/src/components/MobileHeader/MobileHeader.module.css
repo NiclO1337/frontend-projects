@@ -13,6 +13,10 @@
 }
 
 .name {
+  /* Padding gives the focus ring some room around the text. The negative
+     margin cancels it out, so the text stays aligned with the page content. */
+  padding: var(--space-1) var(--space-2-5);
+  margin-left: calc(var(--space-2-5) * -1);
   color: var(--color-text);
   font-family: var(--font-heading);
   font-size: var(--text-h2);
@@ -49,7 +53,6 @@
   color: var(--color-text);
   background: none;
   border: 0;
-  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: color var(--transition);
 }

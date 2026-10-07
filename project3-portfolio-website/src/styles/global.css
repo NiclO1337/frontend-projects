@@ -54,6 +54,12 @@ a {
   text-underline-offset: 0.2em;
 }
 
+/* Rounded corners for everything focusable: the focus ring follows them. */
+a,
+button {
+  border-radius: var(--radius-sm);
+}
+
 /* Form controls don't inherit the page font by default. */
 button,
 input,
