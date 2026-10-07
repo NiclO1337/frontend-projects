@@ -84,19 +84,26 @@ a split layout inspired by Brittany Chiang's portfolio, and bento grids.
 - Integration tests (end of project) live in `src/test/integration/` and
   render the real routes with `createMemoryRouter`.
 - Never call real network services in tests. Mock `fetch` with `vi.fn()`.
-- The user runs `npm test` themselves. Tell them which test file to run and
-  what should pass.
+- Run the tests yourself with `npm run test:run` when you have added or
+  changed code or tests. Report the result honestly, including failures.
 
-## Commands (the user runs them, never you)
+## Commands
 
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Dev server (**never start it yourself**; ask the user to check) |
-| `npm test` | Vitest in watch mode |
-| `npm run test:run` | Vitest once (CI style) |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier |
-| `npm run build` | Production build |
+| Command | Purpose | Who runs it |
+|---------|---------|-------------|
+| `npm run test:run` | Vitest once | **You**, when needed |
+| `npm run lint` | ESLint | **You**, when needed |
+| `npm run format` | Prettier | **You**, when needed |
+| `npm run dev` | Dev server | **User only**. Never start it. Ask the user to check in the browser |
+| `npm test` | Vitest in watch mode | **User only**. It never exits, so never run it |
+| `npm run build` | Production build | **User only** |
+
+"When needed" means: run `test:run` and `lint` after changing code, and
+`format` after writing or editing files. Run only the relevant ones, and not
+after changes that can't affect them (e.g. a docs-only edit). Run them
+before suggesting a commit, so the user gets a verified chunk. To keep it
+fast, run a single test file when only one component changed
+(`npx vitest run src/components/NavMenu`).
 
 ## When writing code
 
