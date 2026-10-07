@@ -1,6 +1,8 @@
 import { Outlet } from "react-router";
+import Footer from "../../components/Footer/Footer.jsx";
 import MobileHeader from "../../components/MobileHeader/MobileHeader.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
+import SkipLink from "../../components/SkipLink/SkipLink.jsx";
 import useRouteFocus from "../../hooks/useRouteFocus.js";
 import styles from "./RootLayout.module.css";
 
@@ -10,12 +12,16 @@ export default function RootLayout() {
 
   return (
     <div className={styles.layout}>
+      <SkipLink />
       {/* CSS shows the mobile header below 1024px and the sidebar above. */}
       <MobileHeader />
       <Sidebar />
-      <main id="main" className={styles.main}>
-        <Outlet />
-      </main>
+      <div className={styles.content}>
+        <main id="main" className={styles.main}>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

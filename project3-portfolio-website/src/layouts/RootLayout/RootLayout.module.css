@@ -1,4 +1,16 @@
+/*
+  The content column is as tall as the screen (minus the mobile header), and
+  <main> takes the leftover space. That pushes the footer to the bottom
+  of the screen on short pages.
+*/
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - var(--mobile-header-height));
+}
+
 .main {
+  flex: 1;
   padding: var(--space-4);
 }
 
@@ -9,8 +21,12 @@
     grid-template-columns: var(--sidebar-width) 1fr;
   }
 
-  .main {
+  .content {
+    min-height: 100dvh;
     max-width: var(--content-max);
+  }
+
+  .main {
     padding: var(--space-8) var(--space-6);
   }
 }
