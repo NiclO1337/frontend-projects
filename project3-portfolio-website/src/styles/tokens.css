@@ -50,8 +50,9 @@
   --radius: 14px;
   --radius-pill: 999px;
   --sidebar-width: min(40vw, 480px);
-  --content-max: 760px;
+  --content-max: 960px;
   --mobile-header-height: 4rem;
+  --bento-row-height: 10rem;
 
   --transition: 200ms ease;
 }

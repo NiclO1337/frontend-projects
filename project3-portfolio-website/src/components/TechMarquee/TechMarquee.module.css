@@ -1,0 +1,83 @@
+/* Fade the left and right edges. Only the mask's transparency matters here,
+   not the colour. */
+.marquee {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+/*
+  The track is as wide as both lists together. Moving it left by 50% (one
+  list) and restarting looks seamless. Only `transform` is animated.
+*/
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* The right padding equals the gap, so both lists are exactly the same width. */
+.list {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0 var(--space-4) 0 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  white-space: nowrap;
+}
+
+.icon {
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--color-text);
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* With reduced motion nothing scrolls, so show every icon in a wrapping grid
+   instead of hiding most of them. The repeated copy is not needed. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+  }
+
+  .track {
+    width: auto;
+    animation: none;
+  }
+
+  .list {
+    flex-wrap: wrap;
+    padding-right: 0;
+  }
+
+  .list:last-child {
+    display: none;
+  }
+}

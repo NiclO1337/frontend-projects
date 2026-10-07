@@ -1,0 +1,117 @@
+/*
+  Intro tile. It is a "container": the text below sizes itself from the
+  container's width (1cqi = 1% of it) instead of the screen's width, because
+  the tile's width changes with the grid.
+*/
+.intro {
+  container-type: inline-size;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/*
+  The job title always stays on one line. In JetBrains Mono the capitals are
+  21em wide, so the font can be at most width / 21 (= 4.76cqi). 4.6cqi leaves
+  a small margin. `min()` keeps the normal size whenever there is room, so the
+  text only shrinks in very narrow tiles.
+*/
+.jobTitle {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: min(var(--text-label), 4.6cqi);
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/*
+  One sentence per line (pre-line keeps the "\n" from the data). The longest
+  sentence is 14.7em wide in Inter, so the font can be at most width / 14.7
+  (= 6.8cqi). 6.5cqi leaves a small margin.
+*/
+.summary {
+  font-size: min(var(--text-body), 6.5cqi);
+  white-space: pre-line;
+}
+
+/* Tablet has plenty of room: let both sentences share one line. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .summary {
+    white-space: normal;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Photo tile: the picture fills the tile and gets a neon ring. */
+.photo {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--glow-lg);
+}
+
+/* Short facts in "Currently" and "Location & languages". */
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.locationIcon {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-muted);
+  list-style: none;
+}
+
+/* Download CV tile: the whole tile is the link. */
+.cvLink {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.cvLink:hover,
+.cvLink:focus-visible {
+  color: var(--color-accent);
+}
+
+.cvIcon {
+  width: var(--space-6);
+  height: var(--space-6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cvLink {
+    transition: none;
+  }
+}

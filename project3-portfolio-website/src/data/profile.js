@@ -1,11 +1,16 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import photo from "../assets/images/profile-placeholder.svg";
 
 // Personal details, copied from Project 1. Components only render this data.
 export const profile = {
   name: "Niclas Hugdahl",
+  // Placeholder portrait from Project 1. TODO: swap for the real photo at the end.
+  photo,
+  photoAlt: "Portrait of Niclas Hugdahl",
   title: "Junior Fullstack Software Developer",
   tagline: "I build practical, accessible applications.",
-  summary: "Backend & frontend developer. Problem-solver at heart.",
+  // One sentence per line. "\n" is a line break the CSS keeps (white-space: pre-line).
+  summary: "Backend & frontend developer.\nProblem-solver at heart.",
   currently: "Full Stack C# .NET at Lexicon (2026)",
   location: "Stockholm, Sweden",
   languages: [
