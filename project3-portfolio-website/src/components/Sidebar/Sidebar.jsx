@@ -1,11 +1,13 @@
 import { Link } from "react-router";
 import { profile } from "../../data/profile.js";
 import NavMenu from "../NavMenu/NavMenu.jsx";
+import SocialLinks from "../SocialLinks/SocialLinks.jsx";
 import ThemeToggle from "../ThemeToggle/ThemeToggle.jsx";
 import styles from "./Sidebar.module.css";
 
 /**
- * Left column of the split layout: name, title, tagline, navigation and toggles.
+ * Left column of the split layout: name, title, tagline, navigation, social
+ * links and toggles.
  * It's a <header> (banner landmark). The name is a link home, not the page <h1>.
  */
 export default function Sidebar() {
@@ -20,6 +22,7 @@ export default function Sidebar() {
       </div>
       <NavMenu />
       <div className={styles.controls}>
+        <SocialLinks />
         <ThemeToggle />
       </div>
     </header>

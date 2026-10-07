@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import Footer from "./Footer.jsx";
 
 describe("Footer", () => {
@@ -16,5 +16,15 @@ describe("Footer", () => {
     const footer = screen.getByRole("contentinfo");
     expect(footer).toHaveTextContent("Designed & built by Niclas Hugdahl");
     expect(footer).toHaveTextContent("© 2030");
+  });
+
+  it("includes the social links (CSS hides them on desktop)", () => {
+    render(<Footer />);
+
+    expect(
+      within(screen.getByRole("contentinfo")).getByRole("link", {
+        name: /github/i,
+      }),
+    ).toBeInTheDocument();
   });
 });

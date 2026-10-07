@@ -1,13 +1,22 @@
 .footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   padding: var(--space-4);
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: var(--text-label);
   border-top: 1px solid var(--color-border);
+  margin: auto;
 }
 
 @media (min-width: 1024px) {
   .footer {
     padding: var(--space-4) var(--space-6);
+  }
+
+  /* The sidebar shows the social links on desktop. */
+  .social {
+    display: none;
   }
 }

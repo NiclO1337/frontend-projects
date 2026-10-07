@@ -28,9 +28,11 @@
   text-shadow: var(--glow-sm);
 }
 
-/* Row for the toggles (and later the social icons). */
+/* Social links on the left, toggles on the right. */
 .controls {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--space-3);
 }
 

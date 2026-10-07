@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import NavMenu from "../NavMenu/NavMenu.jsx";
+import SocialLinks from "../SocialLinks/SocialLinks.jsx";
 import ThemeToggle from "../ThemeToggle/ThemeToggle.jsx";
 import styles from "./MobileMenu.module.css";
 
@@ -42,6 +43,7 @@ export default function MobileMenu({ id, onClose }) {
     <div id={id} ref={menuRef} className={styles.menu} onClick={handleClick}>
       <NavMenu />
       <div className={styles.controls}>
+        <SocialLinks />
         <ThemeToggle />
       </div>
     </div>
