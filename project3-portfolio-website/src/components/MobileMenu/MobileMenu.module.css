@@ -9,6 +9,12 @@
   background: var(--color-bg);
 }
 
+.controls {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
 /*
   Lock page scrolling while the menu is open. `:has()` lets the body react to
   the menu being present, and `:global` is needed because "body" is not a

@@ -22,5 +22,7 @@ globalThis.IntersectionObserver = class {
 
 afterEach(() => {
   localStorage.clear();
+  // ThemeProvider sets this on <html>, which outlives a single test.
+  delete document.documentElement.dataset.theme;
   vi.restoreAllMocks();
 });

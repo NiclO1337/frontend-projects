@@ -323,7 +323,8 @@ src/
 ├── main.jsx                 createBrowserRouter(routes) + providers
 ├── routes.jsx               the route config (shared with tests)
 ├── styles/  tokens.css · global.css
-├── context/ ThemeContext.jsx · EffectsContext.jsx
+├── context/ ThemeContext.js · ThemeProvider.jsx · EffectsContext.js · EffectsProvider.jsx
+│            (context + useX hook in the .js file, the provider component in the .jsx file)
 ├── hooks/   useLocalStorage.js · useMediaQuery.js · useRouteFocus.js
 ├── layouts/ RootLayout/           sidebar + main + footer + effects
 ├── pages/   HomePage/ AboutPage/ ResumePage/ ProjectsPage/
@@ -424,8 +425,10 @@ Wrap the app in `<MotionConfig reducedMotion={effectsOn ? "user" : "always"}>`.
 Then **one switch controls every Motion animation**.
 
 Toggles (sidebar bottom + mobile menu), both `<button aria-pressed>`:
-- Theme: sun/moon icon, label "Switch to light mode" / "Switch to dark mode"
-- Effects: sparkles icon, label "Turn effects off" / "Turn effects on"
+- Theme: sun/moon icon, constant label "Dark mode", `aria-pressed` = dark theme on
+- Effects: sparkles icon, constant label "Effects", `aria-pressed` = effects on
+- The label stays the same and only `aria-pressed` changes. A label that
+  changes too would be announced as a contradiction ("Switch to light mode, pressed").
 
 ---
 
@@ -450,8 +453,8 @@ inside the providers. Used by page and integration tests.
 |--------|--------------|
 | `utils/projects.js`, `toSlug` | slug lookup, unknown slug, tech list unique + sorted, filtering, prev/next wrap-around |
 | `useLocalStorage` | reads initial value, writes on change, bad JSON falls back to default |
-| `ThemeToggle` | toggles `data-theme`, label + `aria-pressed` update, saved to storage |
-| `EffectsToggle` | toggles context value, label updates |
+| `ThemeToggle` | toggles `data-theme`, `aria-pressed` updates, saved to storage |
+| `EffectsToggle` | toggles context value, `aria-pressed` updates |
 | `NavMenu` | renders all links, active link has `aria-current="page"` |
 | `MobileMenu` | opens/closes, `aria-expanded`, Escape closes, link click closes |
 | `Button` | renders `<a>` / `Link` / `<button>` depending on props; external links get `target` + `rel` |

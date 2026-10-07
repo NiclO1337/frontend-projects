@@ -2,9 +2,11 @@ import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { ThemeProvider } from "../../context/ThemeProvider.jsx";
 import MobileHeader from "./MobileHeader.jsx";
 
-// MobileHeader uses Link and NavLink, so it needs a router around it.
+// MobileHeader uses Link and NavLink, so it needs a router around it, and the
+// theme toggle in the menu needs the ThemeProvider.
 function renderMobileHeader(url = "/") {
   const router = createMemoryRouter(
     [{ path: "*", element: <MobileHeader /> }],
@@ -12,7 +14,14 @@ function renderMobileHeader(url = "/") {
       initialEntries: [url],
     },
   );
-  return { router, ...render(<RouterProvider router={router} />) };
+  return {
+    router,
+    ...render(
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>,
+    ),
+  };
 }
 
 const getMenuButton = () => screen.getByRole("button", { name: "Menu" });
@@ -102,5 +111,18 @@ describe("MobileHeader", () => {
     await user.click(screen.getByRole("navigation", { name: "Main" }));
 
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+  });
+
+  it("stays open when the theme toggle in the menu is clicked", async () => {
+    const user = userEvent.setup();
+    renderMobileHeader();
+
+    await user.click(getMenuButton());
+    await user.click(screen.getByRole("button", { name: /dark mode/i }));
+
+    expect(
+      screen.getByRole("navigation", { name: "Main" }),
+    ).toBeInTheDocument();
+    expect(document.documentElement).toHaveAttribute("data-theme", "light");
   });
 });
