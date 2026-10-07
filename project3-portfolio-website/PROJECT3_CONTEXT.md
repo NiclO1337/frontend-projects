@@ -395,7 +395,7 @@ borders meet 3:1.
 | Labels, dates, tags, nav numbers ("01."), years | JetBrains Mono 500 | `0.8125rem`, accent colour |
 
 ### Spacing and shape
-`--space-1 … --space-8` (0.25 → 6rem), `--radius-sm: 6px`,
+`--space-1 … --space-8` (0.25 → 6rem, plus the half-step `--space-2-5` = 0.75rem), `--radius-sm: 6px`,
 `--radius: 14px` (bento tiles/cards), `--radius-pill: 999px`,
 `--sidebar-width: min(40vw, 480px)`, `--content-max: 760px`,
 `--transition: 200ms ease`.
