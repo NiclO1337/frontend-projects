@@ -288,8 +288,12 @@ TODO: short folder tree when the project is finished
 - GitHub
 - Vercel
 - VS Code
-- Claude Code
 - ESLint and Prettier
+- Claude (planning)
+- Claude Code (implementation)
+<!-- - ChatGPT (image edit) -->
+- Paint.NET (cropping images)
+- Squoosh (resizing / WebP conversion)
 - TODO: add other tools used
 
 ## Testing

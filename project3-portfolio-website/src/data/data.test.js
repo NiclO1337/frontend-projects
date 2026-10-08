@@ -1,6 +1,7 @@
 import { education } from "./education.js";
 import { experience } from "./experience.js";
 import { profile } from "./profile.js";
+import { projects } from "./projects.js";
 import { skillGroups } from "./skills.js";
 
 // Components use `id` as the React `key` and rely on the order of the lists,
@@ -41,6 +42,45 @@ describe("data files", () => {
     for (const entry of list) {
       expect(entry.bullets.length).toBeGreaterThan(0);
     }
+  });
+
+  describe("projects", () => {
+    it("has unique, URL-friendly slugs", () => {
+      const slugs = projects.map((project) => project.slug);
+
+      expect(new Set(slugs).size).toBe(slugs.length);
+      for (const slug of slugs) {
+        expect(slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      }
+    });
+
+    it("lists the projects newest first", () => {
+      const years = projects.map((project) => project.year);
+
+      expect(years).toEqual([...years].sort((a, b) => b - a));
+    });
+
+    it("has exactly one featured project (shown on the Home page)", () => {
+      expect(projects.filter((project) => project.featured)).toHaveLength(1);
+    });
+
+    it("gives every project everything the cards and detail page show", () => {
+      for (const project of projects) {
+        const label = project.slug;
+
+        expect(project.title, label).toBeTruthy();
+        expect(project.type, label).toBeTruthy();
+        expect(project.summary, label).toBeTruthy();
+        expect(project.description.length, label).toBeGreaterThan(0);
+        expect(project.highlights.length, label).toBeGreaterThan(0);
+        expect(project.tech.length, label).toBeGreaterThan(0);
+        // Images are imported, so they arrive here as a URL string.
+        expect(project.image, label).toBeTypeOf("string");
+        expect(project.imageAlt, label).toBeTruthy();
+        expect(project.liveUrl, label).toMatch(/^https:\/\//);
+        expect(project.repoUrl, label).toMatch(/^https:\/\/github\.com\//);
+      }
+    });
   });
 
   it("has external social links over https and no email or phone", () => {
