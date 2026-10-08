@@ -30,6 +30,12 @@
   background-color: transparent;
 }
 
+/* Compact: smaller text and padding, so several fit in a card. */
+.small {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-label);
+}
+
 /* Hover and keyboard focus share the neon glow. */
 .button:hover,
 .button:focus-visible {

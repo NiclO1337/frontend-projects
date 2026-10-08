@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* A darker backdrop with some room around the device mockup. */
+.media {
+  padding: var(--space-3);
+  background: var(--color-bg);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+.meta {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--text-h3);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* margin-top: auto pushes the links to the bottom, so the buttons line up
+   across cards of different heights. */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}

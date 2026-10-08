@@ -1,0 +1,11 @@
+/* The soft violet accent is for secondary tags like this one. */
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2-5);
+  color: var(--color-accent-2);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+}

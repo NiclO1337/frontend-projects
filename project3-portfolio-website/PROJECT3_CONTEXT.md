@@ -257,8 +257,8 @@ social icons (on mobile only, since desktop has them in the sidebar).
   tech: ["Python", "Django", "JavaScript", "Bootstrap", "PostgreSQL"],
   image: bananaPalaceImg,
   imageAlt: "Banana Palace website shown on several devices",
-  liveUrl: "https://…",
-  repoUrl: "https://github.com/NiclO1337/pp4-banana-palace",
+  liveUrl: "https://…",     // optional: leave out if not deployed
+  repoUrl: "https://github.com/NiclO1337/pp4-banana-palace",  // optional: leave out if private
 }
 ```
 Helpers in `src/utils/projects.js` (pure functions, easy to unit test):

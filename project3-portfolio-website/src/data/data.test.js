@@ -77,8 +77,20 @@ describe("data files", () => {
         // Images are imported, so they arrive here as a URL string.
         expect(project.image, label).toBeTypeOf("string");
         expect(project.imageAlt, label).toBeTruthy();
-        expect(project.liveUrl, label).toMatch(/^https:\/\//);
-        expect(project.repoUrl, label).toMatch(/^https:\/\/github\.com\//);
+      }
+    });
+
+    it("only uses https links, and github.com for the repository", () => {
+      for (const project of projects) {
+        // Both links are optional (not deployed, or a private repository).
+        if (project.liveUrl) {
+          expect(project.liveUrl, project.slug).toMatch(/^https:\/\//);
+        }
+        if (project.repoUrl) {
+          expect(project.repoUrl, project.slug).toMatch(
+            /^https:\/\/github\.com\//,
+          );
+        }
       }
     });
   });

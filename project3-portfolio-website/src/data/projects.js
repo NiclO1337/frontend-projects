@@ -9,7 +9,8 @@ import weightliftingCalculatorImg from "../assets/projects/weightlifting-calcula
 
 // All projects, newest first. `featured` marks the one shown on the Home page
 // (only one project should have it). The screenshots are 900x533 WebP images
-// of the site on several devices.
+// of the site on several devices. `liveUrl` and `repoUrl` are optional: leave
+// one out for a project that is not deployed or has a private repository.
 export const projects = [
   {
     slug: "bun-intended",

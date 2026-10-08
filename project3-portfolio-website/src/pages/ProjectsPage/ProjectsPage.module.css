@@ -1,0 +1,20 @@
+/* The width is capped by the global `p { max-width: 68ch }` rule.
+   `balance` makes the lines about equally long, instead of full lines
+   followed by a short last one. */
+.intro {
+  margin-top: var(--space-3);
+}
+
+/*
+  As many columns as fit, each at least 16rem wide (so 1 on a phone, 2 on a
+  tablet, 3 on a wide screen). `min(100%, 16rem)` stops a column from being
+  wider than the container on very narrow screens.
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-3);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}

@@ -9,6 +9,7 @@ import styles from "./Button.module.css";
  * - neither -> a <button>
  * @param {object} props
  * @param {"primary" | "ghost"} [props.variant] filled or outlined look
+ * @param {"small"} [props.size] a compact button, for use inside cards
  * @param {string} [props.to] internal route, e.g. "/projects"
  * @param {string} [props.href] external URL or file path
  * @param {React.ReactNode} props.children
@@ -16,12 +17,13 @@ import styles from "./Button.module.css";
  */
 export default function Button({
   variant = "primary",
+  size,
   to,
   href,
   children,
   ...rest
 }) {
-  const className = `${styles.button} ${styles[variant]}`;
+  const className = `${styles.button} ${styles[variant]} ${size ? styles[size] : ""}`;
 
   if (to) {
     return (
