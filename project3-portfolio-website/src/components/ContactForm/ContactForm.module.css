@@ -18,6 +18,29 @@
   gap: var(--space-4);
 }
 
+.sendError {
+  color: var(--color-error);
+}
+
+/* The thank-you message that replaces the form. */
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 36rem;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--glow-sm);
+}
+
+/* The title gets focus from code, not from the visitor, so no focus ring. */
+.successTitle:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 .honeypot {
   display: none;
 }

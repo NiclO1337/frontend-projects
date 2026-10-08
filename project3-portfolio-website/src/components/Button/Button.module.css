@@ -47,6 +47,15 @@
   background-color: var(--color-surface-2);
 }
 
+/* Not available right now (a message is being sent). aria-disabled keeps the
+   button focusable, unlike the disabled attribute. */
+.button[aria-disabled="true"],
+.button:disabled {
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .button {
     transition: none;

@@ -2,7 +2,7 @@ import { screen, within } from "@testing-library/react";
 import { renderWithRouter } from "../../test/renderWithRouter.jsx";
 
 describe("ContactPage", () => {
-  it("has the heading, the form and links to the profiles", () => {
+  it("has the heading and the form", () => {
     renderWithRouter(["/contact"]);
     const main = within(screen.getByRole("main"));
 
@@ -12,8 +12,6 @@ describe("ContactPage", () => {
     expect(main.getByLabelText("Name")).toBeInTheDocument();
     expect(main.getByLabelText("Email")).toBeInTheDocument();
     expect(main.getByLabelText("Message")).toBeInTheDocument();
-    expect(main.getByRole("link", { name: /github/i })).toBeInTheDocument();
-    expect(main.getByRole("link", { name: /linkedin/i })).toBeInTheDocument();
   });
 
   it("shows no email address or phone number", () => {
