@@ -1,8 +1,27 @@
-/* The width is capped by the global `p { max-width: 68ch }` rule.
-   `balance` makes the lines about equally long, instead of full lines
-   followed by a short last one. */
+/* The width is capped by the global `p { max-width: 68ch }` rule. */
 .intro {
   margin-top: var(--space-3);
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.count {
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+}
+
+/* Shown only when the URL asks for a technology no project uses. */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
 }
 
 /*
