@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { EffectsProvider } from "../context/EffectsProvider.jsx";
 import { ThemeProvider } from "../context/ThemeProvider.jsx";
 import { routes } from "../routes.jsx";
 
@@ -15,7 +16,9 @@ export function renderWithRouter(initialEntries = ["/"]) {
     router,
     ...render(
       <ThemeProvider>
-        <RouterProvider router={router} />
+        <EffectsProvider>
+          <RouterProvider router={router} />
+        </EffectsProvider>
       </ThemeProvider>,
     ),
   };

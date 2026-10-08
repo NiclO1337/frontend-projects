@@ -28,6 +28,12 @@
   text-shadow: var(--glow-sm);
 }
 
+/* The two toggles sit together, close to each other. */
+.toggles {
+  display: flex;
+  gap: var(--space-3);
+}
+
 /* Social links on the left, toggles on the right. */
 .controls {
   display: flex;

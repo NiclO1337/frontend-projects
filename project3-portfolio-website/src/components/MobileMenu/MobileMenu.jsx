@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import EffectsToggle from "../EffectsToggle/EffectsToggle.jsx";
 import NavMenu from "../NavMenu/NavMenu.jsx";
 import SocialLinks from "../SocialLinks/SocialLinks.jsx";
 import ThemeToggle from "../ThemeToggle/ThemeToggle.jsx";
@@ -44,7 +45,10 @@ export default function MobileMenu({ id, onClose }) {
       <NavMenu />
       <div className={styles.controls}>
         <SocialLinks />
-        <ThemeToggle />
+        <div className={styles.toggles}>
+          <ThemeToggle />
+          <EffectsToggle />
+        </div>
       </div>
     </div>
   );

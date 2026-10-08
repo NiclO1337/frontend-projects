@@ -9,6 +9,12 @@
   background: var(--color-bg);
 }
 
+/* The two toggles sit together, close to each other. */
+.toggles {
+  display: flex;
+  gap: var(--space-3);
+}
+
 /* Social links, then the toggles after a wider gap. A fixed gap keeps the
    toggle close on every screen width (space-between would push it to the edge). */
 .controls {

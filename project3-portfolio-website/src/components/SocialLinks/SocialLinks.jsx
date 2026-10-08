@@ -10,7 +10,7 @@ export default function SocialLinks() {
           {/* rel="noopener noreferrer": the new tab can't access this page. */}
           <a
             href={url}
-            className={styles.link}
+            className="round-control"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${name} (opens in a new tab)`}

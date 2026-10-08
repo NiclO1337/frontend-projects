@@ -406,9 +406,13 @@ borders meet 3:1.
 ## 10. Effects (all light-blue neon)
 
 `EffectsContext` provides `effectsOn`. It's **true** only when all of these hold:
-the user toggle is on (default on, saved in `localStorage`), and
-`prefers-reduced-motion` is not `reduce`.
-Cursor effects also need `(hover: hover) and (pointer: fine)`.
+the user toggle is on (default on, saved in `localStorage`),
+`prefers-reduced-motion` is not `reduce`, and the device has a mouse
+(`(hover: hover) and (pointer: fine)`). This applies to **every** effect,
+including the Motion animations, as the project `CLAUDE.md` requires.
+The context also gives `effectsAvailable` (the last two conditions) and
+`effectsEnabled` (the visitor's own choice). `EffectsToggle` renders nothing
+when effects are not available, since it would change nothing.
 
 | Effect | How | Off when effects off? |
 |--------|-----|-----------------------|

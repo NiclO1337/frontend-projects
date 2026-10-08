@@ -2,6 +2,7 @@ import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { EffectsProvider } from "../../context/EffectsProvider.jsx";
 import { ThemeProvider } from "../../context/ThemeProvider.jsx";
 import MobileHeader from "./MobileHeader.jsx";
 
@@ -18,7 +19,9 @@ function renderMobileHeader(url = "/") {
     router,
     ...render(
       <ThemeProvider>
-        <RouterProvider router={router} />
+        <EffectsProvider>
+          <RouterProvider router={router} />
+        </EffectsProvider>
       </ThemeProvider>,
     ),
   };

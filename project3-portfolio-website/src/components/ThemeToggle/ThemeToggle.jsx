@@ -1,6 +1,5 @@
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { useTheme } from "../../context/ThemeContext.js";
-import styles from "./ThemeToggle.module.css";
 
 /**
  * Switches between the dark and light theme. The label stays "Dark mode" and
@@ -15,7 +14,7 @@ export default function ThemeToggle() {
   return (
     <button
       type="button"
-      className={styles.toggle}
+      className="round-control"
       aria-label="Dark mode"
       aria-pressed={isDark}
       onClick={toggleTheme}
