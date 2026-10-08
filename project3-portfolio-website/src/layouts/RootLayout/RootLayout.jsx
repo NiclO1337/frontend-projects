@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import Footer from "../../components/Footer/Footer.jsx";
 import MobileHeader from "../../components/MobileHeader/MobileHeader.jsx";
+import PageTransition from "../../components/PageTransition/PageTransition.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import SkipLink from "../../components/SkipLink/SkipLink.jsx";
 import useRouteFocus from "../../hooks/useRouteFocus.js";
@@ -18,7 +19,9 @@ export default function RootLayout() {
       <Sidebar />
       <div className={styles.content}>
         <main id="main" className={styles.main}>
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
       </div>

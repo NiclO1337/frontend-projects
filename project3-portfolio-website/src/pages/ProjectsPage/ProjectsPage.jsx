@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router";
 import Button from "../../components/Button/Button.jsx";
 import ProjectCard from "../../components/ProjectCard/ProjectCard.jsx";
 import ProjectFilter from "../../components/ProjectFilter/ProjectFilter.jsx";
+import Reveal from "../../components/Reveal/Reveal.jsx";
 import { projects } from "../../data/projects.js";
 import { filterProjectsByTech, getTechList } from "../../utils/projects.js";
 import styles from "./ProjectsPage.module.css";
@@ -66,9 +67,9 @@ export default function ProjectsPage() {
         // A list of cards: screen readers announce "list, 8 items".
         <ul className={styles.grid}>
           {visibleProjects.map((project) => (
-            <li key={project.slug}>
+            <Reveal as="li" key={project.slug}>
               <ProjectCard project={project} />
-            </li>
+            </Reveal>
           ))}
         </ul>
       )}

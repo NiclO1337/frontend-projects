@@ -1,5 +1,6 @@
 import { FaDownload } from "react-icons/fa6";
 import Button from "../../components/Button/Button.jsx";
+import Reveal from "../../components/Reveal/Reveal.jsx";
 import Timeline from "../../components/Timeline/Timeline.jsx";
 import { education } from "../../data/education.js";
 import { experience } from "../../data/experience.js";
@@ -24,10 +25,14 @@ export default function ResumePage() {
       </div>
 
       <h2 className={styles.sectionHeading}>Experience</h2>
-      <Timeline entries={experience} />
+      <Reveal>
+        <Timeline entries={experience} />
+      </Reveal>
 
       <h2 className={styles.sectionHeading}>Education</h2>
-      <Timeline entries={education} />
+      <Reveal>
+        <Timeline entries={education} />
+      </Reveal>
     </>
   );
 }
