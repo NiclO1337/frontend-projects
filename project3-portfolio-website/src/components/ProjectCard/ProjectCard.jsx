@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import Button from "../Button/Button.jsx";
 import TechTag from "../TechTag/TechTag.jsx";
 import styles from "./ProjectCard.module.css";
@@ -23,6 +24,11 @@ export default function ProjectCard({ project }) {
     liveUrl,
     repoUrl,
   } = project;
+
+  // The search part of the current URL, like "?tech=python". It is passed to
+  // the detail page as location state, so its "All projects" link can return
+  // to the same filter.
+  const { search } = useLocation();
 
   return (
     <article className={styles.card}>
@@ -57,7 +63,11 @@ export default function ProjectCard({ project }) {
         {/* The visually hidden text makes every link's name unique, because
             a screen reader user may list all the links on the page. */}
         <div className={styles.links}>
-          <Button to={`/projects/${slug}`} size="small">
+          <Button
+            to={`/projects/${slug}`}
+            state={{ fromSearch: search }}
+            size="small"
+          >
             Details <span className="visually-hidden">of {title}</span>
           </Button>
           {/* `liveUrl && ...` renders nothing when the project has no live

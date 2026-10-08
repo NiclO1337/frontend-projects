@@ -1,0 +1,119 @@
+/* Padding and the negative margin give the focus ring room around the text
+   while the text stays aligned with the page content (as in the nav). */
+.back {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2-5);
+  margin-bottom: var(--space-3);
+  margin-left: calc(var(--space-2-5) * -1);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.meta {
+  margin-top: var(--space-2);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* A darker backdrop with some room around the device mockup, as on the cards. */
+.media {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.heading {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+
+.highlights {
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+.highlights li + li {
+  margin-top: var(--space-1);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* Previous on the left and next on the right, stacked on narrow screens. */
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.pagerLink {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2-5);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.pagerLink:hover,
+.pagerLink:focus-visible {
+  color: var(--color-accent);
+}
+
+.pagerNext {
+  text-align: right;
+}
+
+.pagerLabel {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagerLink {
+    transition: none;
+  }
+}

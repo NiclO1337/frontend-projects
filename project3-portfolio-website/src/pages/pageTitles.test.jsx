@@ -7,7 +7,7 @@ describe("page titles", () => {
     ["/about", /^About – /],
     ["/resume", /^Resume – /],
     ["/projects", /^Projects – /],
-    ["/projects/banana-palace", /^Project: banana-palace – /],
+    ["/projects/banana-palace", /^Banana Palace – /],
     ["/contact", /^Contact – /],
     ["/no-such-page", /^Page not found – /],
   ])("%s has its own title and a description", async (url, title) => {
