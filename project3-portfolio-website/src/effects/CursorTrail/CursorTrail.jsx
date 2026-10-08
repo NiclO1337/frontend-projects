@@ -3,7 +3,6 @@ import styles from "./CursorTrail.module.css";
 
 const MAX_POINTS = 60; // how many recent mouse positions make up the trail
 const LIFETIME = 600; // ms until a position has faded away completely
-const MAX_PIXEL_RATIO = 2; // a sharper canvas than this costs speed, not looks
 
 /**
  * Draws the line through the mouse positions. The newest part is bright and
@@ -57,14 +56,12 @@ export default function CursorTrail() {
     let frameId = null;
     let color = "";
 
+    // One canvas pixel per CSS pixel, even on sharp screens (which have 2 to 3
+    // device pixels per CSS pixel). That is 4 to 9 times fewer pixels to clear
+    // and draw each frame, and a soft glowing line doesn't need the sharpness.
     function resize() {
-      const ratio = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
-      // The canvas has more pixels than CSS pixels on sharp screens. The
-      // transform lets us keep drawing in CSS pixels. (Setting the size
-      // also resets the context, so the transform is set again here.)
-      canvas.width = window.innerWidth * ratio;
-      canvas.height = window.innerHeight * ratio;
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
 
     function clear() {

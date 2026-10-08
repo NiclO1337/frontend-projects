@@ -2,10 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { EffectsProvider } from "../../context/EffectsProvider.jsx";
-import { mockMatchMedia } from "../../test/mockMatchMedia.js";
 import ProjectCard from "./ProjectCard.jsx";
-
-const MOUSE = "(hover: hover) and (pointer: fine)";
 
 // A made-up project, so the test doesn't break when the real data changes.
 const project = {
@@ -37,10 +34,6 @@ function renderCard(overrides = {}) {
     </EffectsProvider>,
   );
 }
-
-afterEach(() => {
-  vi.unstubAllGlobals();
-});
 
 describe("ProjectCard", () => {
   it("shows the title, year, type and summary", () => {
@@ -97,21 +90,6 @@ describe("ProjectCard", () => {
     expect(
       screen.getByRole("link", { name: /details of demo app/i }),
     ).toBeVisible();
-  });
-
-  it("gets a spotlight when the effects are on", () => {
-    mockMatchMedia({ [MOUSE]: true });
-    renderCard();
-
-    expect(screen.getByRole("article")).toHaveAttribute("data-spotlight");
-  });
-
-  it("gets no spotlight when the effects are off", () => {
-    mockMatchMedia({ [MOUSE]: true });
-    localStorage.setItem("effects", "false");
-    renderCard();
-
-    expect(screen.getByRole("article")).not.toHaveAttribute("data-spotlight");
   });
 
   it("leaves out the GitHub button when the repository is private", () => {

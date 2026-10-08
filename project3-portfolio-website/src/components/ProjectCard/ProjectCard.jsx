@@ -1,5 +1,5 @@
 import { useLocation } from "react-router";
-import useSpotlight from "../../hooks/useSpotlight.js";
+import Spotlight from "../../effects/Spotlight/Spotlight.jsx";
 import Button from "../Button/Button.jsx";
 import TechTag from "../TechTag/TechTag.jsx";
 import styles from "./ProjectCard.module.css";
@@ -30,10 +30,10 @@ export default function ProjectCard({ project }) {
   // the detail page as location state, so its "All projects" link can return
   // to the same filter.
   const { search } = useLocation();
-  const spotlight = useSpotlight();
 
   return (
-    <article className={styles.card} {...spotlight}>
+    <article className={styles.card}>
+      <Spotlight />
       <div className={styles.media}>
         {/* width and height let the browser reserve the space before the image
             loads. loading="lazy" delays images that are far down the page. */}

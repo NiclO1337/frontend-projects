@@ -1,5 +1,5 @@
 .card {
-  position: relative; /* the spotlight below is positioned inside the card */
+  position: relative; /* the <Spotlight /> light is positioned inside the card */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -21,30 +21,8 @@
   box-shadow: var(--glow-lg);
 }
 
-/* A soft light under the mouse. useSpotlight sets --x and --y and adds the
-   data-spotlight attribute (only when the effects are on). pointer-events: none
-   lets clicks pass through to the card's links. */
-.card[data-spotlight]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle 10rem at var(--x, 50%) var(--y, 50%),
-    var(--spotlight),
-    transparent
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition);
-}
-
-.card[data-spotlight]:hover::before {
-  opacity: 1;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .card,
-  .card[data-spotlight]::before {
+  .card {
     transition: none;
   }
 }

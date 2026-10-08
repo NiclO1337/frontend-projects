@@ -8,7 +8,6 @@ let ctx;
 beforeEach(() => {
   vi.useFakeTimers(); // also fakes requestAnimationFrame and performance.now
   ctx = {
-    setTransform: vi.fn(),
     clearRect: vi.fn(),
     beginPath: vi.fn(),
     moveTo: vi.fn(),
@@ -82,14 +81,14 @@ describe("CursorTrail", () => {
     expect(vi.getTimerCount()).toBe(0);
   });
 
-  it("keeps its resolution at a pixel ratio of 2 at most", () => {
+  it("uses one canvas pixel per CSS pixel, even on a sharp screen", () => {
     vi.stubGlobal("devicePixelRatio", 3);
 
     const { container } = render(<CursorTrail />);
 
     const canvas = container.querySelector("canvas");
-    expect(canvas.width).toBe(window.innerWidth * 2);
-    expect(canvas.height).toBe(window.innerHeight * 2);
+    expect(canvas.width).toBe(window.innerWidth);
+    expect(canvas.height).toBe(window.innerHeight);
   });
 
   it("resizes the canvas with the window", () => {

@@ -6,9 +6,7 @@ const MOUSE = "(hover: hover) and (pointer: fine)";
 
 beforeEach(() => {
   // jsdom cannot create a canvas context. An empty one is enough for these tests.
-  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
-    setTransform: () => {},
-  });
+  vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({});
 });
 
 afterEach(() => {

@@ -1,0 +1,23 @@
+/*
+  A 20rem square with a round gradient that fades out at its edges. Its centre
+  is moved to the mouse with a transform (set in Spotlight.jsx), so the offset
+  of half its size puts the gradient's centre right under the pointer.
+  pointer-events: none lets clicks pass through to the card's links.
+  will-change: transform gives it its own layer, so moving it is cheap.
+*/
+.light {
+  position: absolute;
+  top: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: radial-gradient(
+    circle closest-side,
+    var(--spotlight),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: opacity var(--transition);
+}

@@ -338,7 +338,7 @@ src/
 │   ├── ProjectCard/  ProjectFilter/  TechTag/
 │   ├── ContactForm/
 │   └── Reveal/            scroll-reveal wrapper (Motion whileInView)
-├── effects/ CursorTrail/  CustomCursor/
+├── effects/ CursorTrail/  CustomCursor/  Spotlight/
 ├── data/    profile.js · skills.js · experience.js · education.js · projects.js
 ├── utils/   projects.js · toSlug.js
 ├── assets/  images/ · projects/
@@ -416,10 +416,10 @@ when effects are not available, since it would change nothing.
 
 | Effect | How | Off when effects off? |
 |--------|-----|-----------------------|
-| **Cursor trail** | `CursorTrail`: fixed full-screen `<canvas>` (`pointer-events: none`). Keep the last ~24 pointer positions with timestamps. Each frame, draw a fading line: one wide low-alpha stroke + one thin bright stroke (no `shadowBlur`). Stop the rAF loop when there are no points left. Cap the canvas resolution at `devicePixelRatio` 2. Resize on window resize | Yes (unmounted) |
+| **Cursor trail** | `CursorTrail`: fixed full-screen `<canvas>` (`pointer-events: none`). Keep the last ~24 pointer positions with timestamps. Each frame, draw a fading line: one wide low-alpha stroke + one thin bright stroke (no `shadowBlur`). Stop the rAF loop when there are no points left. Canvas resolution is 1 pixel per CSS pixel (4× fewer pixels than a sharp screen, and a soft glow doesn't need more; measured lag with 4× throttling). Resize on window resize | Yes (unmounted) |
 | **Custom cursor** | `CustomCursor`: small neon dot exactly at the pointer + a ring that follows with a Motion spring. The ring grows over `a, button, [role=button], label` (event delegation with `closest()`). The native cursor is hidden with a body class, **except** in text inputs, which keep the normal I-beam | Yes (unmounted, native cursor back) |
 | **Neon hovers** | CSS only: `box-shadow: var(--glow-sm)`, border colour → accent, text-shadow on nav links. Same styles on `:focus-visible` | No (static, cheap) |
-| **Card spotlight** | Radial gradient at `--x/--y` inside the card, updated in `onPointerMove` | Spotlight off |
+| **Card spotlight** | `Spotlight`: a small element with a fixed radial gradient inside the card, moved to the pointer with `transform: translate()` (compositor only). A CSS variable + gradient at `--x/--y` was tried first: each mouse move restyled and repainted the card, which lagged with 4× throttling | Not rendered |
 | **Page enter** | `motion.div` keyed by `location.pathname`: fade + 12px slide up, 250ms. **Enter only, no exit animation** (exit + Outlet adds complexity we don't need) | Yes |
 | **Scroll reveal** | `<Reveal>` wrapper: `whileInView`, `viewport={{ once: true, amount: 0.2 }}` | Yes |
 | **Tech marquee** | CSS keyframes on the Home tile, paused on hover | Paused |
