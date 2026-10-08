@@ -1,5 +1,4 @@
 import ContactForm from "../../components/ContactForm/ContactForm.jsx";
-import SocialLinks from "../../components/SocialLinks/SocialLinks.jsx";
 import styles from "./ContactPage.module.css";
 
 export default function ContactPage() {
@@ -18,11 +17,6 @@ export default function ContactPage() {
       </p>
 
       <ContactForm />
-
-      <section className={styles.social}>
-        <h2 className={styles.socialHeading}>Or find me on</h2>
-        <SocialLinks />
-      </section>
     </>
   );
 }

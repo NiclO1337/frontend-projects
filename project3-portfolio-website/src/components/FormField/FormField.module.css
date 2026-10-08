@@ -4,14 +4,18 @@
   gap: var(--space-2);
 }
 
-.label {
-  font-weight: 600;
+.wrap {
+  position: relative;
 }
 
-/* The border meets 3:1 contrast against the page, as required for form controls. */
+/*
+  The top padding is large to leave room for the floating label above the
+  text. The border meets 3:1 contrast against the page, as required for form
+  controls.
+*/
 .control {
   width: 100%;
-  padding: var(--space-2) var(--space-3);
+  padding: calc(var(--space-4) + var(--space-1)) var(--space-3) var(--space-2);
   color: var(--color-text);
   background: var(--color-surface-2);
   border: 1px solid var(--color-input-border);
@@ -37,7 +41,70 @@ textarea.control {
   resize: vertical;
 }
 
+/*
+  The floating label. It is placed over the field, in the vertical middle,
+  and looks like a placeholder. `pointer-events: none` lets clicks go through
+  it to the field. Only `transform` and `color` change, so it animates
+  cheaply. It grows from its top-left corner, so the left edge stays put.
+*/
+.label {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--space-3) + 1px);
+  max-width: calc(100% - var(--space-3) * 2);
+  overflow: hidden;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transform-origin: left top;
+  transition:
+    transform var(--transition),
+    color var(--transition);
+}
+
+/* A message box is tall, so its label starts at the top instead of the middle. */
+.multiline .label {
+  top: 0;
+  transform: translateY(var(--space-3));
+}
+
+/*
+  Floated: the label shrinks and moves to the top edge. It floats when the
+  field has focus or contains text (:not(:placeholder-shown) is "not empty").
+*/
+.control:focus ~ .label,
+.control:not(:placeholder-shown) ~ .label {
+  color: var(--color-accent);
+  transform: translateY(calc(-50% - var(--space-2-5))) scale(0.75);
+}
+
+.multiline .control:focus ~ .label,
+.multiline .control:not(:placeholder-shown) ~ .label {
+  transform: translateY(var(--space-2)) scale(0.75);
+}
+
+/* A field the browser has filled in (autofill) counts as having text. It is
+   its own rule, so a browser that doesn't know this selector can't drop the
+   rule above. */
+.control:-webkit-autofill ~ .label {
+  color: var(--color-accent);
+  transform: translateY(calc(-50% - var(--space-2-5))) scale(0.75);
+}
+
+/* A field with an error keeps the label readable, in the error colour. */
+.control[aria-invalid="true"] ~ .label {
+  color: var(--color-error);
+}
+
 .error {
   color: var(--color-error);
   font-size: var(--text-label);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label {
+    transition: none;
+  }
 }
