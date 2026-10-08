@@ -24,6 +24,9 @@
   --glow-sm: 0 0 8px rgb(92 225 255 / 0.45);
   --glow-lg: 0 0 24px rgb(92 225 255 / 0.35), 0 0 2px #5ce1ff;
 
+  /* Light that follows the mouse on cards */
+  --spotlight: rgb(92 225 255 / 0.25);
+
   /* Fonts (Fontsource variable fonts, imported in global.css) */
   --font-heading: "Space Grotesk Variable", system-ui, sans-serif;
   --font-body: "Inter Variable", system-ui, sans-serif;
@@ -77,4 +80,5 @@
   /* In light mode the neon is toned down to soft blue shadows. */
   --glow-sm: 0 0 6px rgb(3 105 161 / 0.25);
   --glow-lg: 0 4px 18px rgb(3 105 161 / 0.18);
+  --spotlight: rgb(3 105 161 / 0.15);
 }

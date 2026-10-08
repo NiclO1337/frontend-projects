@@ -1,7 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { EffectsProvider } from "../../context/EffectsProvider.jsx";
+import { mockMatchMedia } from "../../test/mockMatchMedia.js";
 import ProjectCard from "./ProjectCard.jsx";
+
+const MOUSE = "(hover: hover) and (pointer: fine)";
 
 // A made-up project, so the test doesn't break when the real data changes.
 const project = {
@@ -17,7 +21,8 @@ const project = {
   repoUrl: "https://github.com/someone/demo-app",
 };
 
-// The card has a router <Link> in it, so it needs a router around it.
+// The card has a router <Link> in it, so it needs a router around it, and it
+// reads the effects setting, so it needs the provider too.
 // `overrides` changes fields of the project above for a single test.
 function renderCard(overrides = {}) {
   const router = createMemoryRouter([
@@ -26,8 +31,16 @@ function renderCard(overrides = {}) {
       element: <ProjectCard project={{ ...project, ...overrides }} />,
     },
   ]);
-  render(<RouterProvider router={router} />);
+  render(
+    <EffectsProvider>
+      <RouterProvider router={router} />
+    </EffectsProvider>,
+  );
 }
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
 
 describe("ProjectCard", () => {
   it("shows the title, year, type and summary", () => {
@@ -84,6 +97,21 @@ describe("ProjectCard", () => {
     expect(
       screen.getByRole("link", { name: /details of demo app/i }),
     ).toBeVisible();
+  });
+
+  it("gets a spotlight when the effects are on", () => {
+    mockMatchMedia({ [MOUSE]: true });
+    renderCard();
+
+    expect(screen.getByRole("article")).toHaveAttribute("data-spotlight");
+  });
+
+  it("gets no spotlight when the effects are off", () => {
+    mockMatchMedia({ [MOUSE]: true });
+    localStorage.setItem("effects", "false");
+    renderCard();
+
+    expect(screen.getByRole("article")).not.toHaveAttribute("data-spotlight");
   });
 
   it("leaves out the GitHub button when the repository is private", () => {

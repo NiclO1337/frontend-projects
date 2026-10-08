@@ -1,4 +1,5 @@
 .card {
+  position: relative; /* the spotlight below is positioned inside the card */
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -6,6 +7,46 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+/* Neon glow on hover, and when a link or button inside gets keyboard focus.
+   :has() lets the card react to what is inside it, and :focus-visible keeps
+   it from glowing after a mouse click. */
+.card:hover,
+.card:has(:focus-visible) {
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-lg);
+}
+
+/* A soft light under the mouse. useSpotlight sets --x and --y and adds the
+   data-spotlight attribute (only when the effects are on). pointer-events: none
+   lets clicks pass through to the card's links. */
+.card[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 10rem at var(--x, 50%) var(--y, 50%),
+    var(--spotlight),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.card[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card[data-spotlight]::before {
+    transition: none;
+  }
 }
 
 /* A darker backdrop with some room around the device mockup. */
