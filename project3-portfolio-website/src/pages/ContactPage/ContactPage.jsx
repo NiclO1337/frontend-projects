@@ -1,3 +1,7 @@
+import ContactForm from "../../components/ContactForm/ContactForm.jsx";
+import SocialLinks from "../../components/SocialLinks/SocialLinks.jsx";
+import styles from "./ContactPage.module.css";
+
 export default function ContactPage() {
   return (
     <>
@@ -6,7 +10,19 @@ export default function ContactPage() {
         name="description"
         content="Get in touch with Niclas Hugdahl about work, projects or collaboration."
       />
+
       <h1>Let&apos;s talk</h1>
+      <p className={styles.intro}>
+        Have a job, a project or just a question? Send me a message and I will
+        get back to you.
+      </p>
+
+      <ContactForm />
+
+      <section className={styles.social}>
+        <h2 className={styles.socialHeading}>Or find me on</h2>
+        <SocialLinks />
+      </section>
     </>
   );
 }

@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 36rem;
+}
+
+/*
+  Two columns when each can be at least 14rem wide, otherwise one. The browser
+  decides from the space available, so there is no breakpoint. `align-items:
+  start` keeps the inputs aligned at the top when one field shows a longer
+  error message than the other.
+*/
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.honeypot {
+  display: none;
+}
