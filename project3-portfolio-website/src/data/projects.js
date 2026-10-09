@@ -11,6 +11,9 @@ import weightliftingCalculatorImg from "../assets/projects/weightlifting-calcula
 // (only one project should have it). The screenshots are 900x533 WebP images
 // of the site on several devices. `liveUrl` and `repoUrl` are optional: leave
 // one out for a project that is not deployed or has a private repository.
+// `tech` is everything shown on the card and the detail page. `filters` is the
+// part of it that becomes a chip in "Filter by technology", so every name in
+// `filters` must also be in `tech` (a test checks this).
 export const projects = [
   {
     slug: "bun-intended",
@@ -32,6 +35,7 @@ export const projects = [
       "Allergens page, so every guest knows what is in the food",
     ],
     tech: ["HTML", "CSS", "Bootstrap", "JavaScript"],
+    filters: ["HTML", "CSS", "JavaScript"],
     image: bunIntendedImg,
     imageAlt:
       "Bun Intended website on a monitor, laptop, tablet and phone, showing the Our Story and Hours & Location pages",
@@ -58,6 +62,7 @@ export const projects = [
       "CV available as a PDF download",
     ],
     tech: ["HTML", "CSS", "JavaScript"],
+    filters: ["HTML", "CSS", "JavaScript"],
     image: modernCvImg,
     imageAlt:
       "Modern CV website in light and dark mode on a monitor, laptop, tablet and phone",
@@ -86,6 +91,7 @@ export const projects = [
       "Tests written with Vitest",
     ],
     tech: ["React", "JavaScript", "Vite", "Vitest", "PWA"],
+    filters: ["React", "JavaScript"],
     image: weightliftingCalculatorImg,
     imageAlt:
       "Weightlifting Calculator app on a monitor, laptop, tablet and phone, showing the 1RM table and a loaded bar",
@@ -111,6 +117,7 @@ export const projects = [
       "Open about its limits: the deployed model struggles with live images",
     ],
     tech: ["Python", "TensorFlow", "Streamlit", "Pandas", "Jupyter"],
+    filters: ["Python"],
     image: purrfectPawsImg,
     imageAlt:
       "Purrfect Paws Predictor dashboard on a monitor, laptop, tablet and phone, showing the image study and performance metrics",
@@ -137,6 +144,7 @@ export const projects = [
       "Planned with agile user stories on GitHub Projects",
     ],
     tech: ["Python", "Django", "JavaScript", "Bootstrap", "PostgreSQL"],
+    filters: ["Python", "Django", "JavaScript"],
     image: bananaPalaceImg,
     imageAlt:
       "Banana Palace website on a monitor, laptop, tablet and phone, showing the reservation floor plan and the Hours & Location page",
@@ -161,6 +169,7 @@ export const projects = [
       "Runs in a terminal in the browser",
     ],
     tech: ["Python"],
+    filters: ["Python"],
     image: dreamAchieverImg,
     imageAlt:
       "Dream Achiever program in a terminal on a monitor, laptop, tablet and phone, over a sky background",
@@ -186,6 +195,7 @@ export const projects = [
       "Choose a colour theme",
     ],
     tech: ["HTML", "CSS", "JavaScript"],
+    filters: ["HTML", "CSS", "JavaScript"],
     image: rpsBattleArenaImg,
     imageAlt:
       "RPS Battle Arena game on a monitor, laptop, tablet and phone, shown in different colour themes",
@@ -211,6 +221,7 @@ export const projects = [
       "Sign-up form",
     ],
     tech: ["HTML", "CSS"],
+    filters: ["HTML", "CSS"],
     image: strawberryLoversImg,
     imageAlt:
       "Strawberry Lovers website on a monitor, laptop, tablet and phone, showing the home page and the sign-up form",

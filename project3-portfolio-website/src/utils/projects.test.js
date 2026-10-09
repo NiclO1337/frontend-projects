@@ -6,10 +6,23 @@ import {
 } from "./projects.js";
 
 // A small made-up list, so the tests don't depend on the real projects.
+// "Vite" and "Jupyter" are in `tech` only: shown on a card, but not a filter.
 const list = [
-  { slug: "newest", tech: ["React", "Next.js"] },
-  { slug: "middle", tech: ["Python", "React", "CSS"] },
-  { slug: "oldest", tech: ["Python", "HTML"] },
+  {
+    slug: "newest",
+    tech: ["React", "Next.js", "Vite"],
+    filters: ["React", "Next.js"],
+  },
+  {
+    slug: "middle",
+    tech: ["Python", "React", "CSS"],
+    filters: ["Python", "React", "CSS"],
+  },
+  {
+    slug: "oldest",
+    tech: ["Python", "HTML", "Jupyter"],
+    filters: ["Python", "HTML"],
+  },
 ];
 
 describe("getProjectBySlug", () => {
@@ -23,7 +36,7 @@ describe("getProjectBySlug", () => {
 });
 
 describe("getTechList", () => {
-  it("lists every technology once, most used first, then alphabetically", () => {
+  it("lists every filter technology once, most used first, then alphabetically", () => {
     // React and Python are used twice. The rest are used once.
     expect(getTechList(list)).toEqual([
       "Python",
@@ -32,6 +45,11 @@ describe("getTechList", () => {
       "HTML",
       "Next.js",
     ]);
+  });
+
+  it("leaves out technologies that are not in any project's filters", () => {
+    expect(getTechList(list)).not.toContain("Vite");
+    expect(getTechList(list)).not.toContain("Jupyter");
   });
 
   it("returns an empty list when there are no projects", () => {
@@ -60,6 +78,11 @@ describe("filterProjectsByTech", () => {
 
   it("returns an empty list for a technology nobody uses", () => {
     expect(filterProjectsByTech(list, "cobol")).toEqual([]);
+  });
+
+  it("only matches the filters, not the rest of a project's tech", () => {
+    // "newest" lists Vite in `tech`, but Vite is not one of its filters.
+    expect(filterProjectsByTech(list, "vite")).toEqual([]);
   });
 });
 

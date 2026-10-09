@@ -80,6 +80,15 @@ describe("data files", () => {
       }
     });
 
+    it("only offers filters for technologies the project shows in `tech`", () => {
+      for (const project of projects) {
+        expect(project.filters.length, project.slug).toBeGreaterThan(0);
+        for (const name of project.filters) {
+          expect(project.tech, project.slug).toContain(name);
+        }
+      }
+    });
+
     it("only uses https links, and github.com for the repository", () => {
       for (const project of projects) {
         // Both links are optional (not deployed, or a private repository).

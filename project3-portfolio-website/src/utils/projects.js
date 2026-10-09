@@ -15,15 +15,16 @@ export function getProjectBySlug(slug, list = projects) {
 }
 
 /**
- * Every technology used by the projects, once each, most used first. Ties are
- * sorted alphabetically, so the order never changes between renders.
+ * Every technology that can be filtered on (the `filters` of the projects),
+ * once each, most used first. Ties are sorted alphabetically, so the order
+ * never changes between renders.
  * @param {object[]} list
  * @returns {string[]}
  */
 export function getTechList(list) {
   const counts = new Map();
   for (const project of list) {
-    for (const name of project.tech) {
+    for (const name of project.filters) {
       counts.set(name, (counts.get(name) ?? 0) + 1);
     }
   }
@@ -34,8 +35,9 @@ export function getTechList(list) {
 }
 
 /**
- * The projects that use a technology. Without a technology (the "All" chip)
- * every project is returned. A slug nobody uses gives an empty list.
+ * The projects that have a technology among their `filters`. Without a
+ * technology (the "All" chip) every project is returned. A slug nobody uses
+ * gives an empty list.
  * @param {object[]} list
  * @param {string | null} [techSlug] a slug like "next-js", as used in the URL
  * @returns {object[]}
@@ -43,7 +45,7 @@ export function getTechList(list) {
 export function filterProjectsByTech(list, techSlug) {
   if (!techSlug) return list;
   return list.filter((project) =>
-    project.tech.some((name) => toSlug(name) === techSlug),
+    project.filters.some((name) => toSlug(name) === techSlug),
   );
 }
 

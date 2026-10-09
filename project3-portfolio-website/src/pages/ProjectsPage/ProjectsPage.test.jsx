@@ -9,7 +9,7 @@ const getCardTitles = () =>
     .map((heading) => heading.textContent);
 
 const pythonProjects = projects.filter((project) =>
-  project.tech.includes("Python"),
+  project.filters.includes("Python"),
 );
 
 describe("ProjectsPage", () => {
