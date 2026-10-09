@@ -34,6 +34,28 @@ export function getTechList(list) {
   );
 }
 
+// Where the live demos are hosted, recognised by the end of the hostname.
+const HOSTS = [
+  { domain: "vercel.app", name: "Vercel" },
+  { domain: "github.io", name: "GitHub Pages" },
+  { domain: "herokuapp.com", name: "Heroku" },
+];
+
+/**
+ * The hosting service of a live demo, worked out from its URL, so the data
+ * doesn't need a second field that could disagree with `liveUrl`.
+ * @param {string} [liveUrl]
+ * @returns {string | undefined} e.g. "Vercel", or undefined when there is no
+ *   URL or the host isn't one of the known services
+ */
+export function getHostName(liveUrl) {
+  if (!liveUrl) return undefined;
+  const { hostname } = new URL(liveUrl);
+  return HOSTS.find(
+    ({ domain }) => hostname === domain || hostname.endsWith(`.${domain}`),
+  )?.name;
+}
+
 /**
  * The projects that have a technology among their `filters`. Without a
  * technology (the "All" chip) every project is returned. A slug nobody uses

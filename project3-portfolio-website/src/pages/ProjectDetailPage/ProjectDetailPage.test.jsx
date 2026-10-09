@@ -25,8 +25,9 @@ describe("ProjectDetailPage", () => {
     expect(
       main.getByRole("heading", { level: 1, name: project.title }),
     ).toBeInTheDocument();
+    // banana-palace is deployed on Heroku.
     expect(
-      main.getByText(`${project.year} · ${project.type}`),
+      main.getByText(`${project.year} · ${project.type} · Hosted on Heroku`),
     ).toBeInTheDocument();
     expect(
       main.getByRole("img", { name: project.imageAlt }),
@@ -80,6 +81,8 @@ describe("ProjectDetailPage", () => {
     expect(
       screen.queryByRole("link", { name: /source code/i }),
     ).not.toBeInTheDocument();
+    // No live demo, so there is no host to mention either.
+    expect(screen.queryByText(/hosted on/i)).not.toBeInTheDocument();
   });
 
   it("has a back link to the projects list", async () => {

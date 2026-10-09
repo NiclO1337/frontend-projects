@@ -1,6 +1,7 @@
 import {
   filterProjectsByTech,
   getAdjacentProjects,
+  getHostName,
   getProjectBySlug,
   getTechList,
 } from "./projects.js";
@@ -83,6 +84,23 @@ describe("filterProjectsByTech", () => {
   it("only matches the filters, not the rest of a project's tech", () => {
     // "newest" lists Vite in `tech`, but Vite is not one of its filters.
     expect(filterProjectsByTech(list, "vite")).toEqual([]);
+  });
+});
+
+describe("getHostName", () => {
+  it.each([
+    ["https://frontend-projects-project1-modern-c.vercel.app/", "Vercel"],
+    ["https://niclo1337.github.io/pp2-playtime/", "GitHub Pages"],
+    ["https://banana-palace-9ad263ab8cf3.herokuapp.com/", "Heroku"],
+  ])("recognises %s as %s", (url, name) => {
+    expect(getHostName(url)).toBe(name);
+  });
+
+  it("returns undefined for an unknown host or a missing URL", () => {
+    expect(getHostName("https://example.com/")).toBeUndefined();
+    // Only a real subdomain counts, not a lookalike ending in the same text.
+    expect(getHostName("https://notvercel.app/")).toBeUndefined();
+    expect(getHostName(undefined)).toBeUndefined();
   });
 });
 

@@ -1,7 +1,7 @@
 import { Link, useLoaderData, useLocation } from "react-router";
 import Button from "../../components/Button/Button.jsx";
 import TechTag from "../../components/TechTag/TechTag.jsx";
-import { getAdjacentProjects } from "../../utils/projects.js";
+import { getAdjacentProjects, getHostName } from "../../utils/projects.js";
 import styles from "./ProjectDetailPage.module.css";
 
 export default function ProjectDetailPage() {
@@ -9,6 +9,8 @@ export default function ProjectDetailPage() {
   // an unknown slug, so there is always a project here.
   const project = useLoaderData();
   const { previous, next } = getAdjacentProjects(project.slug);
+  // Undefined when there is no live demo or the host isn't a known service.
+  const host = getHostName(project.liveUrl);
 
   // Location state is data attached to a navigation, not shown in the URL.
   // The project cards put the list's "?tech=..." in it, so the back link
@@ -32,6 +34,7 @@ export default function ProjectDetailPage() {
       <h1>{project.title}</h1>
       <p className={styles.meta}>
         {project.year} · {project.type}
+        {host && ` · Hosted on ${host}`}
       </p>
 
       <div className={styles.media}>

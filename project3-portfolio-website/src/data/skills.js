@@ -4,6 +4,7 @@ import {
   FaPenRuler,
   FaTableColumns,
 } from "react-icons/fa6";
+import { BiLogoHeroku } from "react-icons/bi";
 import { DiMsqlServer, DiVisualstudio } from "react-icons/di";
 import { RiOpenaiFill } from "react-icons/ri";
 import {
@@ -16,6 +17,7 @@ import {
   SiGit,
   SiGithub,
   SiGithubcopilot,
+  SiGithubpages,
   SiGitpod,
   SiHtml5,
   SiJavascript,
@@ -28,6 +30,7 @@ import {
   SiSharp,
   SiTailwindcss,
   SiTypescript,
+  SiVercel,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
@@ -61,11 +64,11 @@ export const skillGroups = [
     ],
   },
   {
-    id: "version-control",
-    name: "Version control",
+    id: "databases",
+    name: "Databases",
     items: [
-      { name: "Git", icon: SiGit },
-      { name: "GitHub", icon: SiGithub },
+      { name: "PostgreSQL", icon: SiPostgresql },
+      { name: "SQL Server", icon: DiMsqlServer },
     ],
   },
   {
@@ -89,22 +92,25 @@ export const skillGroups = [
     id: "tools",
     name: "Tools",
     items: [
-      { name: "VS Code", icon: VscVscode },
       { name: "Visual Studio", icon: DiVisualstudio },
+      { name: "VS Code", icon: VscVscode },
       { name: "Gitpod", icon: SiGitpod },
       { name: "PyCharm", icon: SiPycharm },
       { name: "Balsamiq", icon: FaPenRuler },
+      { name: "Figma", icon: SiFigma },
       { name: "Lucidchart", icon: FaDiagramProject },
       { name: "Miro", icon: SiMiro },
-      { name: "Figma", icon: SiFigma },
+      { name: "GitHub Pages", icon: SiGithubpages },
+      { name: "Heroku", icon: BiLogoHeroku },
+      { name: "Vercel", icon: SiVercel },
     ],
   },
   {
-    id: "databases",
-    name: "Databases",
+    id: "version-control",
+    name: "Version control",
     items: [
-      { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "SQL Server", icon: DiMsqlServer },
+      { name: "Git", icon: SiGit },
+      { name: "GitHub", icon: SiGithub },
     ],
   },
 ];
