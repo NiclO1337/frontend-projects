@@ -1,3 +1,4 @@
+import Spotlight from "../../effects/Spotlight/Spotlight.jsx";
 import styles from "./BentoTile.module.css";
 
 /**
@@ -19,6 +20,7 @@ export default function BentoTile({ title, headingLevel = 2, size, children }) {
 
   return (
     <div className={className}>
+      <Spotlight />
       {title && <Heading className={styles.title}>{title}</Heading>}
       {children}
     </div>
