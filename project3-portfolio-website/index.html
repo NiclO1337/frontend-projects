@@ -22,6 +22,27 @@
     </script>
   </head>
   <body>
+    <!--
+      Only shown when JavaScript is off. React builds the whole page in the
+      browser, so without JS #root stays empty. The built CSS is a normal
+      <link> in the head, so the global styles (colours, fonts) still apply.
+    -->
+    <noscript>
+      <main
+        style="
+          max-width: var(--content-max);
+          margin: var(--space-6) auto;
+          padding: 0 var(--space-4);
+        "
+      >
+        <h1>JavaScript is required</h1>
+        <p>
+          This portfolio is built with React and needs JavaScript to show its
+          content. Please turn JavaScript on in your browser and reload the
+          page.
+        </p>
+      </main>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

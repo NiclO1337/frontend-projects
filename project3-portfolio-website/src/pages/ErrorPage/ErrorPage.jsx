@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Button from "../../components/Button/Button.jsx";
 
 /** Standalone page for unexpected crashes. It doesn't rely on RootLayout. */
 export default function ErrorPage() {
@@ -7,7 +7,7 @@ export default function ErrorPage() {
       <title>Something went wrong – Niclas Hugdahl</title>
       <h1>Something went wrong</h1>
       <p>An unexpected error occurred.</p>
-      <Link to="/">Back to home</Link>
+      <Button to="/">Back to home</Button>
     </main>
   );
 }
