@@ -1,11 +1,15 @@
 /* Covers the whole screen but never catches a click, so the page below stays
    usable. The canvas has to be sized with CSS too: its width and height
-   attributes (set in the code) only say how many pixels it has. */
+   attributes (set in the code) only say how many pixels it has.
+   100vw and 100vh match window.innerWidth and innerHeight, which the code uses
+   for the pixel size. A percentage would leave out the scrollbar, squash the
+   canvas and draw the trail left of the pointer on pages that scroll. */
 .canvas {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 4; /* above the skip link (3), so the trail is never hidden */
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
 }
