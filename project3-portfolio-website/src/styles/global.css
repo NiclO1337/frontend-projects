@@ -10,6 +10,16 @@
   box-sizing: border-box;
 }
 
+/*
+  Touch browsers flash a sharp-cornered rectangle on whatever you tap. It
+  ignores border-radius and clashes with the neon look, so it is turned off.
+  The tapped element still gets its :hover style as feedback. The property is
+  inherited, so setting it here covers every element.
+*/
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
