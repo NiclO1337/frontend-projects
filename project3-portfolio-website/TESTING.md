@@ -140,9 +140,23 @@ TODO: screenshot of `npm run test:run` output
 
 ## Performance
 
-Effects were checked in Chrome DevTools → Performance with 4× CPU throttling.
+Effects were checked in Chrome DevTools → Performance with 4× CPU throttling,
+on the production build (`npm run build` and `npm run preview`) in an
+Incognito window.
 
-TODO: frame rate notes and screenshot
+| Check | Result |
+|-------|--------|
+| Cursor trail and custom cursor, normal and fast mouse movement | Smooth |
+| Spotlight on the bento tiles, normal movement | Smooth |
+| Spotlight on the project cards | Still laggy when moving fast across several cards at 4×, so it was removed from the cards |
+
+What changed because of the testing:
+- The canvas has one pixel per CSS pixel, so it has 4 to 9 times fewer pixels to draw on sharp screens.
+- The spotlight has no `will-change` and no fade, because its own layer inside a rounded `overflow: hidden` tile lagged.
+- The spotlight was removed from the project cards. Removing their glow transition instead changed little, so the glow stayed.
+- Drawing the trail in batched fade levels was tried and reverted: it was not smoother and looked jagged.
+
+TODO: screenshot of a Performance recording
 
 
 ## Validator testing
@@ -167,7 +181,12 @@ TODO: mobile and desktop scores + screenshots
 ## Bugs
 
 ### Fixed bugs
-- TODO
+- Cursor trail drawn to the left of the pointer on pages with a scrollbar: the canvas was sized with `100%`, which leaves out the scrollbar, while its pixel size used the full window width. Fixed by sizing it with `100vw` / `100vh`.
+- Cursor trail kept the old colour after the theme changed while the mouse was moving: the colour was only read when a new trail started. Now it is read every frame.
+- Cursor trail showed darker "beads" at every mouse position: round line ends overlapped and a see-through stroke painted twice looks darker. Fixed with flat glow ends and an opaque core line.
+- Cursor trail looked harsh in light mode: it now has its own lighter `--color-cursor` colour.
+- Lag when moving fast over bento tiles and project cards with 4× CPU throttling: see the Performance section.
+- TODO: add bugs found in later steps
 
 ### Unfixed bugs
 - TODO

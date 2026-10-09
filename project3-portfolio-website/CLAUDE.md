@@ -70,8 +70,14 @@ a split layout inspired by Brittany Chiang's portfolio, and bento grids.
 - No canvas `shadowBlur` (too slow). Fake glow with layered strokes or gradients.
 - Animate only `transform` and `opacity`. Never animate layout properties
   (`width`, `top`, `margin`, …).
+- Don't use `will-change` or opacity/box-shadow transitions on elements
+  inside rounded `overflow: hidden` boxes (cards, tiles). It lagged next to
+  the cursor trail. The spotlight is only on `BentoTile`, not on project cards.
+- The trail canvas is sized in CSS with `100vw` / `100vh`, the same units as
+  its pixel size. `100%` leaves out the scrollbar and shifts the trail.
 - After adding an effect, ask the user to check smoothness in DevTools →
-  Performance with 4× CPU throttling.
+  Performance with 4× CPU throttling, on `npm run build` + `npm run preview`
+  in an Incognito window (the dev server is slower).
 
 ## Testing rules
 

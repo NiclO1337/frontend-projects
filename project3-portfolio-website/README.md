@@ -137,12 +137,14 @@ All fonts are self-hosted with Fontsource, so no requests go to Google Fonts.
 - A light-blue neon **trail follows the mouse cursor**, drawn on a canvas
 - A **custom cursor** (dot + glowing ring) that grows over links and buttons
 - **Neon glow** on hover and keyboard focus
-- A **spotlight** that follows the mouse inside project cards
+- A **spotlight** that follows the mouse inside the bento tiles on the Home and About pages
 - Smooth **page transitions** and **scroll reveals** with Motion
 
 To keep the site fast and comfortable, the effects are turned off
 automatically on touch devices and for visitors who prefer reduced motion,
-and anyone can switch them off with the effects toggle.
+and anyone can switch them off with the effects toggle. They were tuned with
+Chrome's 4× CPU throttling, which is why, for example, the spotlight is only
+on the bento tiles and not on the project cards.
 
 TODO: GIF of the cursor trail and hover effects
 

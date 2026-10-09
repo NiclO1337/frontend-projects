@@ -40,7 +40,7 @@ presentation, not unnecessary complexity.
 | Design | Split layout inspired by **Brittany Chiang's** portfolio + **bento grids** (home, skills) |
 | Pages | Home, About, Resume, Projects, Project detail, Contact, 404 |
 | Theme | **Deep dark blue** by default + light theme, toggle saved in `localStorage` |
-| Effects | Light-blue neon: cursor trail (canvas), custom cursor, glow hovers, page/scroll animations (**Motion**) |
+| Effects | Light-blue neon: cursor trail (canvas), custom cursor, glow hovers, spotlight on the bento tiles, page/scroll animations (**Motion**) |
 | Effects toggle | Next to the theme toggle. Effects are also off with reduced motion and on touch devices |
 | Project filter | Single-select tech chips + "All", stored in the URL (`/projects?tech=react`) |
 | Contact | Validated form that really sends through **Web3Forms** |
@@ -171,6 +171,9 @@ different spans for the bento look:
 | Location & languages | Stockholm, Sweden · Swedish (native) · English (fluent) | 1 × 1 |
 | Download CV | Big icon button tile | 1 × 1 |
 
+Every tile has the mouse **spotlight** (see section 10). The About skill
+tiles are the same `BentoTile`, so they have it too.
+
 ### About
 - `<h1>` About me: the 3 paragraphs from Project 1 (building practical
   apps, 10 years of back-office experience, hobbies).
@@ -205,9 +208,10 @@ different spans for the bento look:
 - **Grid** of `ProjectCard`s (3 / 2 / 1 columns): screenshot, title, year
   + type label, short description, tech tags, links (Live ↗, GitHub ↗) and
   a "Details" link to `/projects/:slug`.
-- Card hover: neon border glow + a soft **spotlight** that follows the mouse
-  inside the card (CSS radial gradient positioned with CSS variables set
-  in `onPointerMove`). It's cheap and looks great.
+- Card hover: neon border + glow (CSS only, same styles on `:focus-visible`).
+  The mouse **spotlight** was tried on the cards too, but it still lagged
+  with 4× CPU throttling when moving fast across several cards, so the
+  cards don't have it. It stays on the bento tiles (section 10).
 
 ### Project detail – `/projects/:slug`
 - Back link "← All projects" (keeps the active filter if there was one).
@@ -418,14 +422,31 @@ when effects are not available, since it would change nothing.
 
 | Effect | How | Off when effects off? |
 |--------|-----|-----------------------|
-| **Cursor trail** | `CursorTrail`: fixed full-screen `<canvas>` (`pointer-events: none`). Keep the last ~24 pointer positions with timestamps. Each frame, draw a fading line: one wide low-alpha stroke + one thin bright stroke (no `shadowBlur`). Stop the rAF loop when there are no points left. Canvas resolution is 1 pixel per CSS pixel (4× fewer pixels than a sharp screen, and a soft glow doesn't need more; measured lag with 4× throttling). Resize on window resize | Yes (unmounted) |
-| **Custom cursor** | `CustomCursor`: small neon dot exactly at the pointer + a ring that follows with a Motion spring. The ring grows over `a, button, [role=button], label` (event delegation with `closest()`). The native cursor is hidden with a body class, **except** in text inputs, which keep the normal I-beam | Yes (unmounted, native cursor back) |
+| **Cursor trail** | `CursorTrail`: fixed full-screen `<canvas>` (`pointer-events: none`). Keep the last 60 pointer positions (`MAX_POINTS`) with timestamps, each living 600 ms (`LIFETIME`). Each frame, draw the line segment by segment, two strokes each (no `shadowBlur`): a wide 12 px glow with flat ends and low alpha, and a 6 px core that is fully opaque and fades by getting thinner. Round ends on a see-through stroke overlap into darker "beads" where segments meet, which is why the glow has flat ends and the core is opaque. The colour is read from `--color-cursor` on every frame, so a theme change shows at once. Stop the rAF loop when there are no points left or the tab is hidden. Canvas resolution is 1 pixel per CSS pixel (4× fewer pixels than a sharp screen, and a soft glow doesn't need more; measured lag with 4× throttling). It is sized in CSS with `100vw` / `100vh`, the same units as the pixel size (`innerWidth`), because `100%` leaves out the scrollbar and squashes the canvas, which drew the trail left of the pointer on pages that scroll. Resize on window resize | Yes (unmounted) |
+| **Custom cursor** | `CustomCursor`: small neon dot exactly at the pointer + a ring that follows with a Motion spring. Both use `--color-cursor`. The ring grows over `a, button, [role=button], label` (event delegation with `closest()`). The native cursor is hidden with a body class, **except** in text inputs, which keep the normal I-beam | Yes (unmounted, native cursor back) |
 | **Neon hovers** | CSS only: `box-shadow: var(--glow-sm)`, border colour → accent, text-shadow on nav links. Same styles on `:focus-visible` | No (static, cheap) |
-| **Card spotlight** | `Spotlight`: a small element with a fixed radial gradient inside the card, moved to the pointer with `transform: translate()` (compositor only). A CSS variable + gradient at `--x/--y` was tried first: each mouse move restyled and repainted the card, which lagged with 4× throttling | Not rendered |
+| **Tile spotlight** | `Spotlight`, inside every `BentoTile` (Home grid, About skill groups). A small element with a fixed radial gradient, moved to the pointer with `transform: translate()`. No border or glow change, just the light. Three versions were tried: (1) a CSS variable + gradient at `--x/--y` restyled and repainted the whole tile on each mouse move, which lagged with 4× throttling. (2) `will-change: transform` gave the light its own layer, but inside a rounded `overflow: hidden` tile that lagged next to the trail. (3) **Current:** no `will-change` and no opacity fade (a fade also makes a temporary layer), so the light appears and disappears at once, which looks like switching on a spotlight. Not used on `ProjectCard`: it still lagged there (taller, with a screenshot) | Not rendered |
 | **Page enter** | `motion.div` keyed by `location.pathname`: fade + 12px slide up, 250ms. **Enter only, no exit animation** (exit + Outlet adds complexity we don't need) | Yes |
 | **Scroll reveal** | `<Reveal>` wrapper: `whileInView`, `viewport={{ once: true, amount: 0.2 }}` | Yes |
 | **Tech marquee** | CSS keyframes on the Home tile, paused on hover | Paused |
 | **Nav indicator** | Line grows from 32px → 64px on active/hover (CSS transition) | No |
+
+**Performance notes (step 26).** Checked in Chrome DevTools → Performance with
+4× CPU throttling, on the production build (`npm run build` + `npm run preview`,
+in an Incognito window). The dev server is slower and not a fair test.
+- With the trail and custom cursor running, the main thread is nearly full at
+  4× even on a page without cards (about 98% busy in a 2 s recording), so
+  anything added on top shows first when the mouse moves fast over many elements.
+- In a recording over the project cards, the trail's draw loop was the biggest
+  single cost (about 29%), and the spotlight handler only about 4%.
+- Tried and **reverted:** drawing the trail in 8 batched fade levels (about 5×
+  fewer canvas calls). It was not smoother and the trail got sharp, jagged edges.
+- Not fixed on purpose: React still dispatches every pointer event through its
+  root listeners (about 20% in the recording). It can't be switched off.
+- Rules of thumb that came out of it: no `will-change` or fades on elements
+  inside rounded `overflow: hidden` boxes, and test every new effect with
+  throttling before keeping it. (The card's glow transition was suspected too,
+  but removing it changed little, so it stayed.)
 
 Wrap the app in `<MotionConfig reducedMotion={effectsOn ? "user" : "always"}>`.
 Then **one switch controls every Motion animation**.
