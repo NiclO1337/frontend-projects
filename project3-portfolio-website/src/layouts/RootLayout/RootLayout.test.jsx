@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import cursorStyles from "../../effects/CustomCursor/CustomCursor.module.css";
 import { mockMatchMedia } from "../../test/mockMatchMedia.js";
 import { renderWithRouter } from "../../test/renderWithRouter.jsx";
 
@@ -14,16 +15,19 @@ afterEach(() => {
 });
 
 describe("RootLayout", () => {
-  it("shows the cursor trail when the effects are on", async () => {
+  // The cursor trail is a canvas. The custom cursor hides the normal pointer
+  // with a class on <body>.
+  it("shows the cursor effects when the effects are on", async () => {
     mockMatchMedia({ [MOUSE]: true });
 
     const { container } = renderWithRouter(["/about"]);
     await screen.findByRole("heading", { level: 1 });
 
     expect(container.querySelector("canvas")).toBeInTheDocument();
+    expect(document.body).toHaveClass(cursorStyles.hideCursor);
   });
 
-  it("leaves out the cursor trail when the effects are off", async () => {
+  it("leaves out the cursor effects when the effects are off", async () => {
     mockMatchMedia({ [MOUSE]: true });
     localStorage.setItem("effects", "false");
 
@@ -31,14 +35,16 @@ describe("RootLayout", () => {
     await screen.findByRole("heading", { level: 1 });
 
     expect(container.querySelector("canvas")).not.toBeInTheDocument();
+    expect(document.body).not.toHaveClass(cursorStyles.hideCursor);
   });
 
-  it("leaves out the cursor trail on a touch screen", async () => {
+  it("leaves out the cursor effects on a touch screen", async () => {
     mockMatchMedia({ [MOUSE]: false });
 
     const { container } = renderWithRouter(["/about"]);
     await screen.findByRole("heading", { level: 1 });
 
     expect(container.querySelector("canvas")).not.toBeInTheDocument();
+    expect(document.body).not.toHaveClass(cursorStyles.hideCursor);
   });
 });

@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar.jsx";
 import SkipLink from "../../components/SkipLink/SkipLink.jsx";
 import { useEffects } from "../../context/EffectsContext.js";
 import CursorTrail from "../../effects/CursorTrail/CursorTrail.jsx";
+import CustomCursor from "../../effects/CustomCursor/CustomCursor.jsx";
 import useRouteFocus from "../../hooks/useRouteFocus.js";
 import styles from "./RootLayout.module.css";
 
@@ -29,7 +30,12 @@ export default function RootLayout() {
         <Footer />
       </div>
       {/* Not rendered at all when the effects are off, so nothing runs. */}
-      {effectsOn && <CursorTrail />}
+      {effectsOn && (
+        <>
+          <CursorTrail />
+          <CustomCursor />
+        </>
+      )}
     </div>
   );
 }

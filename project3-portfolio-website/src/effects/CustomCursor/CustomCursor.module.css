@@ -1,0 +1,62 @@
+/*
+  Added to <body> while the custom cursor is mounted. !important is needed
+  because buttons and links set their own `cursor: pointer`. Text fields keep
+  the normal I-beam, so people can see where they are typing. Their selector is
+  more specific, so it wins over the rule above.
+*/
+.hideCursor,
+.hideCursor * {
+  cursor: none !important;
+}
+
+.hideCursor input,
+.hideCursor textarea {
+  cursor: text !important;
+}
+
+/* Fades out when the pointer leaves the page or has not moved yet. */
+.cursor {
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.cursor[data-visible="true"] {
+  opacity: 1;
+}
+
+/*
+  Both are fixed in the top left corner and moved with a transform from the
+  code. The negative margin (half the size) puts their centre on that spot.
+  pointer-events: none keeps them from catching clicks.
+*/
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5; /* above the cursor trail (4) */
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.dot {
+  width: var(--space-2);
+  height: var(--space-2);
+  margin: calc(var(--space-2) / -2);
+  background: var(--color-accent);
+  box-shadow: var(--glow-sm);
+}
+
+.ring {
+  width: var(--space-5);
+  height: var(--space-5);
+  margin: calc(var(--space-5) / -2);
+  border: 2px solid var(--color-accent);
+  transition: background-color var(--transition);
+}
+
+/* Over a link or button, the ring grows (from the code) and gets a faint fill. */
+.ring[data-active="true"] {
+  background: var(--spotlight);
+}
