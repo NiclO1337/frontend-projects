@@ -1,5 +1,6 @@
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import { useEffects } from "../../context/EffectsContext.js";
+import styles from "./EffectsToggle.module.css";
 
 /**
  * Turns the visual effects (cursor trail, custom cursor, animations) on or
@@ -17,7 +18,7 @@ export default function EffectsToggle() {
   return (
     <button
       type="button"
-      className="round-control"
+      className={`round-control ${styles.toggle}`}
       aria-label="Effects"
       aria-pressed={effectsEnabled}
       onClick={toggleEffects}

@@ -1,0 +1,12 @@
+/*
+  When effects are on, the button stays lit: accent icon and border plus the
+  big glow. Off, it keeps the plain round-control look. Hover and focus use
+  a smaller glow, so they can still be told apart from "on".
+  The extra `button` in the selector makes it win over the hover and focus
+  rules in global.css, whatever order the stylesheets load in.
+*/
+button.toggle[aria-pressed="true"] {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-lg);
+}
