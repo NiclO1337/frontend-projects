@@ -4,8 +4,8 @@ import { renderWithRouter } from "../test/renderWithRouter.jsx";
 // The hook is used by RootLayout, so test it through the real routes.
 describe("useRouteFocus", () => {
   beforeEach(() => {
-    // jsdom doesn't implement scrolling.
-    vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    // Watch the calls. The stub from setup.js does the (empty) scrolling.
+    vi.spyOn(window, "scrollTo");
   });
 
   it("moves focus to the new page's <h1> and scrolls to the top", async () => {

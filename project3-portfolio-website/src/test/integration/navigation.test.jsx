@@ -8,11 +8,6 @@ import { renderWithRouter } from "../renderWithRouter.jsx";
 
 const mainNav = () => screen.getByRole("navigation", { name: "Main" });
 
-beforeEach(() => {
-  // jsdom doesn't implement scrolling, and every navigation scrolls to the top.
-  vi.spyOn(window, "scrollTo").mockImplementation(() => {});
-});
-
 describe("navigation", () => {
   it.each([
     ["About", /about me/i],

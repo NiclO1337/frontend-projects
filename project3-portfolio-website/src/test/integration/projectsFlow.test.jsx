@@ -32,11 +32,6 @@ const expectPythonListShown = () => {
   );
 };
 
-beforeEach(() => {
-  // jsdom doesn't implement scrolling, and every navigation scrolls to the top.
-  vi.spyOn(window, "scrollTo").mockImplementation(() => {});
-});
-
 describe("projects flow", () => {
   it("filters, opens a card, and returns to the same filter", async () => {
     const user = userEvent.setup();

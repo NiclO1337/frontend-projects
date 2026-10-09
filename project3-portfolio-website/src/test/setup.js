@@ -10,6 +10,10 @@ window.matchMedia = (query) => ({
   removeEventListener: () => {},
 });
 
+// jsdom prints "Not implemented" for scrollTo, which every page change calls
+// (see useRouteFocus). A test that checks the calls can still spy on it.
+window.scrollTo = () => {};
+
 // jsdom has no IntersectionObserver, which Motion's `whileInView` needs.
 globalThis.IntersectionObserver = class {
   observe() {}
