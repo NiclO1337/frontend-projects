@@ -9,9 +9,14 @@ const LIFETIME = 600; // ms until a position has faded away completely
  * thick, the oldest is faint and thin. Each segment gets two strokes: a wide
  * faint one that looks like a glow, and a thin bright one on top. Canvas's
  * `shadowBlur` would give a real glow, but it is far too slow to use every frame.
+ *
+ * Segments are drawn one by one, so where two meet, their ends must not paint
+ * the same spot twice. A see-through stroke painted twice looks darker there
+ * and shows up as a bead on the line. The glow therefore has flat ends, which
+ * touch but don't overlap, and the core line is fully opaque and fades by
+ * getting thinner. Painting an opaque colour twice looks the same as once.
  */
 function drawTrail(ctx, points, now, color) {
-  ctx.lineCap = "round";
   ctx.strokeStyle = color;
 
   for (let i = 1; i < points.length; i++) {
@@ -23,12 +28,14 @@ function drawTrail(ctx, points, now, color) {
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
 
+    ctx.lineCap = "butt";
     ctx.globalAlpha = life * 0.2;
     ctx.lineWidth = 12 * life;
     ctx.stroke();
 
-    ctx.globalAlpha = life * 0.9;
-    ctx.lineWidth = 2 * life;
+    ctx.lineCap = "round";
+    ctx.globalAlpha = 1;
+    ctx.lineWidth = 4 * life;
     ctx.stroke();
   }
 }
