@@ -375,6 +375,7 @@ borders meet 3:1.
 | `--color-accent` | `#5ce1ff` | `#0369a1` | **Neon light blue**. Links, active nav, focus |
 | `--color-on-accent` | `#060d1f` | `#ffffff` | Text on accent buttons (12.6 / 5.9) |
 | `--color-accent-2` | `#a99bff` | `#5b43d6` | Soft violet, gradients and secondary tags only |
+| `--color-cursor` | `#5ce1ff` | `#0284c7` | Trail and custom cursor only (3.8:1 on bg) |
 | `--color-border` | `#1d2d52` | `#d3def2` | Decorative borders |
 | `--color-input-border` | `#4f6a99` | `#7d90b3` | Form controls (≥ 3:1) |
 | `--glow-sm` | `0 0 8px rgb(92 225 255 / .45)` | `0 0 6px rgb(3 105 161 / .25)` | Hover glow |
@@ -382,7 +383,8 @@ borders meet 3:1.
 
 > The bright light-mode blue `#0077b6` was rejected: only 4.2–4.5:1. In
 > light mode the "neon" is toned down to soft blue shadows. The trail
-> and cursor use `--color-accent`.
+> and cursor use their own `--color-cursor`, a lighter blue in light mode
+> than the text-safe `--color-accent`.
 
 ### Typography (Fontsource, self-hosted, so no Google Fonts request)
 `@fontsource-variable/space-grotesk`, `@fontsource-variable/inter`,

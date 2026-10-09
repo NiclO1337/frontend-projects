@@ -35,7 +35,7 @@ function drawTrail(ctx, points, now, color) {
 
     ctx.lineCap = "round";
     ctx.globalAlpha = 1;
-    ctx.lineWidth = 4 * life;
+    ctx.lineWidth = 6 * life;
     ctx.stroke();
   }
 }
@@ -85,7 +85,7 @@ export default function CursorTrail() {
       }
       // Read every frame, so the trail changes colour the moment the theme does.
       const color = getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-accent")
+        .getPropertyValue("--color-cursor")
         .trim();
       drawTrail(ctx, points, now, color);
       frameId = requestAnimationFrame(drawFrame);

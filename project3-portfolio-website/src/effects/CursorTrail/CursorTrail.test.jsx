@@ -58,11 +58,11 @@ describe("CursorTrail", () => {
     move(10, 10);
     move(40, 30);
 
-    document.documentElement.style.setProperty("--color-accent", "red");
+    document.documentElement.style.setProperty("--color-cursor", "red");
     vi.advanceTimersByTime(16);
-    document.documentElement.style.setProperty("--color-accent", "blue");
+    document.documentElement.style.setProperty("--color-cursor", "blue");
     vi.advanceTimersByTime(16);
-    document.documentElement.style.removeProperty("--color-accent");
+    document.documentElement.style.removeProperty("--color-cursor");
 
     expect(colors).toContain("red");
     expect(colors).toContain("blue");
