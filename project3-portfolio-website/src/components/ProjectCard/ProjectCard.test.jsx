@@ -1,7 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
 import { createMemoryRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import { EffectsProvider } from "../../context/EffectsProvider.jsx";
 import ProjectCard from "./ProjectCard.jsx";
 
 // A made-up project, so the test doesn't break when the real data changes.
@@ -18,8 +17,7 @@ const project = {
   repoUrl: "https://github.com/someone/demo-app",
 };
 
-// The card has a router <Link> in it, so it needs a router around it, and it
-// reads the effects setting, so it needs the provider too.
+// The card has a router <Link> in it, so it needs a router around it.
 // `overrides` changes fields of the project above for a single test.
 function renderCard(overrides = {}) {
   const router = createMemoryRouter([
@@ -28,11 +26,7 @@ function renderCard(overrides = {}) {
       element: <ProjectCard project={{ ...project, ...overrides }} />,
     },
   ]);
-  render(
-    <EffectsProvider>
-      <RouterProvider router={router} />
-    </EffectsProvider>,
-  );
+  render(<RouterProvider router={router} />);
 }
 
 describe("ProjectCard", () => {

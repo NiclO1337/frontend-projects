@@ -4,13 +4,17 @@ import styles from "./Spotlight.module.css";
 
 /**
  * A soft light that follows the mouse inside its parent element. Put it inside
- * a card: `<article> <Spotlight /> ... </article>`. The parent needs
+ * a tile: `<div> <Spotlight /> ... </div>`. The parent needs
  * `position: relative` and `overflow: hidden`, so the light stays inside it.
+ * It is used on the BentoTiles only: on the project cards, which are taller
+ * and hold a screenshot, it still lagged at 4x CPU throttling and was removed.
  *
- * The light is a small element that is moved with `transform`. The browser
- * moves it on the graphics card and doesn't redraw or restyle anything.
- * Changing a CSS variable on the card, with a gradient that reads it, was tried
- * first and was too slow: each mouse move restyled the whole card and redrew it.
+ * The light is a small element that is moved with `transform`, so only the
+ * light itself is restyled. Changing a CSS variable on the tile, with a
+ * gradient that reads it, was tried first and was too slow: each mouse move
+ * restyled everything inside the tile. Giving the light its own layer with
+ * `will-change` was tried second and lagged when many tiles were on screen
+ * (see the CSS file).
  *
  * It renders nothing when the effects are off.
  */

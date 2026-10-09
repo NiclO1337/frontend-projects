@@ -1,5 +1,4 @@
 .card {
-  position: relative; /* the <Spotlight /> light is positioned inside the card */
   display: flex;
   flex-direction: column;
   height: 100%;

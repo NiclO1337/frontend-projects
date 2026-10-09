@@ -3,7 +3,11 @@
   is moved to the mouse with a transform (set in Spotlight.jsx), so the offset
   of half its size puts the gradient's centre right under the pointer.
   pointer-events: none lets clicks pass through to the card's links.
-  will-change: transform gives it its own layer, so moving it is cheap.
+  There is no will-change: transform on purpose. An own layer inside a rounded,
+  overflow-hidden card makes the browser draw every card as a separate surface
+  and round its corners on each frame, which lagged next to the cursor trail.
+  For the same reason there is no opacity transition: a fade would give the
+  light a temporary layer of its own, so it appears and disappears at once.
 */
 .light {
   position: absolute;
@@ -18,6 +22,4 @@
   );
   opacity: 0;
   pointer-events: none;
-  will-change: transform;
-  transition: opacity var(--transition);
 }
