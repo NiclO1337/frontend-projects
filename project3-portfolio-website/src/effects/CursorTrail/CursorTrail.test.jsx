@@ -51,6 +51,23 @@ describe("CursorTrail", () => {
     expect(ctx.stroke).toHaveBeenCalled();
   });
 
+  it("changes colour while moving when the theme changes", () => {
+    const colors = [];
+    ctx.stroke.mockImplementation(() => colors.push(ctx.strokeStyle));
+    render(<CursorTrail />);
+    move(10, 10);
+    move(40, 30);
+
+    document.documentElement.style.setProperty("--color-accent", "red");
+    vi.advanceTimersByTime(16);
+    document.documentElement.style.setProperty("--color-accent", "blue");
+    vi.advanceTimersByTime(16);
+    document.documentElement.style.removeProperty("--color-accent");
+
+    expect(colors).toContain("red");
+    expect(colors).toContain("blue");
+  });
+
   it("does not animate before the mouse moves", () => {
     render(<CursorTrail />);
 

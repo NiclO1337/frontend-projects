@@ -54,7 +54,6 @@ export default function CursorTrail() {
 
     let points = [];
     let frameId = null;
-    let color = "";
 
     // One canvas pixel per CSS pixel, even on sharp screens (which have 2 to 3
     // device pixels per CSS pixel). That is 4 to 9 times fewer pixels to clear
@@ -77,6 +76,10 @@ export default function CursorTrail() {
         frameId = null; // nothing left to draw, so the loop ends here
         return;
       }
+      // Read every frame, so the trail changes colour the moment the theme does.
+      const color = getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-accent")
+        .trim();
       drawTrail(ctx, points, now, color);
       frameId = requestAnimationFrame(drawFrame);
     }
@@ -89,13 +92,7 @@ export default function CursorTrail() {
       });
       if (points.length > MAX_POINTS) points.shift();
 
-      if (frameId === null) {
-        // Read the colour when the loop starts, so a theme change is picked up.
-        color = getComputedStyle(document.documentElement)
-          .getPropertyValue("--color-accent")
-          .trim();
-        frameId = requestAnimationFrame(drawFrame);
-      }
+      if (frameId === null) frameId = requestAnimationFrame(drawFrame);
     }
 
     function handleVisibilityChange() {
