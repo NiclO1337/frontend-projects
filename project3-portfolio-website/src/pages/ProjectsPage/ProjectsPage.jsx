@@ -34,11 +34,12 @@ export default function ProjectsPage() {
 
       <h1>Projects</h1>
       <p className={styles.intro}>
-        {projects.length} projects from my studies and spare time. I started
-        with HTML and CSS, moved on to JavaScript and Python, and later built
-        full-stack apps with Django, React, and Next.js, plus a neural network.
-        Most of them have a link to a live demo and the source code, so you can
-        try them out and see how they are built.
+        <span className={styles.number}>{String(projects.length).padStart(2, "0")}</span> projects from
+        my studies and spare time. I started with HTML and CSS, moved on to
+        JavaScript and Python, and later built full-stack apps with Django,
+        React, and Next.js, plus a neural network. Most of them have a link to a
+        live demo and the source code, so you can try them out and see how they
+        are built.
       </p>
 
       <div className={styles.filter}>

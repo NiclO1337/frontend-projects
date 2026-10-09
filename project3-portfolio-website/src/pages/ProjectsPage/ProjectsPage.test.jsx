@@ -20,8 +20,11 @@ describe("ProjectsPage", () => {
     expect(
       main.getByRole("heading", { level: 1, name: "Projects" }),
     ).toBeInTheDocument();
+    // The count sits in its own <span> for styling, so the paragraph's own
+    // text starts after it.
+    const intro = main.getByText(/projects from my studies/);
     expect(
-      main.getByText(new RegExp(`^${projects.length} projects from`)),
+      within(intro).getByText(String(projects.length).padStart(2, "0")),
     ).toBeInTheDocument();
   });
 

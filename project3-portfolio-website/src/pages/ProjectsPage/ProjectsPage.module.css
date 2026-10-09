@@ -3,6 +3,13 @@
   margin-top: var(--space-3);
 }
 
+/* The project count in the intro: same look as the numbers in the nav. */
+.number {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
 .filter {
   display: flex;
   flex-direction: column;
