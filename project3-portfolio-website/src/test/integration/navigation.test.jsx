@@ -72,7 +72,9 @@ describe("navigation", () => {
     await user.click(within(mainNav()).getByRole("link", { name: "Projects" }));
     await screen.findByRole("heading", { level: 1, name: /^projects$/i });
 
-    // Landmarks that RootLayout provides must still be there.
+    // Landmarks that RootLayout provides must still be there. Browsers give
+    // these roles to plain HTML elements: <main> is "main", and a <footer>
+    // outside <main> is "contentinfo". No role attribute is needed in the code.
     expect(screen.getByRole("main")).toBeInTheDocument();
     expect(screen.getByRole("contentinfo")).toBeInTheDocument();
     expect(mainNav()).toBeInTheDocument();
