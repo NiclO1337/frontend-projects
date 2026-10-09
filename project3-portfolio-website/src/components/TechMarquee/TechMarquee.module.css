@@ -54,6 +54,17 @@
   color: var(--color-text);
 }
 
+/* The marquee stops while the mouse is over it, so the icon under the pointer
+   stays put and lights up. These items are not links, so there is no keyboard
+   focus to match. */
+.item:hover {
+  color: var(--color-accent);
+}
+
+.item:hover .icon {
+  color: var(--color-accent);
+}
+
 @keyframes scroll {
   to {
     transform: translateX(-50%);
