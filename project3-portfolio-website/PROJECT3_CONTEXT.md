@@ -549,6 +549,7 @@ Scripts to add: `"test": "vitest"`, `"test:run": "vitest run"`,
 | 31 | Lighthouse, WAVE, keyboard test, fixes | `project-3: fix accessibility issues` |
 | 32 | Screenshots, finish README + TESTING.md | `project-3: update readme` |
 | ★ | Stretch: GitHub stats tile (public repos, top languages via GitHub REST API, cached in `sessionStorage`) | `project-3: add github stats` |
+| ☆ | Decide on the build warning "chunks larger than 500 kB" (JS is 532 kB, 176 kB gzipped; almost all React, React Router and Motion). Either raise `build.chunkSizeWarningLimit` in `vite.config.js` with a comment, or slim Motion with `LazyMotion` + `m`. Do before the final README | `project-3: raise chunk size limit` |
 
 ---
 
