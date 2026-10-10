@@ -32,12 +32,14 @@ export default function MobileMenu({ id, onClose }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  // A click anywhere except on a link or button dismisses the menu. Links
-  // don't need handling here: clicking one navigates, and MobileHeader closes
-  // the menu on every navigation. Buttons (the toggles) keep it open.
-  // Keyboard users have Escape and the menu button.
+  // A click anywhere except on a button dismisses the menu. That includes
+  // links: onClose gives focus back to the menu button, so it isn't lost when
+  // the menu disappears. (Clicking the link of the page you are already on
+  // changes nothing else that would move focus. On another page, useRouteFocus
+  // then moves focus on to the new <h1>.) Buttons (the toggles) keep the menu
+  // open. Keyboard users also have Escape and the menu button.
   function handleClick(event) {
-    if (!event.target.closest("a, button")) onClose();
+    if (!event.target.closest("button")) onClose();
   }
 
   return (

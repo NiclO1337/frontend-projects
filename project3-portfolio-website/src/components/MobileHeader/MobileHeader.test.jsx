@@ -95,6 +95,19 @@ describe("MobileHeader", () => {
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
   });
 
+  it("gives focus back to the button when the link of the current page is used", async () => {
+    const user = userEvent.setup();
+    renderMobileHeader("/about");
+
+    // Opening the menu focuses the first link, which is "About". Enter on it
+    // goes nowhere new, so nothing else would take focus after the menu closes.
+    await user.click(getMenuButton());
+    await user.keyboard("{Enter}");
+
+    expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
+    expect(getMenuButton()).toHaveFocus();
+  });
+
   it("closes when the route changes without a click, like browser back", async () => {
     const user = userEvent.setup();
     const { router } = renderMobileHeader();
