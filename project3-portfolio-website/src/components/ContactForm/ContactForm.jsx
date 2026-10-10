@@ -172,7 +172,8 @@ export default function ContactForm() {
 
       {/* Honeypot: a trap for spam bots. People never see or reach it
           (display: none, no Tab stop), but bots fill in every field they find.
-          The mail service ignores messages where it is ticked. */}
+          The mail service ignores messages where it is ticked. The aria-label
+          is only there because WAVE reports every input without a label. */}
       <input
         type="checkbox"
         name="botcheck"
@@ -180,6 +181,7 @@ export default function ContactForm() {
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
+        aria-label="Leave this box unticked"
       />
 
       {/* role="alert" makes screen readers announce this as soon as it

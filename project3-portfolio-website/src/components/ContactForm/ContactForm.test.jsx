@@ -64,6 +64,8 @@ describe("ContactForm", () => {
     const honeypot = document.querySelector('input[name="botcheck"]');
     expect(honeypot).toHaveAttribute("tabindex", "-1");
     expect(honeypot).toHaveAttribute("aria-hidden", "true");
+    // WAVE reports an input without a label as an error, even a hidden one.
+    expect(honeypot).toHaveAttribute("aria-label");
   });
 
   it("shows an error under every empty field on submit, and focuses the first", async () => {

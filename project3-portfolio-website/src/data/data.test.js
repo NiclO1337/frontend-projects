@@ -77,6 +77,8 @@ describe("data files", () => {
         // Images are imported, so they arrive here as a URL string.
         expect(project.image, label).toBeTypeOf("string");
         expect(project.imageAlt, label).toBeTruthy();
+        // WAVE flags alt text over 100 characters as "long alternative text".
+        expect(project.imageAlt.length, label).toBeLessThanOrEqual(100);
       }
     });
 

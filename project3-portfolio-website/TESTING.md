@@ -173,10 +173,60 @@ TODO: mobile and desktop scores + screenshots
 
 ## Accessibility
 
-- [WAVE](https://wave.webaim.org/) per page – TODO
-- Keyboard-only walkthrough – TODO
-- Screen reader check of route changes – TODO
+### WAVE
 
+[WAVE](https://wave.webaim.org/) was run on every page. WAVE sorts its findings into errors (real
+failures) and alerts (things a human should check). Errors must be 0. Each alert was checked by hand.
+
+![WAVE result](./readme-assets/wave-result.png)
+
+| Page | Errors | Contrast errors | Alerts | AIM score |
+|------|:------:|:---------------:|:------:|:---------:|
+| Home | 0 | 0 | 4 (3 after fix) | 10 |
+| About | 0 | 0 | 2 | 10 |
+| Resume | 0 | 0 | 3 | 10 |
+| Projects | 0 | 0 | 10 | 9.8 |
+| Projects detail | 0 | 0 | 2 | 10 |
+| Contact | 1 (0 after fix) | 0 | 2 | 10 |
+| NotFound | 0 | 0 | 2 | 10 |
+| Error | 0 | 0 | 1 | 10 |
+| Error (no JS) | 0 | 0 | 0 | 10 |
+
+The WAVE extension does not run with JavaScript turned off. The "JavaScript is required" message was therefore tested as a separate HTML file with the same content, without the `<noscript>` wrapper. The `<noscript>` alert itself is listed under "All pages" below.
+
+**Errors**
+
+| Page | Error | Count | Where | Decision |
+|------|-------|:-----:|-------|----------|
+| Contact | Missing form label | 1 | Hidden spam-trap checkbox above "Send message" | Fixed: the checkbox is hidden from everyone (`display: none`, `aria-hidden`), but WAVE still reports an input without a label. It now has an `aria-label`. |
+
+**Alerts**
+
+Two alerts appear on every page, because they come from the shared layout and `index.html`. They are listed once here, not once per page. The Error page is the exception for the redundant link: it does not use the shared layout, so it only has the Noscript alert.
+
+| Page | Alert | Count | Where | Decision |
+|------|-------|:-----:|-------|----------|
+| All pages | Redundant link | 1 | Name link to the home page in the sidebar | Left as is: Home is not in the menu, so the name is the only way back to the home page. Linking the name or logo to home is a common pattern, and removing or disabling the link on the home page would only make the page less predictable. |
+| All pages | Noscript element | 1 | `<noscript>` in `index.html` | Left as is: it is the "JavaScript is required" message for visitors with JavaScript turned off. Without it they would see an empty page, because React builds everything in the browser using JavaScript. |
+| Home | Long alternative text | 1 | Featured project image | Fixed: the alt text was over 100 characters. All project alt texts are now 100 characters or less (for example "Bun Intended website on a monitor, laptop, tablet and phone, showing the Our Story page"), and a data test fails if a new one is longer. |
+| Home, Resume | Link to PDF document | 1 per page | "Download CV" | Left as is: the link text already says it is a file download, which is what the alert asks for. WAVE cannot check the PDF itself. The CV is a tagged PDF with real text, exported from Word. |
+| Projects | Redundant link | 8 | The title link on each project card | Left as is: each card links to its details page from the image, the title and the "Details" button. The image link is hidden from screen readers and the Tab key, so only the title and the button are left. The title is the heading, and the button gives a clear action with its own name ("Details of …"). |
+
+### Keyboard-only walkthrough
+
+Every page was tested with Tab, Shift+Tab, Enter, Space and Esc only.
+
+| Check | Result |
+|-------|--------|
+| Skip link appears on first Tab and jumps to main content | TODO |
+| Focus order follows the visual order on all pages | TODO |
+| Neon focus ring visible on every link, button and field | TODO |
+| No keyboard traps | TODO |
+|  |  |
+
+### Colour contrast
+
+All text pairs were calculated when planning (all pass WCAG AA). WAVE then confirmed it with 0 contrast errors on every page.
 
 ## Bugs
 

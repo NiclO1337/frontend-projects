@@ -38,7 +38,7 @@ export const projects = [
     filters: ["HTML", "CSS", "JavaScript"],
     image: bunIntendedImg,
     imageAlt:
-      "Bun Intended website on a monitor, laptop, tablet and phone, showing the Our Story and Hours & Location pages",
+      "Bun Intended website on a monitor, laptop, tablet and phone, showing the Our Story page",
     liveUrl: "https://frontend-projects-project2-modern-b.vercel.app/",
     repoUrl:
       "https://github.com/NiclO1337/frontend-projects/tree/main/project2-modern-business-website",
@@ -94,7 +94,7 @@ export const projects = [
     filters: ["React", "JavaScript"],
     image: weightliftingCalculatorImg,
     imageAlt:
-      "Weightlifting Calculator app on a monitor, laptop, tablet and phone, showing the 1RM table and a loaded bar",
+      "Weightlifting Calculator app on a monitor, laptop, tablet and phone, showing the 1RM table",
     liveUrl: "https://niclo1337.github.io/weightlifting-calculator",
     repoUrl: "https://github.com/NiclO1337/weightlifting-calculator",
   },
@@ -120,7 +120,7 @@ export const projects = [
     filters: ["Python"],
     image: purrfectPawsImg,
     imageAlt:
-      "Purrfect Paws Predictor dashboard on a monitor, laptop, tablet and phone, showing the image study and performance metrics",
+      "Purrfect Paws Predictor dashboard on a monitor, laptop, tablet and phone, showing the metrics",
     liveUrl: "https://purrfect-paws-predictor-ab2bd8b45a44.herokuapp.com/",
     repoUrl: "https://github.com/NiclO1337/pp5-cats-vs-dogs",
   },
@@ -147,7 +147,7 @@ export const projects = [
     filters: ["Python", "Django", "JavaScript"],
     image: bananaPalaceImg,
     imageAlt:
-      "Banana Palace website on a monitor, laptop, tablet and phone, showing the reservation floor plan and the Hours & Location page",
+      "Banana Palace website on a monitor, laptop, tablet and phone, showing the reservation floor plan",
     liveUrl: "https://banana-palace-9ad263ab8cf3.herokuapp.com/",
     repoUrl: "https://github.com/NiclO1337/pp4-banana-palace",
   },
@@ -224,7 +224,7 @@ export const projects = [
     filters: ["HTML", "CSS"],
     image: strawberryLoversImg,
     imageAlt:
-      "Strawberry Lovers website on a monitor, laptop, tablet and phone, showing the home page and the sign-up form",
+      "Strawberry Lovers website on a monitor, laptop, tablet and phone, showing the sign-up form",
     liveUrl: "https://niclo1337.github.io/pp1-strawberry-lovers/index.html",
     repoUrl: "https://github.com/NiclO1337/pp1-strawberry-lovers",
   },
