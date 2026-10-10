@@ -271,6 +271,118 @@ describe("ContactForm", () => {
     );
   });
 
+  it("shows the same error when the answer is not JSON, like an error page", async () => {
+    const user = userEvent.setup();
+    stubFetch(() =>
+      Promise.resolve({
+        json: () => Promise.reject(new SyntaxError("Unexpected token <")),
+      }),
+    );
+    renderForm();
+
+    await fillInAndSend(user);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      /could not be sent/i,
+    );
+  });
+
+  // Only an answer that says `success: true` (a real boolean) counts as sent.
+  it.each([
+    ["has no success field", {}],
+    ["says success as text", { success: "true" }],
+    ["has no content", null],
+  ])("shows the error when the answer %s", async (_label, body) => {
+    const user = userEvent.setup();
+    stubFetch(answer(body));
+    renderForm();
+
+    await fillInAndSend(user);
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      /could not be sent/i,
+    );
+    expect(
+      screen.queryByRole("heading", { name: "Thank you!" }),
+    ).not.toBeInTheDocument();
+  });
+
+  // A complete, valid form must not be sent by accident, for example when the
+  // visitor fixes a typo in their name and presses Enter out of habit.
+  it.each([
+    ["name", getName],
+    ["email", getEmail],
+  ])(
+    "does not send the form when Enter is pressed in the %s field",
+    async (_label, getField) => {
+      const user = userEvent.setup();
+      const fetchMock = stubFetch(accepted);
+      renderForm();
+      await user.type(getName(), "Ada Lovelace");
+      await user.type(getEmail(), "ada@example.com");
+      await user.type(getMessage(), "Hello!");
+
+      await user.type(getField(), "{Enter}");
+
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(
+        screen.queryByRole("heading", { name: "Thank you!" }),
+      ).not.toBeInTheDocument();
+      // Nothing else happens either: no errors, and the text is still there.
+      expect(getField()).toHaveAttribute("aria-invalid", "false");
+      expect(getMessage()).toHaveValue("Hello!");
+    },
+  );
+
+  it("adds a new line when Enter is pressed in the message, and does not send", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch(accepted);
+    renderForm();
+    await user.type(getName(), "Ada Lovelace");
+    await user.type(getEmail(), "ada@example.com");
+
+    await user.type(getMessage(), "Hello!{Enter}Bye!");
+
+    expect(getMessage()).toHaveValue("Hello!\nBye!");
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("still sends the form when Enter is pressed on the send button", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch(accepted);
+    renderForm();
+    await user.type(getName(), "Ada Lovelace");
+    await user.type(getEmail(), "ada@example.com");
+    await user.type(getMessage(), "Hello!");
+
+    // Tab from the message to the send button, as a keyboard user would.
+    await user.tab();
+    expect(screen.getByRole("button", { name: "Send message" })).toHaveFocus();
+    await user.keyboard("{Enter}");
+
+    expect(
+      await screen.findByRole("heading", { name: "Thank you!" }),
+    ).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
+  it("hides the old error while the message is sent again", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch(answer({ success: false }));
+    renderForm();
+    await fillInAndSend(user);
+    await screen.findByRole("alert");
+
+    // A new attempt that stays "on its way".
+    fetchMock.mockImplementation(() => new Promise(() => {}));
+    await clickSend(user);
+
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Sending…" }),
+    ).toBeInTheDocument();
+  });
+
   it("offers LinkedIn as another way to get in touch, and no email address", async () => {
     const user = userEvent.setup();
     stubFetch(answer({ success: false }));

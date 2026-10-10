@@ -62,7 +62,7 @@ Every file passes. Counts are the number of tests in each file.
 | `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
 | `ProjectFilter.test.jsx` | chips, `aria-pressed`, selected technology | 4 | PASS |
 | `Timeline.test.jsx` | order, `<time>` elements, organisation and bullets | 3 | PASS |
-| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, sending state, success, error, retry | 18 | PASS |
+| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, Enter does not send from name or email, sending state, success, error (also for an answer that is not JSON or not `success: true`), retry | 27 | PASS |
 | `FormField.test.jsx` | label connected to input, textarea, input type, error message | 5 | PASS |
 | `BentoTile.test.jsx` | title and heading level, spotlight | 4 | PASS |
 | `SkillGroup.test.jsx` | heading, list of skills, decorative icons hidden | 2 | PASS |
@@ -104,7 +104,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**44 test files, 256 tests: all PASS** (`npm run test:run`).
+**44 test files, 265 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -137,6 +137,8 @@ TODO: screenshot of `npm run test:run` output
 | Action | Expected result | Result |
 |--------|-----------------|--------|
 | Submit empty | Errors on all fields | TODO |
+| Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | TODO |
+| Tab to "Send message", press Enter or Space | The message is sent | TODO |
 | Invalid email | Email error | TODO |
 | Valid submit (live site) | Success message, email received | PASS |
 | Offline submit | Error message with fallback | TODO |
