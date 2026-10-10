@@ -85,6 +85,28 @@ textarea.control {
   transform: translateY(var(--space-2)) scale(0.75);
 }
 
+/*
+  Autofill. The browser gives a filled-in field its own background and text
+  colour, and it ignores `background` and `color` here. The trick: an inset
+  box-shadow with a huge spread paints over that background in our colour
+  (it covers the whole field, so 100rem is far more than needed), and
+  -webkit-text-fill-color sets the text colour. -webkit-autofill is the
+  name every current browser understands, Firefox included.
+*/
+.control:-webkit-autofill {
+  box-shadow: inset 0 0 0 100rem var(--color-surface-2);
+  -webkit-text-fill-color: var(--color-text);
+  caret-color: var(--color-text);
+}
+
+/* The rule above replaces the neon focus ring from global.css (also a
+   box-shadow), so the ring is added back here, after the cover. */
+.control:-webkit-autofill:focus-visible {
+  box-shadow:
+    inset 0 0 0 100rem var(--color-surface-2),
+    var(--glow-sm);
+}
+
 /* A field the browser has filled in (autofill) counts as having text. It is
    its own rule, so a browser that doesn't know this selector can't drop the
    rule above. */

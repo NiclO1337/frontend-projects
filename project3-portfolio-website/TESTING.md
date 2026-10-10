@@ -186,6 +186,7 @@ TODO: mobile and desktop scores + screenshots
 - Cursor trail showed darker "beads" at every mouse position: round line ends overlapped and a see-through stroke painted twice looks darker. Fixed with flat glow ends and an opaque core line.
 - Cursor trail looked harsh in light mode: it now has its own lighter `--color-cursor` colour.
 - Lag when moving fast over bento tiles and project cards with 4× CPU throttling: see the Performance section.
+- Autofilled contact form fields got the browser's own background and text colour instead of the theme colours: browsers ignore `background` for autofill. Fixed by painting over it with a large inset `box-shadow` in `--color-surface-2`, setting `-webkit-text-fill-color`, and adding the neon focus glow back to the same `box-shadow` on `:focus-visible`.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs
