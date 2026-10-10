@@ -218,11 +218,19 @@ Every page was tested with Tab, Shift+Tab, Enter, Space and Esc only.
 
 | Check | Result |
 |-------|--------|
-| Skip link appears on first Tab and jumps to main content | TODO |
-| Focus order follows the visual order on all pages | TODO |
-| Neon focus ring visible on every link, button and field | TODO |
-| No keyboard traps | TODO |
-|  |  |
+| Skip link appears on first Tab and jumps to main content | PASS |
+| Focus order follows the visual order on all pages | PASS |
+| Neon focus ring visible on every link, button and field | PASS |
+| No keyboard traps | PASS |
+| After a nav link, focus is on the page heading | PASS |
+| Mobile menu: Enter opens, Esc closes, focus returns to the button | PASS |
+| Theme and effects toggles work with Enter and Space | PASS |
+| Filter chips work by keyboard | PASS |
+| Project cards: one Tab stop per link (image link skipped) | PASS |
+| Contact form: honeypot never gets focus | PASS |
+| Contact form: empty submit focuses the first error, success focuses the heading | PASS |
+| About: Tab goes from the navbar straight back to the Skip link | PASS (expected: the page has no links or buttons in the content) |
+| Project detail: after a nav click, Tab goes to "Live demo", not "All projects" | PASS (expected: focus is on the `<h1>`, and the "All projects" link is above it. It is reached with Shift+Tab. The DOM order matches the visual order.) |
 
 ### Colour contrast
 
