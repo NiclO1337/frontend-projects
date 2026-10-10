@@ -40,36 +40,69 @@ npm run test:run   # run once
 
 ### Unit tests
 
-| File | What is tested | Result |
-|------|----------------|--------|
-| `utils/projects.test.js` | slug lookup, tech list, filtering, prev/next | TODO |
-| `hooks/useLocalStorage.test.js` | read, write, invalid JSON fallback | TODO |
-| `ThemeToggle.test.jsx` | toggles theme, label, `aria-pressed`, saved | TODO |
-| `EffectsToggle.test.jsx` | toggles effects, label | TODO |
-| `NavMenu.test.jsx` | links, active link | TODO |
-| `MobileMenu.test.jsx` | open/close, Escape, `aria-expanded` | TODO |
-| `Button.test.jsx` | element type, external link attributes | TODO |
-| `ProjectCard.test.jsx` | content, image alt, links | TODO |
-| `ProjectFilter.test.jsx` | chips, selection, `aria-pressed` | TODO |
-| `Timeline.test.jsx` | entries and dates | TODO |
-| `ContactForm.test.jsx` | validation, success, error | TODO |
-| `NotFoundPage.test.jsx` | heading and links | TODO |
-| TODO: add the rest | | |
+Every file passes. Counts are the number of tests in each file.
+
+| File | What is tested | Tests | Result |
+|------|----------------|:-----:|--------|
+| `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name, previous/next with wrap-around | 19 | PASS |
+| `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails | 15 | PASS |
+| `utils/toSlug.test.js` | slugs for names like `Next.js`, `C#` and `C++` | 5 | PASS |
+| `utils/shuffle.test.js` | same items, original not changed, empty and single-item arrays | 3 | PASS |
+| `data/data.test.js` | unique ids and slugs, newest first, one featured project, alt text of 100 characters or less, https links, no email or phone | 11 | PASS |
+| `hooks/useLocalStorage.test.js` | initial value, read, write, invalid JSON fallback | 4 | PASS |
+| `hooks/useMediaQuery.test.js` | match, no match, updates, only its own query | 4 | PASS |
+| `hooks/useRouteFocus.test.jsx` | focus moves to the new `<h1>`, not on first load, not on search changes | 3 | PASS |
+| `context/EffectsProvider.test.jsx` | effects on, off, reduced motion, touch screen, error outside the provider | 5 | PASS |
+| `ThemeToggle.test.jsx` | dark by default, switch back and forth, saved choice | 4 | PASS |
+| `EffectsToggle.test.jsx` | on by default, toggle and save, hidden on touch and reduced motion | 5 | PASS |
+| `NavMenu.test.jsx` | links, `aria-current` on the current page | 2 | PASS |
+| `MobileHeader.test.jsx` | open and close, closes on link click, route change and click outside | 9 | PASS |
+| `SkipLink.test.jsx` | first thing Tab reaches, points to the main content | 1 | PASS |
+| `Button.test.jsx` | element type, internal link, external link attributes, file download | 5 | PASS |
+| `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
+| `ProjectFilter.test.jsx` | chips, `aria-pressed`, selected technology | 4 | PASS |
+| `Timeline.test.jsx` | order, `<time>` elements, organisation and bullets | 3 | PASS |
+| `ContactForm.test.jsx` | validation, honeypot, sending state, success, error, retry | 17 | PASS |
+| `FormField.test.jsx` | label connected to input, textarea, input type, error message | 5 | PASS |
+| `BentoTile.test.jsx` | title and heading level, spotlight | 4 | PASS |
+| `SkillGroup.test.jsx` | heading, list of skills, decorative icons hidden | 2 | PASS |
+| `SocialLinks.test.jsx` | one link per profile, new tab with accessible name | 2 | PASS |
+| `TechMarquee.test.jsx` | skills data, repeated copy hidden from screen readers, same order | 3 | PASS |
+| `Footer.test.jsx` | landmark, credit line, current year | 1 | PASS |
+| `Reveal.test.jsx` | hidden until in view, shown at once without effects or on touch | 4 | PASS |
+| `PageTransition.test.jsx` | fade in, off without effects, restarts on path change only | 3 | PASS |
+| `CursorTrail.test.jsx` | canvas hidden from screen readers, drawing, theme colour, stops when idle or hidden, resize | 9 | PASS |
+| `CustomCursor.test.jsx` | pointer hidden and restored, follows the mouse, ring grows over links | 5 | PASS |
+| `Spotlight.test.jsx` | follows the mouse, hides on leave, off without effects or on touch | 5 | PASS |
+| `RootLayout.test.jsx` | cursor effects on, off, and on a touch screen | 3 | PASS |
+| `HomePage.test.jsx` | greeting, featured project, CV link, photo alt text | 4 | PASS |
+| `AboutPage.test.jsx` | heading, bio, skills | 3 | PASS |
+| `ResumePage.test.jsx` | heading, CV download, experience and education newest first | 2 | PASS |
+| `ProjectsPage.test.jsx` | all cards, filter in the URL, empty result | 6 | PASS |
+| `ProjectDetailPage.test.jsx` | content, links, back link keeps the filter, previous/next, unknown project | 7 | PASS |
+| `ContactPage.test.jsx` | heading and form, no email or phone shown | 2 | PASS |
+| `NotFoundPage.test.jsx` | heading and links back home and to projects | 1 | PASS |
+| `pageTitles.test.jsx` | own title and description on every page | 7 | PASS |
 
 ### Integration tests
 
-| Flow | Expected result | Result |
-|------|-----------------|--------|
-| Click every nav link | Right page heading, active link updates, focus on heading | TODO |
-| Filter projects by Python | URL has `?tech=python`, only Python projects shown | TODO |
-| Open a project from the filtered list and go back | Detail page shown; going back keeps the filter | TODO |
-| Open `/projects/banana-palace` directly | Detail page renders | TODO |
-| Open `/projects/unknown` | "Project not found" inside the layout | TODO |
-| Open an unknown route | 404 page | TODO |
-| Toggle theme and effects, then navigate | Settings stay the same | TODO |
-| Submit the contact form (mocked fetch) | Correct request body, success message | TODO |
+The tests in `src/test/integration/` render the real routes with a memory router.
+
+| File | Flow | Tests | Result |
+|------|------|:-----:|--------|
+| `navigation.test.jsx` | Every nav link opens its page, marks itself active and moves focus to the `<h1>` | 20 | PASS |
+| | Deep links open the right page and nav link directly | | |
+| | Unknown URLs and unknown projects show the 404 page inside the layout, with working links | | |
+| `projectsFlow.test.jsx` | Filter, open a card and go back to the same filter | 5 | PASS |
+| | Previous/next with wrap-around, filter kept while moving between projects | | |
+| | Browser back button undoes the filter and the opened card | | |
+| `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 2 | PASS |
+| | Shows an error inside the page, with the navigation still usable | | |
+| `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 5 | PASS |
 
 ### Test results
+
+**43 test files, 236 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
