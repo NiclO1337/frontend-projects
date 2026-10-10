@@ -68,7 +68,10 @@ export default function ProjectsPage() {
         </div>
       ) : (
         // A list of cards: screen readers announce "list, 8 items".
-        <ul className={styles.grid}>
+        // The key changes with the filter, so React builds a new list and every
+        // card fades in again. Without it, a card that stays visible would just
+        // jump to its new place in the grid, while only the new cards fade in.
+        <ul key={tech ?? "all"} className={styles.grid}>
           {visibleProjects.map((project) => (
             <Reveal as="li" key={project.slug}>
               <ProjectCard project={project} />

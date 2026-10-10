@@ -122,8 +122,8 @@ TODO: screenshot of `npm run test:run` output
 |----------------|--------|
 | 320px | PASS |
 | 375–390px (phone) | PASS |
-| 768px (tablet) | TODO |
-| 1024px (split layout starts) | TODO |
+| 768px (tablet) | PASS |
+| 1024px (split layout starts) | PASS |
 | 1440px+ | TODO |
 | Real phone: Samsung Galaxy Fold 5 | TODO |
 
