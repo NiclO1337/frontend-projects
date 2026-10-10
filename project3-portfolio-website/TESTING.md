@@ -62,7 +62,7 @@ Every file passes. Counts are the number of tests in each file.
 | `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
 | `ProjectFilter.test.jsx` | chips, `aria-pressed`, selected technology | 4 | PASS |
 | `Timeline.test.jsx` | order, `<time>` elements, organisation and bullets | 3 | PASS |
-| `ContactForm.test.jsx` | validation, honeypot, sending state, success, error, retry | 17 | PASS |
+| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, sending state, success, error, retry | 18 | PASS |
 | `FormField.test.jsx` | label connected to input, textarea, input type, error message | 5 | PASS |
 | `BentoTile.test.jsx` | title and heading level, spotlight | 4 | PASS |
 | `SkillGroup.test.jsx` | heading, list of skills, decorative icons hidden | 2 | PASS |
@@ -104,7 +104,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**44 test files, 243 tests: all PASS** (`npm run test:run`).
+**44 test files, 244 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -140,6 +140,7 @@ TODO: screenshot of `npm run test:run` output
 | Invalid email | Email error | TODO |
 | Valid submit (live site) | Success message, email received | TODO |
 | Offline submit | Error message with fallback | TODO |
+| Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | TODO |
 
 ### Theme and effects
 
@@ -283,6 +284,7 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - Keyboard focus was lost in the mobile menu when the link of the current page was used: the menu closed, but nothing moved focus, so it fell back to the page. Now every click in the menu except on a toggle gives focus back to the menu button. On another page, focus moves on to that page's heading as before.
 - A crash while the project page rendered showed "404 – Lost in the void", because the route's `errorElement` catches every error. Now only the loader's 404 shows the not-found page, and any other error shows "Something went wrong".
 - A project link that is not a valid URL (a typo like `https://`) crashed the project page: `getHostName` used `new URL()`, which throws. It now returns nothing for text that is not a URL, and a data test fails if a project link cannot be read as a URL.
+- Spaces around the name and message were sent as typed (`"  Ada  "`), although the validation ignores them. The copy that is sent is now trimmed, and the form keeps what the visitor typed.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs

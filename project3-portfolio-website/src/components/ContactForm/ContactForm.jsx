@@ -106,8 +106,14 @@ export default function ContactForm() {
     // FormData reads every field of the form. That includes the honeypot
     // checkbox, which is not part of our state.
     const isBot = new FormData(formRef.current).has("botcheck");
+    // The validation ignores spaces around the text, so the message sent
+    // should too. Only the copy that is sent is trimmed: what the visitor
+    // typed stays in the form, in case they have to try again.
+    const trimmed = Object.fromEntries(
+      Object.entries(values).map(([name, value]) => [name, value.trim()]),
+    );
     try {
-      const sent = await sendMessage(values, isBot);
+      const sent = await sendMessage(trimmed, isBot);
       setStatus(sent ? "success" : "error");
     } catch {
       // No network, or an answer that wasn't JSON.

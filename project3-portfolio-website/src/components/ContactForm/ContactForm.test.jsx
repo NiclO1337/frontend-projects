@@ -166,6 +166,27 @@ describe("ContactForm", () => {
     });
   });
 
+  it("sends the text without spaces around it, but keeps what was typed in the form", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch(answer({ success: false }));
+    renderForm();
+
+    await user.type(getName(), "  Ada Lovelace  ");
+    await user.type(getEmail(), "ada@example.com");
+    await user.type(getMessage(), "  Hello!  ");
+    await clickSend(user);
+    await screen.findByRole("alert");
+
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      name: "Ada Lovelace",
+      email: "ada@example.com",
+      message: "Hello!",
+    });
+    // The send failed, so the visitor sees their own text when they try again.
+    expect(getName()).toHaveValue("  Ada Lovelace  ");
+    expect(getMessage()).toHaveValue("  Hello!  ");
+  });
+
   it("tells Web3Forms when the honeypot was ticked", async () => {
     const user = userEvent.setup();
     const fetchMock = stubFetch(accepted);
