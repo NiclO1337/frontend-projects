@@ -4,10 +4,12 @@ import BentoTile from "../../components/BentoTile/BentoTile.jsx";
 import Button from "../../components/Button/Button.jsx";
 import TechMarquee from "../../components/TechMarquee/TechMarquee.jsx";
 import { profile } from "../../data/profile.js";
+import { getFeaturedProject } from "../../utils/projects.js";
 import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   const [firstName] = profile.name.split(" ");
+  const featured = getFeaturedProject();
 
   return (
     <>
@@ -57,10 +59,23 @@ export default function HomePage() {
           </a>
         </BentoTile>
 
-        {/* Placeholder until the project data (step 15) and ProjectCard
-            (step 16) exist. Then it shows the featured project. */}
+        {/* A short teaser, not a full ProjectCard: the card is taller than this
+            tile, so it would stretch the grid rows. */}
         <BentoTile title="Featured project" size="large">
-          <p>A featured project will appear here.</p>
+          <img
+            className={styles.featuredImage}
+            src={featured.image}
+            alt={featured.imageAlt}
+            width="900"
+            height="533"
+          />
+          <div className={styles.featuredFooter}>
+            <h3 className={styles.featuredTitle}>{featured.title}</h3>
+            <Button to={`/projects/${featured.slug}`} size="small">
+              Details{" "}
+              <span className="visually-hidden">of {featured.title}</span>
+            </Button>
+          </div>
         </BentoTile>
 
         <BentoTile title="Tech stack" size="wide">

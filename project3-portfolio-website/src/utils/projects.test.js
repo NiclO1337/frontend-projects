@@ -1,6 +1,7 @@
 import {
   filterProjectsByTech,
   getAdjacentProjects,
+  getFeaturedProject,
   getHostName,
   getProjectBySlug,
   getTechList,
@@ -33,6 +34,17 @@ describe("getProjectBySlug", () => {
 
   it("returns undefined for an unknown slug", () => {
     expect(getProjectBySlug("nope", list)).toBeUndefined();
+  });
+});
+
+describe("getFeaturedProject", () => {
+  it("finds the project marked as featured", () => {
+    const withFeatured = [list[0], { ...list[1], featured: true }, list[2]];
+    expect(getFeaturedProject(withFeatured)).toBe(withFeatured[1]);
+  });
+
+  it("returns undefined when no project is featured", () => {
+    expect(getFeaturedProject(list)).toBeUndefined();
   });
 });
 

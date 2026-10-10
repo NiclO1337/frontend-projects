@@ -34,6 +34,14 @@ export function getTechList(list) {
   );
 }
 
+/**
+ * The project marked `featured`, which the Home page shows.
+ * @returns {object | undefined} undefined when no project is featured
+ */
+export function getFeaturedProject(list = projects) {
+  return list.find((project) => project.featured);
+}
+
 // Where the live demos are hosted, recognised by the end of the hostname.
 const HOSTS = [
   { domain: "vercel.app", name: "Vercel" },

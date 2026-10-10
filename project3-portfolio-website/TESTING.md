@@ -120,8 +120,8 @@ TODO: screenshot of `npm run test:run` output
 
 | Width / device | Result |
 |----------------|--------|
-| 320px | TODO |
-| 375–390px (phone) | TODO |
+| 320px | PASS |
+| 375–390px (phone) | PASS |
 | 768px (tablet) | TODO |
 | 1024px (split layout starts) | TODO |
 | 1440px+ | TODO |

@@ -1,6 +1,7 @@
 import { screen, within } from "@testing-library/react";
 import { profile } from "../../data/profile.js";
 import { renderWithRouter } from "../../test/renderWithRouter.jsx";
+import { getFeaturedProject } from "../../utils/projects.js";
 
 describe("HomePage", () => {
   it("greets the visitor and links to projects and contact", () => {
@@ -32,6 +33,22 @@ describe("HomePage", () => {
     expect(
       main.getByRole("img", { name: profile.photoAlt }),
     ).toBeInTheDocument();
+  });
+
+  it("shows the featured project and links to its detail page", () => {
+    renderWithRouter(["/"]);
+    const main = within(screen.getByRole("main"));
+    const featured = getFeaturedProject();
+
+    expect(
+      main.getByRole("heading", { level: 3, name: featured.title }),
+    ).toBeInTheDocument();
+    expect(
+      main.getByRole("img", { name: featured.imageAlt }),
+    ).toBeInTheDocument();
+    expect(
+      main.getByRole("link", { name: `Details of ${featured.title}` }),
+    ).toHaveAttribute("href", `/projects/${featured.slug}`);
   });
 
   it("shows what you are doing now, where you live and the languages", () => {
