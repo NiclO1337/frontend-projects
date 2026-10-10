@@ -44,12 +44,12 @@ Every file passes. Counts are the number of tests in each file.
 
 | File | What is tested | Tests | Result |
 |------|----------------|:-----:|--------|
-| `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name (also for text that is not a URL), previous/next with wrap-around | 20 | PASS |
-| `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails | 15 | PASS |
-| `utils/toSlug.test.js` | slugs for names like `Next.js`, `C#` and `C++` | 5 | PASS |
+| `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name (also for text that is not a URL or a lookalike host), previous/next with wrap-around, a single project | 21 | PASS |
+| `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails (also Swedish letters and spaces around), emoji and several lines | 21 | PASS |
+| `utils/toSlug.test.js` | slugs for names like `Next.js`, `ASP.NET`, `C#` and `C++`, repeated symbols, empty text | 8 | PASS |
 | `utils/shuffle.test.js` | same items, original not changed, empty and single-item arrays | 3 | PASS |
 | `data/data.test.js` | unique ids and slugs, newest first, one featured project, alt text of 100 characters or less, https links that can be read as URLs, no email or phone | 12 | PASS |
-| `hooks/useLocalStorage.test.js` | initial value, read, write, invalid JSON fallback | 4 | PASS |
+| `hooks/useLocalStorage.test.js` | initial value, read, write, invalid JSON fallback, blocked and full storage | 6 | PASS |
 | `hooks/useMediaQuery.test.js` | match, no match, updates, only its own query | 4 | PASS |
 | `hooks/useRouteFocus.test.jsx` | focus moves to the new `<h1>`, not on first load, not on search changes | 3 | PASS |
 | `context/EffectsProvider.test.jsx` | effects on, off, reduced motion, touch screen, error outside the provider | 5 | PASS |
@@ -104,7 +104,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**44 test files, 244 tests: all PASS** (`npm run test:run`).
+**44 test files, 256 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -138,9 +138,9 @@ TODO: screenshot of `npm run test:run` output
 |--------|-----------------|--------|
 | Submit empty | Errors on all fields | TODO |
 | Invalid email | Email error | TODO |
-| Valid submit (live site) | Success message, email received | TODO |
+| Valid submit (live site) | Success message, email received | PASS |
 | Offline submit | Error message with fallback | TODO |
-| Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | TODO |
+| Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | PASS |
 
 ### Theme and effects
 

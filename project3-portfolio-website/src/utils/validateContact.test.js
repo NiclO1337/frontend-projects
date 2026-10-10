@@ -15,19 +15,33 @@ describe("validateField", () => {
     expect(validateField("message", "Hello!")).toBe("");
   });
 
-  it.each(["ada", "ada@", "ada@example", "@example.com", "ada @example.com"])(
-    "rejects the email %j",
-    (email) => {
-      expect(validateField("email", email)).toMatch(/valid email/i);
-    },
-  );
+  it.each([
+    "ada",
+    "ada@",
+    "ada@example",
+    "@example.com",
+    "ada @example.com",
+    "ada@@example.com",
+    "ada@example.",
+    "ada@exam ple.com",
+  ])("rejects the email %j", (email) => {
+    expect(validateField("email", email)).toMatch(/valid email/i);
+  });
 
-  it.each(["ada@example.com", "ada.lovelace+work@mail.example.co.uk"])(
-    "accepts the email %j",
-    (email) => {
-      expect(validateField("email", email)).toBe("");
-    },
-  );
+  it.each([
+    "ada@example.com",
+    "ada.lovelace+work@mail.example.co.uk",
+    // Swedish letters are fine, and spaces around the address are ignored.
+    "åsa.öberg@exempel.se",
+    "  ada@example.com  ",
+  ])("accepts the email %j", (email) => {
+    expect(validateField("email", email)).toBe("");
+  });
+
+  it("accepts names and messages with Swedish letters, emoji and several lines", () => {
+    expect(validateField("name", "Åsa Öberg")).toBe("");
+    expect(validateField("message", "Hej! 👋\n\nTack för senast.")).toBe("");
+  });
 
   it("asks for an email before saying the email is invalid", () => {
     expect(validateField("email", "")).toMatch(/enter your email/i);

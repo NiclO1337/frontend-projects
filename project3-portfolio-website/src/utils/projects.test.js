@@ -112,6 +112,9 @@ describe("getHostName", () => {
     expect(getHostName("https://example.com/")).toBeUndefined();
     // Only a real subdomain counts, not a lookalike ending in the same text.
     expect(getHostName("https://notvercel.app/")).toBeUndefined();
+    // Nor a known name used as a subdomain or as a login of another host.
+    expect(getHostName("https://vercel.app.example.com/")).toBeUndefined();
+    expect(getHostName("https://vercel.app@example.com/")).toBeUndefined();
     expect(getHostName(undefined)).toBeUndefined();
   });
 
@@ -132,6 +135,15 @@ describe("getAdjacentProjects", () => {
   it("wraps around at both ends", () => {
     expect(getAdjacentProjects("newest", list).previous).toBe(list[2]);
     expect(getAdjacentProjects("oldest", list).next).toBe(list[0]);
+  });
+
+  it("points to the project itself when it is the only one", () => {
+    const only = [list[0]];
+
+    expect(getAdjacentProjects("newest", only)).toEqual({
+      previous: list[0],
+      next: list[0],
+    });
   });
 
   it("returns nothing for an unknown slug", () => {

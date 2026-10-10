@@ -32,4 +32,27 @@ describe("useLocalStorage", () => {
 
     expect(result.current[0]).toBe("dark");
   });
+
+  // Some browsers block storage (for example with all cookies blocked) and
+  // throw when it is used. The value should still work for this visit.
+  it("falls back to the initial value when reading storage is blocked", () => {
+    vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
+      throw new DOMException("blocked", "SecurityError");
+    });
+
+    const { result } = renderHook(() => useLocalStorage("theme", "dark"));
+
+    expect(result.current[0]).toBe("dark");
+  });
+
+  it("still changes the value when saving is not possible", () => {
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
+      throw new DOMException("full", "QuotaExceededError");
+    });
+    const { result } = renderHook(() => useLocalStorage("theme", "dark"));
+
+    act(() => result.current[1]("light"));
+
+    expect(result.current[0]).toBe("light");
+  });
 });

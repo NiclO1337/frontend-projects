@@ -6,6 +6,9 @@ describe("toSlug", () => {
     ["Entity Framework", "entity-framework"],
     ["Next.js", "next-js"],
     ["  PostgreSQL  ", "postgresql"],
+    ["ASP.NET", "asp-net"],
+    ["Visual  Studio -- Code", "visual-studio-code"],
+    ["", ""],
   ])("turns %j into %j", (text, slug) => {
     expect(toSlug(text)).toBe(slug);
   });
