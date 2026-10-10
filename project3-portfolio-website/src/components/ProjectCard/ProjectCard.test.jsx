@@ -43,9 +43,26 @@ describe("ProjectCard", () => {
   it("shows the screenshot with its alt text", () => {
     renderCard();
 
-    expect(
-      screen.getByRole("img", { name: "Demo App on a phone" }),
-    ).toHaveAttribute("src", "/demo.webp");
+    // The image sits in a link that is hidden from screen readers (the title
+    // link is the real one), so getByRole("img") can't see it.
+    expect(screen.getByAltText("Demo App on a phone")).toHaveAttribute(
+      "src",
+      "/demo.webp",
+    );
+  });
+
+  it("makes the title and the screenshot links to the detail page", () => {
+    renderCard();
+
+    expect(screen.getByRole("link", { name: "Demo App" })).toHaveAttribute(
+      "href",
+      "/projects/demo-app",
+    );
+    // The screenshot link is for the mouse only: no Tab stop, no screen reader.
+    const imageLink = screen.getByAltText("Demo App on a phone").closest("a");
+    expect(imageLink).toHaveAttribute("href", "/projects/demo-app");
+    expect(imageLink).toHaveAttribute("tabindex", "-1");
+    expect(imageLink).toHaveAttribute("aria-hidden", "true");
   });
 
   it("lists every technology as a tag", () => {

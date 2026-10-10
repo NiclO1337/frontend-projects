@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import Button from "../Button/Button.jsx";
 import TechTag from "../TechTag/TechTag.jsx";
 import styles from "./ProjectCard.module.css";
@@ -29,10 +29,23 @@ export default function ProjectCard({ project }) {
   // the detail page as location state, so its "All projects" link can return
   // to the same filter.
   const { search } = useLocation();
+  // The image, the title and the "Details" button all go to the same place.
+  const detailsLink = {
+    to: `/projects/${slug}`,
+    state: { fromSearch: search },
+  };
 
   return (
     <article className={styles.card}>
-      <div className={styles.media}>
+      {/* The image link repeats the title link for mouse users with a bigger
+          click target. aria-hidden and tabIndex={-1} keep it away from screen
+          readers and the Tab key, so nobody meets the same link twice. */}
+      <Link
+        {...detailsLink}
+        className={styles.media}
+        aria-hidden="true"
+        tabIndex={-1}
+      >
         {/* width and height let the browser reserve the space before the image
             loads. loading="lazy" delays images that are far down the page. */}
         <img
@@ -43,13 +56,17 @@ export default function ProjectCard({ project }) {
           height="533"
           loading="lazy"
         />
-      </div>
+      </Link>
 
       <div className={styles.body}>
         <p className={styles.meta}>
           {year} · {type}
         </p>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>
+          <Link {...detailsLink} className={styles.titleLink}>
+            {title}
+          </Link>
+        </h2>
         <p>{summary}</p>
 
         <ul className={styles.tags}>
@@ -63,13 +80,6 @@ export default function ProjectCard({ project }) {
         {/* The visually hidden text makes every link's name unique, because
             a screen reader user may list all the links on the page. */}
         <div className={styles.links}>
-          <Button
-            to={`/projects/${slug}`}
-            state={{ fromSearch: search }}
-            size="small"
-          >
-            Details <span className="visually-hidden">of {title}</span>
-          </Button>
           {/* `liveUrl && ...` renders nothing when the project has no live
               demo (or no public repo), so those buttons are simply left out. */}
           {liveUrl && (
@@ -84,6 +94,9 @@ export default function ProjectCard({ project }) {
               <span aria-hidden="true">↗</span>
             </Button>
           )}
+          <Button {...detailsLink} size="small">
+            Details <span className="visually-hidden">of {title}</span>
+          </Button>
         </div>
       </div>
     </article>

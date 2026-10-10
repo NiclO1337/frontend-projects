@@ -21,15 +21,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card {
+  .card,
+  .titleLink {
     transition: none;
   }
 }
 
-/* A darker backdrop with some room around the device mockup. */
+/* A darker backdrop with some room around the device mockup. It is a link, so
+   border-radius: 0 undoes the rounded corners every <a> gets in global.css.
+   The card's own rounded, overflow-hidden edge clips the top corners. */
 .media {
+  display: block;
   padding: var(--space-3);
   background: var(--color-bg);
+  border-radius: 0;
 }
 
 .image {
@@ -55,6 +60,18 @@
 
 .title {
   font-size: var(--text-h3);
+}
+
+/* The title is a link, but it should look like a heading until hovered. */
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.titleLink:hover,
+.titleLink:focus-visible {
+  color: var(--color-accent);
 }
 
 .tags {
