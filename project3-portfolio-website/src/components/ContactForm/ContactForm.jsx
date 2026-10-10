@@ -85,6 +85,18 @@ export default function ContactForm() {
     }));
   }
 
+  // Pressing Enter in a one-line field normally sends the form. Name and
+  // email are filled in before the message, so an Enter there (for example
+  // after fixing a typo in the name) would send the message too soon. This
+  // cancels it. keydown from the fields bubbles up to the <form>, so one
+  // handler covers them all. The message is a <textarea>, where Enter adds a
+  // new line, and on the send button Enter still presses it.
+  function handleKeyDown(event) {
+    if (event.key === "Enter" && event.target instanceof HTMLInputElement) {
+      event.preventDefault();
+    }
+  }
+
   async function handleSubmit(event) {
     // Stop the browser from sending the form and reloading the page.
     event.preventDefault();
@@ -140,6 +152,7 @@ export default function ContactForm() {
       ref={formRef}
       className={styles.form}
       onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
       noValidate
     >
       <p>All fields are required.</p>
