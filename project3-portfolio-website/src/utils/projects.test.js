@@ -114,6 +114,11 @@ describe("getHostName", () => {
     expect(getHostName("https://notvercel.app/")).toBeUndefined();
     expect(getHostName(undefined)).toBeUndefined();
   });
+
+  it("returns undefined, instead of throwing, for text that is not a URL", () => {
+    expect(getHostName("https://")).toBeUndefined();
+    expect(getHostName("not a url")).toBeUndefined();
+  });
 });
 
 describe("getAdjacentProjects", () => {

@@ -44,11 +44,11 @@ Every file passes. Counts are the number of tests in each file.
 
 | File | What is tested | Tests | Result |
 |------|----------------|:-----:|--------|
-| `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name, previous/next with wrap-around | 19 | PASS |
+| `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name (also for text that is not a URL), previous/next with wrap-around | 20 | PASS |
 | `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails | 15 | PASS |
 | `utils/toSlug.test.js` | slugs for names like `Next.js`, `C#` and `C++` | 5 | PASS |
 | `utils/shuffle.test.js` | same items, original not changed, empty and single-item arrays | 3 | PASS |
-| `data/data.test.js` | unique ids and slugs, newest first, one featured project, alt text of 100 characters or less, https links, no email or phone | 11 | PASS |
+| `data/data.test.js` | unique ids and slugs, newest first, one featured project, alt text of 100 characters or less, https links that can be read as URLs, no email or phone | 12 | PASS |
 | `hooks/useLocalStorage.test.js` | initial value, read, write, invalid JSON fallback | 4 | PASS |
 | `hooks/useMediaQuery.test.js` | match, no match, updates, only its own query | 4 | PASS |
 | `hooks/useRouteFocus.test.jsx` | focus moves to the new `<h1>`, not on first load, not on search changes | 3 | PASS |
@@ -104,7 +104,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**44 test files, 241 tests: all PASS** (`npm run test:run`).
+**44 test files, 243 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -282,6 +282,7 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - Autofilled contact form fields got the browser's own background and text colour instead of the theme colours: browsers ignore `background` for autofill. Fixed by painting over it with a large inset `box-shadow` in `--color-surface-2`, setting `-webkit-text-fill-color`, and adding the neon focus glow back to the same `box-shadow` on `:focus-visible`.
 - Keyboard focus was lost in the mobile menu when the link of the current page was used: the menu closed, but nothing moved focus, so it fell back to the page. Now every click in the menu except on a toggle gives focus back to the menu button. On another page, focus moves on to that page's heading as before.
 - A crash while the project page rendered showed "404 – Lost in the void", because the route's `errorElement` catches every error. Now only the loader's 404 shows the not-found page, and any other error shows "Something went wrong".
+- A project link that is not a valid URL (a typo like `https://`) crashed the project page: `getHostName` used `new URL()`, which throws. It now returns nothing for text that is not a URL, and a data test fails if a project link cannot be read as a URL.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs

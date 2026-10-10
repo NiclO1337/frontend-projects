@@ -104,6 +104,17 @@ describe("data files", () => {
         }
       }
     });
+
+    it("has links that can be read as URLs", () => {
+      // The prefix check above accepts a typo like "https://". Such a link
+      // would be broken, and getHostName could not name its host.
+      for (const project of projects) {
+        for (const url of [project.liveUrl, project.repoUrl]) {
+          if (url)
+            expect(URL.canParse(url), `${project.slug}: ${url}`).toBe(true);
+        }
+      }
+    });
   });
 
   it("has external social links over https and no email or phone", () => {

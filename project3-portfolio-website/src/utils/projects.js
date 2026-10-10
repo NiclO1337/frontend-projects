@@ -54,10 +54,12 @@ const HOSTS = [
  * doesn't need a second field that could disagree with `liveUrl`.
  * @param {string} [liveUrl]
  * @returns {string | undefined} e.g. "Vercel", or undefined when there is no
- *   URL or the host isn't one of the known services
+ *   URL, it can't be read as a URL, or the host isn't one of the known services
  */
 export function getHostName(liveUrl) {
-  if (!liveUrl) return undefined;
+  // `new URL()` throws for text that isn't a URL. The host is only an extra
+  // line on the page, so a bad URL should leave it out, not crash the page.
+  if (!liveUrl || !URL.canParse(liveUrl)) return undefined;
   const { hostname } = new URL(liveUrl);
   return HOSTS.find(
     ({ domain }) => hostname === domain || hostname.endsWith(`.${domain}`),
