@@ -103,7 +103,7 @@ export const routes = [
         path: "projects/:slug",
         element: <ProjectDetailPage />,
         loader: projectLoader,
-        errorElement: <NotFoundPage />,    // renders inside RootLayout's <Outlet />
+        errorElement: <ProjectDetailError />, // 404 -> NotFoundPage inside RootLayout's <Outlet />, other errors -> ErrorPage
       },
       { path: "contact", element: <ContactPage /> },
       { path: "*", element: <NotFoundPage /> },

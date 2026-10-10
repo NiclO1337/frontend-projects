@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage/AboutPage.jsx";
 import ResumePage from "./pages/ResumePage/ResumePage.jsx";
 import ProjectsPage from "./pages/ProjectsPage/ProjectsPage.jsx";
 import ProjectDetailPage from "./pages/ProjectDetailPage/ProjectDetailPage.jsx";
+import ProjectDetailError from "./pages/ProjectDetailPage/ProjectDetailError.jsx";
 import { projectLoader } from "./pages/ProjectDetailPage/projectLoader.js";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
@@ -28,8 +29,9 @@ export const routes = [
         // Runs before the page renders. It throws a 404 for an unknown slug.
         loader: projectLoader,
         // Because this sits on the child route, the not-found page renders
-        // inside RootLayout's <Outlet />, so the sidebar stays.
-        errorElement: <NotFoundPage />,
+        // inside RootLayout's <Outlet />, so the sidebar stays. It shows the
+        // not-found page for the 404 only: other errors go on to ErrorPage.
+        errorElement: <ProjectDetailError />,
       },
       { path: "contact", element: <ContactPage /> },
       // "*" matches any URL no other route matched.

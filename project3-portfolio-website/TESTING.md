@@ -99,10 +99,12 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 2 | PASS |
 | | Shows an error inside the page, with the navigation still usable | | |
 | `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 5 | PASS |
+| `errors.test.jsx` | A crash on a page shows "Something went wrong", also on a project page (not a 404) | 4 | PASS |
+| | An unknown project still shows the 404 inside the layout, and "Back to home" leads out of the error page | | |
 
 ### Test results
 
-**43 test files, 236 tests: all PASS** (`npm run test:run`).
+**44 test files, 241 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -278,6 +280,8 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - Cursor trail looked harsh in light mode: it now has its own lighter `--color-cursor` colour.
 - Lag when moving fast over bento tiles and project cards with 4× CPU throttling: see the Performance section.
 - Autofilled contact form fields got the browser's own background and text colour instead of the theme colours: browsers ignore `background` for autofill. Fixed by painting over it with a large inset `box-shadow` in `--color-surface-2`, setting `-webkit-text-fill-color`, and adding the neon focus glow back to the same `box-shadow` on `:focus-visible`.
+- Keyboard focus was lost in the mobile menu when the link of the current page was used: the menu closed, but nothing moved focus, so it fell back to the page. Now every click in the menu except on a toggle gives focus back to the menu button. On another page, focus moves on to that page's heading as before.
+- A crash while the project page rendered showed "404 – Lost in the void", because the route's `errorElement` catches every error. Now only the loader's 404 shows the not-found page, and any other error shows "Something went wrong".
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs
