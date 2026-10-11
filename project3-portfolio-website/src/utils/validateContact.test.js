@@ -12,7 +12,20 @@ describe("validateField", () => {
 
   it("accepts normal values", () => {
     expect(validateField("name", "Ada Lovelace")).toBe("");
-    expect(validateField("message", "Hello!")).toBe("");
+    expect(validateField("message", "Hello! I would like to talk.")).toBe("");
+  });
+
+  it("asks for a message of at least 20 characters", () => {
+    expect(validateField("message", "a".repeat(19))).toMatch(
+      /at least 20 characters/,
+    );
+    expect(validateField("message", "a".repeat(20))).toBe("");
+  });
+
+  it("does not count the spaces around the message", () => {
+    expect(validateField("message", `   ${"a".repeat(19)}   `)).toMatch(
+      /at least 20 characters/,
+    );
   });
 
   it.each([
@@ -58,7 +71,11 @@ describe("validateAll", () => {
 
   it("returns only empty messages when everything is fine", () => {
     expect(
-      validateAll({ name: "Ada", email: "ada@example.com", message: "Hi" }),
+      validateAll({
+        name: "Ada",
+        email: "ada@example.com",
+        message: "Hello! I would like to talk.",
+      }),
     ).toEqual({ name: "", email: "", message: "" });
   });
 });

@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { profile } from "../../data/profile.js";
-import { validateAll, validateField } from "../../utils/validateContact.js";
+import {
+  MAX_LENGTH,
+  validateAll,
+  validateField,
+} from "../../utils/validateContact.js";
 import Button from "../Button/Button.jsx";
 import FormField from "../FormField/FormField.jsx";
 import styles from "./ContactForm.module.css";
@@ -163,6 +167,7 @@ export default function ContactForm() {
           label="Name"
           name="name"
           autoComplete="name"
+          maxLength={MAX_LENGTH.name}
           value={values.name}
           error={errors.name}
           onChange={handleChange}
@@ -173,6 +178,7 @@ export default function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
+          maxLength={MAX_LENGTH.email}
           value={values.email}
           error={errors.email}
           onChange={handleChange}
@@ -183,6 +189,7 @@ export default function ContactForm() {
         label="Message"
         name="message"
         multiline
+        maxLength={MAX_LENGTH.message}
         value={values.message}
         error={errors.message}
         onChange={handleChange}

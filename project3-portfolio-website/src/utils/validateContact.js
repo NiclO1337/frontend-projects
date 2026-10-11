@@ -5,6 +5,15 @@
 // stricter rule would reject real addresses. The real check is the delivery.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// The longest text each field accepts. The form puts these on the inputs as
+// maxLength, so the browser stops the visitor from typing more. 254 is the
+// longest an email address can be.
+export const MAX_LENGTH = { name: 100, email: 254, message: 2000 };
+
+// The shortest message that is accepted: enough for a real sentence, so
+// "hi" or "test" is not sent, but short enough for a real short question.
+export const MIN_MESSAGE_LENGTH = 20;
+
 const rules = {
   name: (value) => (value.trim() ? "" : "Please enter your name."),
   email: (value) => {
@@ -13,7 +22,13 @@ const rules = {
       ? ""
       : "Please enter a valid email address, like name@example.com.";
   },
-  message: (value) => (value.trim() ? "" : "Please write a message."),
+  message: (value) => {
+    const length = value.trim().length;
+    if (length === 0) return "Please write a message.";
+    return length >= MIN_MESSAGE_LENGTH
+      ? ""
+      : `Please write at least ${MIN_MESSAGE_LENGTH} characters.`;
+  },
 };
 
 /**

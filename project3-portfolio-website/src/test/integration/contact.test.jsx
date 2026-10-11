@@ -15,6 +15,9 @@ function stubFetch(body) {
   return fetchMock;
 }
 
+// Long enough to be accepted (the shortest message is 20 characters).
+const MESSAGE = "Hello! I would like to talk about a project.";
+
 // The form fields are looked up inside <main>, because the sidebar has links
 // with similar labels (for example "Email").
 async function openContactPageAndFillIn(user) {
@@ -28,7 +31,7 @@ async function openContactPageAndFillIn(user) {
   const form = within(screen.getByRole("main"));
   await user.type(form.getByLabelText("Name"), "Ada Lovelace");
   await user.type(form.getByLabelText("Email"), "ada@example.com");
-  await user.type(form.getByLabelText("Message"), "Hello!");
+  await user.type(form.getByLabelText("Message"), MESSAGE);
   await user.click(form.getByRole("button", { name: "Send message" }));
 }
 
@@ -59,7 +62,7 @@ describe("contact", () => {
       access_key: "test-key",
       name: "Ada Lovelace",
       email: "ada@example.com",
-      message: "Hello!",
+      message: MESSAGE,
     });
   });
 
@@ -102,7 +105,7 @@ describe("contact", () => {
     );
     expect(
       within(screen.getByRole("main")).getByLabelText("Message"),
-    ).toHaveValue("Hello!");
+    ).toHaveValue(MESSAGE);
     expect(
       screen.getByRole("navigation", { name: "Main" }),
     ).toBeInTheDocument();

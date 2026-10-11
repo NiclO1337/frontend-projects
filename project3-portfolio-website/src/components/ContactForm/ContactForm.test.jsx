@@ -14,6 +14,8 @@ function renderForm() {
 const getName = () => screen.getByLabelText("Name");
 const getEmail = () => screen.getByLabelText("Email");
 const getMessage = () => screen.getByLabelText("Message");
+// Long enough to be accepted (the shortest message is 20 characters).
+const MESSAGE = "Hello! I would like to talk about a project.";
 const clickSend = (user) =>
   user.click(screen.getByRole("button", { name: "Send message" }));
 
@@ -41,7 +43,7 @@ afterEach(() => {
 async function fillInAndSend(user) {
   await user.type(getName(), "Ada Lovelace");
   await user.type(getEmail(), "ada@example.com");
-  await user.type(getMessage(), "Hello!");
+  await user.type(getMessage(), MESSAGE);
   await clickSend(user);
 }
 
@@ -56,6 +58,45 @@ describe("ContactForm", () => {
     expect(
       screen.getByRole("button", { name: "Send message" }),
     ).toHaveAttribute("type", "submit");
+  });
+
+  it("stops the visitor from typing more than a field allows", async () => {
+    const user = userEvent.setup();
+    renderForm();
+
+    for (const [field, max] of [
+      [getName(), 100],
+      [getEmail(), 254],
+      [getMessage(), 2000],
+    ]) {
+      await user.click(field);
+      await user.paste("a".repeat(max + 50));
+      expect(field.value).toHaveLength(max);
+    }
+  });
+
+  it("asks for a longer message, and sends nothing until it is long enough", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch(accepted);
+    renderForm();
+    await user.type(getName(), "Ada Lovelace");
+    await user.type(getEmail(), "ada@example.com");
+    await user.type(getMessage(), "Hi there");
+
+    await clickSend(user);
+
+    expect(getMessage()).toHaveAccessibleDescription(/at least 20 characters/);
+    expect(getMessage()).toHaveFocus();
+    expect(fetchMock).not.toHaveBeenCalled();
+
+    // The message is checked again while typing, so the error goes away at 20.
+    await user.type(getMessage(), ", can we talk?");
+
+    expect(getMessage()).toHaveAttribute("aria-invalid", "false");
+    await clickSend(user);
+    expect(
+      await screen.findByRole("heading", { name: "Thank you!" }),
+    ).toBeInTheDocument();
   });
 
   it("has a honeypot field that real visitors cannot reach", () => {
@@ -162,7 +203,7 @@ describe("ContactForm", () => {
       access_key: "test-key",
       name: "Ada Lovelace",
       email: "ada@example.com",
-      message: "Hello!",
+      message: MESSAGE,
     });
   });
 
@@ -173,18 +214,18 @@ describe("ContactForm", () => {
 
     await user.type(getName(), "  Ada Lovelace  ");
     await user.type(getEmail(), "ada@example.com");
-    await user.type(getMessage(), "  Hello!  ");
+    await user.type(getMessage(), `  ${MESSAGE}  `);
     await clickSend(user);
     await screen.findByRole("alert");
 
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
       name: "Ada Lovelace",
       email: "ada@example.com",
-      message: "Hello!",
+      message: MESSAGE,
     });
     // The send failed, so the visitor sees their own text when they try again.
     expect(getName()).toHaveValue("  Ada Lovelace  ");
-    expect(getMessage()).toHaveValue("  Hello!  ");
+    expect(getMessage()).toHaveValue(`  ${MESSAGE}  `);
   });
 
   it("tells Web3Forms when the honeypot was ticked", async () => {
@@ -252,7 +293,7 @@ describe("ContactForm", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       /could not be sent/i,
     );
-    expect(getMessage()).toHaveValue("Hello!");
+    expect(getMessage()).toHaveValue(MESSAGE);
     // The button works again, so the visitor can try again.
     expect(
       screen.getByRole("button", { name: "Send message" }),
@@ -320,7 +361,7 @@ describe("ContactForm", () => {
       renderForm();
       await user.type(getName(), "Ada Lovelace");
       await user.type(getEmail(), "ada@example.com");
-      await user.type(getMessage(), "Hello!");
+      await user.type(getMessage(), MESSAGE);
 
       await user.type(getField(), "{Enter}");
 
@@ -330,7 +371,7 @@ describe("ContactForm", () => {
       ).not.toBeInTheDocument();
       // Nothing else happens either: no errors, and the text is still there.
       expect(getField()).toHaveAttribute("aria-invalid", "false");
-      expect(getMessage()).toHaveValue("Hello!");
+      expect(getMessage()).toHaveValue(MESSAGE);
     },
   );
 
@@ -353,7 +394,7 @@ describe("ContactForm", () => {
     renderForm();
     await user.type(getName(), "Ada Lovelace");
     await user.type(getEmail(), "ada@example.com");
-    await user.type(getMessage(), "Hello!");
+    await user.type(getMessage(), MESSAGE);
 
     // Tab from the message to the send button, as a keyboard user would.
     await user.tab();

@@ -226,6 +226,8 @@ tiles are the same `BentoTile`, so they have it too.
 ### Contact
 - `<h1>` Let's talk + one friendly sentence.
 - Form: name, email, message (all required), hidden honeypot `botcheck`.
+- Limits: name 100, email 254 and message 2000 characters (`maxLength` on the
+  inputs), and a message needs at least 20 characters (`validateContact.js`)
 - Validation on blur and submit, with messages under the fields
   (`aria-describedby`, `aria-invalid`).
 - States: `idle → sending → success | error`, kept as a single `status`
