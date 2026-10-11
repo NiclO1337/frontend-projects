@@ -101,10 +101,12 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 5 | PASS |
 | `errors.test.jsx` | A crash on a page shows "Something went wrong", also on a project page (not a 404) | 4 | PASS |
 | | An unknown project still shows the 404 inside the layout, and "Back to home" leads out of the error page | | |
+| `pageRules.test.jsx` | Every page (all 14, including every project) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 85 | PASS |
+| | Every image has alt text, every link, button and field has a name, every link to another site opens in a new tab with `rel="noopener"`, and no two pages share a title | | |
 
 ### Test results
 
-**44 test files, 274 tests: all PASS** (`npm run test:run`).
+**45 test files, 359 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
