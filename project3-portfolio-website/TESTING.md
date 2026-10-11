@@ -45,7 +45,7 @@ Every file passes. Counts are the number of tests in each file.
 | File | What is tested | Tests | Result |
 |------|----------------|:-----:|--------|
 | `utils/projects.test.js` | find by slug, featured project, tech list, filtering, host name (also for text that is not a URL or a lookalike host), previous/next with wrap-around, a single project | 21 | PASS |
-| `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails (also Swedish letters and spaces around), emoji and several lines | 21 | PASS |
+| `utils/validateContact.test.js` | required fields, only-spaces, valid and invalid emails (also Swedish letters and spaces around), emoji and several lines, message of at least 20 characters | 23 | PASS |
 | `utils/toSlug.test.js` | slugs for names like `Next.js`, `ASP.NET`, `C#` and `C++`, repeated symbols, empty text | 8 | PASS |
 | `utils/shuffle.test.js` | same items, original not changed, empty and single-item arrays | 3 | PASS |
 | `data/data.test.js` | unique ids and slugs, no repeated text where text is the React key, unique filter slugs, newest first, one featured project, alt text of 100 characters or less, https links that can be read as URLs, CV file exists, GitHub and LinkedIn ids, no email or phone | 16 | PASS |
@@ -62,7 +62,7 @@ Every file passes. Counts are the number of tests in each file.
 | `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
 | `ProjectFilter.test.jsx` | chips, `aria-pressed`, selected technology | 4 | PASS |
 | `Timeline.test.jsx` | order, `<time>` elements, organisation and bullets | 3 | PASS |
-| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, Enter does not send from name or email, sending state, success, error (also for an answer that is not JSON or not `success: true`), retry | 27 | PASS |
+| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, Enter does not send from name or email, sending state, success, error (also for an answer that is not JSON or not `success: true`), retry | 29 | PASS |
 | `FormField.test.jsx` | label connected to input, textarea, input type, error message | 5 | PASS |
 | `BentoTile.test.jsx` | title and heading level, spotlight | 4 | PASS |
 | `SkillGroup.test.jsx` | heading, list of skills, decorative icons hidden | 2 | PASS |
@@ -114,7 +114,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**47 test files, 375 tests: all PASS** (`npm run test:run`).
+**47 test files, 379 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -152,6 +152,8 @@ TODO: screenshot of `npm run test:run` output
 | Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | TODO |
 | Tab to "Send message", press Enter or Space | The message is sent | TODO |
 | Invalid email | Email error | TODO |
+| Message shorter than 20 characters | Error under the message field, nothing is sent | TODO |
+| Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters | TODO |
 | Valid submit (live site) | Success message, email received | PASS |
 | Offline submit | Error message with fallback | TODO |
 | Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | PASS |
@@ -300,7 +302,15 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - A project link that is not a valid URL (a typo like `https://`) crashed the project page: `getHostName` used `new URL()`, which throws. It now returns nothing for text that is not a URL, and a data test fails if a project link cannot be read as a URL.
 - Spaces around the name and message were sent as typed (`"  Ada  "`), although the validation ignores them. The copy that is sent is now trimmed, and the form keeps what the visitor typed.
 - The browser back button always scrolled to the top, so the project list lost its position after opening a card. Scrolling is now left to React Router's `<ScrollRestoration />`: a new page starts at the top, and back and forward restore the old position. The filter chips use `preventScrollReset`, so choosing a filter does not scroll.
+- The contact form had no length limits, so a very long text could be sent. The fields now stop at 100 (name), 254 (email) and 2000 (message) characters, and a message needs at least 20.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs
-- TODO
+
+Found during testing and left as they are on purpose. Each one is rare, harmless to the visitor, or would take more code than it is worth.
+
+- **A theme or effects value changed by hand in DevTools is not checked.** A saved theme of `"purple"` gives a page without theme colours. Only someone editing localStorage can do this, because the toggle only writes `"dark"` or `"light"`. Pressing the theme toggle fixes it.
+- **`/projects?tech=Python` with a capital letter shows "No projects use that technology".** The filter chips always write lower-case links, so only a hand-typed address can do this. The page offers a "Show all projects" button.
+- **Theme and effects choices are not synced between two open tabs.** A change in one tab shows in the other after a reload. It would need a `storage` event listener for a rare case.
+- **Unknown addresses show the 404 page with the HTTP status 200.** The site is a single page app, and Vercel serves the same `index.html` for every address. The page is correct for visitors. Only search engines see the difference.
+- **The contact form is emptied if the visitor leaves the page before sending.** The text lives in the form component only. Keeping it would mean saving unsent text, which brings its own privacy questions.
