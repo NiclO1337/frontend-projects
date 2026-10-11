@@ -1,4 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { useEffects } from "../../context/EffectsContext.js";
 import { EffectsProvider } from "../../context/EffectsProvider.jsx";
 import { mockMatchMedia } from "../../test/mockMatchMedia.js";
 import Reveal from "./Reveal.jsx";
@@ -36,6 +38,30 @@ describe("Reveal", () => {
     renderReveal();
 
     expect(screen.getByText("Hello")).toBeVisible();
+  });
+
+  it("shows content that is still hidden when the visitor turns the effects off", async () => {
+    const user = userEvent.setup();
+    mockMatchMedia({ [MOUSE]: true });
+    // The visitor can switch the effects off before scrolling down to it.
+    function EffectsOffButton() {
+      const { toggleEffects } = useEffects();
+      return <button onClick={toggleEffects}>Effects off</button>;
+    }
+    render(
+      <EffectsProvider>
+        <EffectsOffButton />
+        <Reveal>
+          <p>Hello</p>
+        </Reveal>
+      </EffectsProvider>,
+    );
+    expect(screen.getByText("Hello")).not.toBeVisible();
+
+    await user.click(screen.getByRole("button", { name: "Effects off" }));
+
+    // Motion fades it in over a moment, so wait for it.
+    await waitFor(() => expect(screen.getByText("Hello")).toBeVisible());
   });
 
   it("shows its content at once on a touch screen", () => {

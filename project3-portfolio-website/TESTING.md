@@ -69,9 +69,9 @@ Every file passes. Counts are the number of tests in each file.
 | `SocialLinks.test.jsx` | one link per profile, new tab with accessible name | 2 | PASS |
 | `TechMarquee.test.jsx` | skills data, repeated copy hidden from screen readers, same order | 3 | PASS |
 | `Footer.test.jsx` | landmark, credit line, current year | 1 | PASS |
-| `Reveal.test.jsx` | hidden until in view, shown at once without effects or on touch | 4 | PASS |
+| `Reveal.test.jsx` | hidden until in view, shown at once without effects or on touch, shown when effects are turned off while hidden | 5 | PASS |
 | `PageTransition.test.jsx` | fade in, off without effects, restarts on path change only | 3 | PASS |
-| `CursorTrail.test.jsx` | canvas hidden from screen readers, drawing, theme colour, stops when idle or hidden, resize | 9 | PASS |
+| `CursorTrail.test.jsx` | canvas hidden from screen readers, drawing, theme colour, stops when idle or hidden, one frame at a time, 60-point limit, new trail after the tab returns, no canvas support, resize | 13 | PASS |
 | `CustomCursor.test.jsx` | pointer hidden and restored, follows the mouse, ring grows over links | 5 | PASS |
 | `Spotlight.test.jsx` | follows the mouse, hides on leave, off without effects or on touch | 5 | PASS |
 | `RootLayout.test.jsx` | cursor effects on, off, and on a touch screen | 3 | PASS |
@@ -104,7 +104,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**44 test files, 269 tests: all PASS** (`npm run test:run`).
+**44 test files, 274 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 

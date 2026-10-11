@@ -98,6 +98,55 @@ describe("CursorTrail", () => {
     expect(vi.getTimerCount()).toBe(0);
   });
 
+  it("starts only one animation frame, however many times the mouse moves meanwhile", () => {
+    render(<CursorTrail />);
+
+    for (let i = 0; i < 10; i++) move(i, i);
+
+    expect(vi.getTimerCount()).toBe(1);
+  });
+
+  it("keeps only the 60 newest positions", () => {
+    render(<CursorTrail />);
+
+    for (let i = 0; i < 70; i++) move(i, i);
+    vi.advanceTimersByTime(16);
+
+    // 60 positions make 59 line segments, from the 11th position to the last.
+    expect(ctx.lineTo).toHaveBeenCalledTimes(59);
+    expect(ctx.moveTo).toHaveBeenNthCalledWith(1, 10, 10);
+    expect(ctx.lineTo).toHaveBeenLastCalledWith(69, 69);
+  });
+
+  it("draws a new trail after the tab was hidden and is visible again", () => {
+    render(<CursorTrail />);
+    move(10, 10);
+    const setHidden = (value) => {
+      Object.defineProperty(document, "hidden", { configurable: true, value });
+      fireEvent(document, new Event("visibilitychange"));
+    };
+    setHidden(true);
+    setHidden(false);
+
+    move(100, 100);
+    move(120, 120);
+    vi.advanceTimersByTime(16);
+
+    // The new trail starts where the mouse is now, not at the old position.
+    expect(ctx.moveTo).toHaveBeenCalledWith(100, 100);
+    expect(ctx.lineTo).toHaveBeenCalledWith(120, 120);
+    expect(ctx.moveTo).not.toHaveBeenCalledWith(10, 10);
+  });
+
+  it("does nothing, and does not crash, when the browser has no canvas to draw on", () => {
+    HTMLCanvasElement.prototype.getContext.mockReturnValue(null);
+
+    expect(() => render(<CursorTrail />)).not.toThrow();
+    move(10, 10);
+
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
   it("uses one canvas pixel per CSS pixel, even on a sharp screen", () => {
     vi.stubGlobal("devicePixelRatio", 3);
 
