@@ -63,6 +63,33 @@ describe("contact", () => {
     });
   });
 
+  it("can be sent again after an error, and then thanks the visitor", async () => {
+    const user = userEvent.setup();
+    const fetchMock = stubFetch({ success: false });
+    renderWithRouter(["/"]);
+    await openContactPageAndFillIn(user);
+    await screen.findByRole("alert");
+
+    // The service works again (the visitor's connection is back, for example).
+    fetchMock.mockImplementation(() =>
+      Promise.resolve({ json: () => Promise.resolve({ success: true }) }),
+    );
+    await user.click(
+      within(screen.getByRole("main")).getByRole("button", {
+        name: "Send message",
+      }),
+    );
+
+    const thanks = await screen.findByRole("heading", { name: "Thank you!" });
+    expect(thanks).toHaveFocus();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    // The same text was sent both times.
+    expect(fetchMock.mock.calls[1][1].body).toBe(
+      fetchMock.mock.calls[0][1].body,
+    );
+  });
+
   it("shows an error inside the page, with the navigation still usable", async () => {
     const user = userEvent.setup();
     stubFetch({ success: false });

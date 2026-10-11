@@ -93,20 +93,25 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | `navigation.test.jsx` | Every nav link opens its page, marks itself active and moves focus to the `<h1>` | 20 | PASS |
 | | Deep links open the right page and nav link directly | | |
 | | Unknown URLs and unknown projects show the 404 page inside the layout, with working links | | |
-| `projectsFlow.test.jsx` | Filter, open a card and go back to the same filter | 5 | PASS |
+| `projectsFlow.test.jsx` | Filter, open a card and go back to the same filter | 7 | PASS |
 | | Previous/next with wrap-around, filter kept while moving between projects | | |
 | | Browser back button undoes the filter and the opened card | | |
-| `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 2 | PASS |
+| | Opening a card or pressing "Next project" scrolls to the top and moves focus to the new `<h1>` | | |
+| `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 3 | PASS |
 | | Shows an error inside the page, with the navigation still usable | | |
-| `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 5 | PASS |
+| | After an error the same message can be sent again, and then the visitor is thanked | | |
+| `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 8 | PASS |
+| | Effects stop and return when reduced motion or the mouse changes while the site is open, and the visitor's own choice is remembered | | |
 | `errors.test.jsx` | A crash on a page shows "Something went wrong", also on a project page (not a 404) | 4 | PASS |
 | | An unknown project still shows the 404 inside the layout, and "Back to home" leads out of the error page | | |
+| `themeScript.test.jsx` | The script in `index.html` applies a saved light or dark theme, ignores missing, broken or unknown values, survives blocked storage | 7 | PASS |
+| | It reads what the app saves when the visitor changes the theme (same key and format) | | |
 | `pageRules.test.jsx` | Every page (all 14, including every project) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 85 | PASS |
 | | Every image has alt text, every link, button and field has a name, every link to another site opens in a new tab with `rel="noopener"`, and no two pages share a title | | |
 
 ### Test results
 
-**45 test files, 359 tests: all PASS** (`npm run test:run`).
+**46 test files, 372 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -203,7 +208,7 @@ TODO: screenshot of a Performance recording
 
 - HTML: [W3C Markup Validator](https://validator.w3.org/) on the built pages – TODO
 - CSS: [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) – TODO (CSS Modules output in `dist/`)
-- ESLint: `npm run lint` with no errors – TODO
+- ESLint: `npm run lint` with no errors – PASS
 
 
 ## Lighthouse

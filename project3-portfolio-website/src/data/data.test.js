@@ -163,10 +163,10 @@ describe("data files", () => {
   it("points the CV link at a file that exists", () => {
     // The file is in public/, so the path starts at the site root. A wrong
     // name would only show up as a dead "Download CV" button on the live site.
-    // (Vitest runs from the project folder.)
-    expect(existsSync(join(process.cwd(), "public", profile.cvPath))).toBe(
-      true,
-    );
+    // The path is worked out from this file location: src/data/ -> public/.
+    const cvFile = join(import.meta.dirname, "../../public", profile.cvPath);
+
+    expect(existsSync(cvFile)).toBe(true);
   });
 
   it("has the GitHub and LinkedIn profiles that other parts of the site look up by id", () => {

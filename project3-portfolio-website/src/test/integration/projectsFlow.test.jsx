@@ -61,6 +61,37 @@ describe("projects flow", () => {
     expectPythonListShown();
   });
 
+  it("opens a card at the top of the page, with focus on the project's heading", async () => {
+    const user = userEvent.setup();
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    renderWithRouter(["/projects"]);
+
+    await openCard(user, firstPythonProject);
+
+    const heading = await screen.findByRole("heading", {
+      level: 1,
+      name: firstPythonProject.title,
+    });
+    expect(heading).toHaveFocus();
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
+  it("does the same for 'Next project': the new heading gets focus", async () => {
+    const user = userEvent.setup();
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    renderWithRouter([`/projects/${projects[0].slug}`]);
+    await screen.findByRole("heading", { level: 1, name: projects[0].title });
+
+    await user.click(screen.getByRole("link", { name: /next project/i }));
+
+    const heading = await screen.findByRole("heading", {
+      level: 1,
+      name: projects[1].title,
+    });
+    expect(heading).toHaveFocus();
+    expect(scrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
   it("returns to the full list when the detail page was opened directly", async () => {
     const user = userEvent.setup();
     const { router } = renderWithRouter([

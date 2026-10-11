@@ -1,4 +1,4 @@
-import { screen, within } from "@testing-library/react";
+import { act, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockMatchMedia } from "../mockMatchMedia.js";
 import { renderWithRouter } from "../renderWithRouter.jsx";
@@ -7,6 +7,7 @@ import { renderWithRouter } from "../renderWithRouter.jsx";
 // visitor moves between pages, and when the page is loaded again later.
 
 const MOUSE = "(hover: hover) and (pointer: fine)";
+const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 
 const getThemeToggle = () => screen.getByRole("button", { name: "Dark mode" });
 const getEffectsToggle = () => screen.getByRole("button", { name: "Effects" });
@@ -98,6 +99,54 @@ describe("effects toggle", () => {
 
     expect(getEffectsToggle()).toHaveAttribute("aria-pressed", "false");
     expect(container.querySelector("canvas")).not.toBeInTheDocument();
+  });
+
+  // The visitor can change these in their system settings while the site is
+  // open, so the effects must follow without a reload.
+  it("stops when the visitor turns on reduced motion, and comes back when it is turned off", async () => {
+    const media = mockMatchMedia({ [MOUSE]: true });
+    const { container } = renderWithRouter(["/"]);
+    await screen.findByRole("heading", { level: 1 });
+    expect(container.querySelector("canvas")).toBeInTheDocument();
+
+    act(() => media.set(REDUCED_MOTION, true));
+
+    expect(container.querySelector("canvas")).not.toBeInTheDocument();
+    // The toggle would change nothing now, so it is hidden too.
+    expect(
+      screen.queryByRole("button", { name: "Effects" }),
+    ).not.toBeInTheDocument();
+
+    act(() => media.set(REDUCED_MOTION, false));
+
+    expect(container.querySelector("canvas")).toBeInTheDocument();
+    expect(getEffectsToggle()).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("remembers that the visitor turned the effects off, through a reduced motion change", async () => {
+    const user = userEvent.setup();
+    const media = mockMatchMedia({ [MOUSE]: true });
+    const { container } = renderWithRouter(["/"]);
+    await user.click(getEffectsToggle());
+
+    act(() => media.set(REDUCED_MOTION, true));
+    act(() => media.set(REDUCED_MOTION, false));
+
+    expect(getEffectsToggle()).toHaveAttribute("aria-pressed", "false");
+    expect(container.querySelector("canvas")).not.toBeInTheDocument();
+  });
+
+  it("stops when the mouse goes away, for example when a tablet is detached from its mouse", async () => {
+    const media = mockMatchMedia({ [MOUSE]: true });
+    const { container } = renderWithRouter(["/"]);
+    await screen.findByRole("heading", { level: 1 });
+
+    act(() => media.set(MOUSE, false));
+
+    expect(container.querySelector("canvas")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Effects" }),
+    ).not.toBeInTheDocument();
   });
 
   it("is not offered on a touch screen", async () => {
