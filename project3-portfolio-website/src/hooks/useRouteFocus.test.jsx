@@ -2,13 +2,9 @@ import { act, screen } from "@testing-library/react";
 import { renderWithRouter } from "../test/renderWithRouter.jsx";
 
 // The hook is used by RootLayout, so test it through the real routes.
+// (Scrolling is not its job. See scrolling.test.jsx.)
 describe("useRouteFocus", () => {
-  beforeEach(() => {
-    // Watch the calls. The stub from setup.js does the (empty) scrolling.
-    vi.spyOn(window, "scrollTo");
-  });
-
-  it("moves focus to the new page's <h1> and scrolls to the top", async () => {
+  it("moves focus to the new page's <h1>", async () => {
     const { router } = renderWithRouter(["/"]);
 
     await act(() => router.navigate("/about"));
@@ -16,14 +12,12 @@ describe("useRouteFocus", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: /about/i }),
     ).toHaveFocus();
-    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
   });
 
   it("does not take focus on the first load", () => {
     renderWithRouter(["/about"]);
 
     expect(document.body).toHaveFocus();
-    expect(window.scrollTo).not.toHaveBeenCalled();
   });
 
   it("does nothing when only the search params change", async () => {
@@ -32,6 +26,5 @@ describe("useRouteFocus", () => {
     await act(() => router.navigate("/projects?tech=react"));
 
     expect(document.body).toHaveFocus();
-    expect(window.scrollTo).not.toHaveBeenCalled();
   });
 });

@@ -100,6 +100,9 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 3 | PASS |
 | | Shows an error inside the page, with the navigation still usable | | |
 | | After an error the same message can be sent again, and then the visitor is thanked | | |
+| `scrolling.test.jsx` | A new page starts at the top | 3 | PASS |
+| | The browser back button puts the page back where it was (the list keeps its scroll position) | | |
+| | Choosing a project filter does not jump to the top | | |
 | `toggles.test.jsx` | Theme and effects choices stay on every page and after reopening | 8 | PASS |
 | | Effects stop and return when reduced motion or the mouse changes while the site is open, and the visitor's own choice is remembered | | |
 | `errors.test.jsx` | A crash on a page shows "Something went wrong", also on a project page (not a 404) | 4 | PASS |
@@ -111,7 +114,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**46 test files, 372 tests: all PASS** (`npm run test:run`).
+**47 test files, 375 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -126,6 +129,8 @@ TODO: screenshot of `npm run test:run` output
 | Mobile menu | Open, click link, Escape | Menu works and closes | TODO |
 | Skip link | Tab on load, Enter | Focus jumps to main content | TODO |
 | Refresh on sub-page | Refresh `/projects` on live site | Page loads (no Vercel 404) | TODO |
+| Back button keeps scroll position | Scroll down on Projects, open a card, press the browser Back button | The list is at the same position as before | TODO |
+| New page starts at the top | Scroll down, click a nav link or a card | The new page starts at the top, with the heading focused | TODO |
 | Project links | Click Live and GitHub on every project | Correct site opens in a new tab | TODO |
 | Download CV | Click the button on Home and Resume | PDF downloads | TODO |
 | Social links | Click GitHub and LinkedIn | Correct profiles open | TODO |
@@ -134,7 +139,7 @@ TODO: screenshot of `npm run test:run` output
 
 | Action | Expected result | Result |
 |--------|-----------------|--------|
-| Click a tech chip | Only matching projects, count updates | TODO |
+| Click a tech chip | Only matching projects, count updates. The page does not jump to the top | TODO |
 | Click "All" | All projects shown, `?tech` removed from URL | TODO |
 | Browser back after filtering | Previous filter restored | TODO |
 | Open `/projects?tech=react` directly | React filter active | TODO |
@@ -294,6 +299,7 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - A crash while the project page rendered showed "404 – Lost in the void", because the route's `errorElement` catches every error. Now only the loader's 404 shows the not-found page, and any other error shows "Something went wrong".
 - A project link that is not a valid URL (a typo like `https://`) crashed the project page: `getHostName` used `new URL()`, which throws. It now returns nothing for text that is not a URL, and a data test fails if a project link cannot be read as a URL.
 - Spaces around the name and message were sent as typed (`"  Ada  "`), although the validation ignores them. The copy that is sent is now trimmed, and the form keeps what the visitor typed.
+- The browser back button always scrolled to the top, so the project list lost its position after opening a card. Scrolling is now left to React Router's `<ScrollRestoration />`: a new page starts at the top, and back and forward restore the old position. The filter chips use `preventScrollReset`, so choosing a filter does not scroll.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs

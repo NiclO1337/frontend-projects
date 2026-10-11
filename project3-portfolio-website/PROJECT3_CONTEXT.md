@@ -119,9 +119,12 @@ export const routes = [
 - `ErrorPage` is a small standalone page ("Something went wrong" + link
   home) for unexpected errors anywhere in the app.
 - `NavLink` gives `aria-current="page"` and an active class automatically.
-- **On route change:** scroll to top, and move focus to the page `<h1>`
-  (`tabIndex={-1}`) so screen readers announce the new page. Keep this
-  in one small `useRouteFocus` hook in `RootLayout`.
+- **On route change:** move focus to the page `<h1>` (`tabIndex={-1}`) so
+  screen readers announce the new page. Keep this in one small
+  `useRouteFocus` hook in `RootLayout`. Scrolling is left to React Router's
+  `<ScrollRestoration />` (also in `RootLayout`): a new page starts at the top,
+  and the browser back and forward buttons restore the old scroll position.
+  Choosing a project filter uses `preventScrollReset`, so the page stays put.
 
 See `readme-assets/sitemap.svg`.
 

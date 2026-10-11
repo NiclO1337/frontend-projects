@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, ScrollRestoration } from "react-router";
 import Footer from "../../components/Footer/Footer.jsx";
 import MobileHeader from "../../components/MobileHeader/MobileHeader.jsx";
 import PageTransition from "../../components/PageTransition/PageTransition.jsx";
@@ -29,6 +29,10 @@ export default function RootLayout() {
         </main>
         <Footer />
       </div>
+      {/* Scrolls to the top on a new page, and brings back the old position
+          for the browser's back and forward buttons. Renders no visible
+          content. Only one of these may be on the page. */}
+      <ScrollRestoration />
       {/* Not rendered at all when the effects are off, so nothing runs. */}
       {effectsOn && (
         <>

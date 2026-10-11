@@ -20,8 +20,10 @@ export default function ProjectsPage() {
   const visibleProjects = filterProjectsByTech(projects, tech);
 
   // An empty object clears the search params, which removes "?tech=...".
+  // preventScrollReset: a new location normally scrolls the page to the top.
+  // Choosing a filter stays on the same page, so the page should stay put.
   function selectTech(slug) {
-    setSearchParams(slug ? { tech: slug } : {});
+    setSearchParams(slug ? { tech: slug } : {}, { preventScrollReset: true });
   }
 
   return (
