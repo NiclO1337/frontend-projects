@@ -15,6 +15,23 @@ const emptyValues = { name: "", email: "", message: "" };
 const linkedIn = profile.social.find((link) => link.id === "linkedin");
 
 /**
+ * What a screen reader should be told as the message gets close to its limit.
+ * The field just stops accepting text there, which a visitor who can't see
+ * the counter would not notice. The text is the same for every length inside
+ * a band, on purpose: a live region is read out whenever its text changes, so
+ * a number that counted down would be read on every key press.
+ * @param {number} length how many characters the message has
+ * @returns {string} the notice, or "" while there is plenty of room
+ */
+function getLimitNotice(length) {
+  const left = MAX_LENGTH.message - length;
+  if (left <= 0) return "Character limit reached.";
+  if (left <= 100) return "About 100 characters left.";
+  if (left <= 200) return "About 200 characters left.";
+  return "";
+}
+
+/**
  * Sends the message to Web3Forms, which forwards it to the owner's inbox.
  * @param {{ name: string, email: string, message: string }} values
  * @param {boolean} isBot true if the hidden honeypot field was ticked
@@ -185,16 +202,31 @@ export default function ContactForm() {
           onBlur={handleBlur}
         />
       </div>
-      <FormField
-        label="Message"
-        name="message"
-        multiline
-        maxLength={MAX_LENGTH.message}
-        value={values.message}
-        error={errors.message}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <div>
+        <FormField
+          label="Message"
+          name="message"
+          multiline
+          maxLength={MAX_LENGTH.message}
+          value={values.message}
+          error={errors.message}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {/* Shows how close the visitor is to the limit, because the field
+            just stops accepting text there. It is plain text and not a live
+            region, so a screen reader doesn't announce every key press. */}
+        <p className={styles.counter}>
+          {values.message.length} / {MAX_LENGTH.message} characters
+        </p>
+        {/* The announcement for screen readers: hidden on screen, read out
+            politely (after the current speech) when its text changes. It is
+            always on the page, even when empty, because a screen reader only
+            announces changes to a live region it already knows about. */}
+        <p role="status" className="visually-hidden">
+          {getLimitNotice(values.message.length)}
+        </p>
+      </div>
 
       {/* Honeypot: a trap for spam bots. People never see or reach it
           (display: none, no Tab stop), but bots fill in every field they find.

@@ -75,6 +75,76 @@ describe("ContactForm", () => {
     }
   });
 
+  it("counts the characters of the message while the visitor types", async () => {
+    const user = userEvent.setup();
+    renderForm();
+    expect(screen.getByText("0 / 2000 characters")).toBeInTheDocument();
+
+    await user.type(getMessage(), "Hello");
+
+    const counter = screen.getByText("5 / 2000 characters");
+    // Plain text: a live region would make a screen reader announce every key press.
+    expect(counter.closest("[aria-live]")).toBeNull();
+  });
+
+  it("shows that the limit is reached when the message is full", async () => {
+    const user = userEvent.setup();
+    renderForm();
+
+    await user.click(getMessage());
+    await user.paste("a".repeat(2500));
+
+    expect(screen.getByText("2000 / 2000 characters")).toBeInTheDocument();
+  });
+
+  // The screen reader announcement: a live region (role "status") that is on
+  // the page from the start, and only gets text when the limit comes close.
+  describe("limit announcement for screen readers", () => {
+    const getAnnouncement = () => screen.getByRole("status");
+
+    it("is on the page but says nothing while there is plenty of room", async () => {
+      const user = userEvent.setup();
+      renderForm();
+      expect(getAnnouncement()).toBeEmptyDOMElement();
+
+      await user.type(getMessage(), "Hello");
+
+      expect(getAnnouncement()).toBeEmptyDOMElement();
+    });
+
+    it.each([
+      [1799, ""],
+      [1800, "About 200 characters left."],
+      [1899, "About 200 characters left."],
+      [1900, "About 100 characters left."],
+      [1999, "About 100 characters left."],
+      [2000, "Character limit reached."],
+    ])("with %i characters it says %j", async (length, notice) => {
+      const user = userEvent.setup();
+      renderForm();
+
+      await user.click(getMessage());
+      await user.paste("a".repeat(length));
+
+      expect(getAnnouncement()).toHaveTextContent(notice);
+    });
+
+    // A live region is read out whenever its text changes. The same text
+    // again is silent, so typing inside a band must not change it.
+    it("keeps the same text while the visitor types inside a band", async () => {
+      const user = userEvent.setup();
+      renderForm();
+      await user.click(getMessage());
+      await user.paste("a".repeat(1850));
+      const before = getAnnouncement().textContent;
+
+      await user.type(getMessage(), "bcd");
+
+      expect(getAnnouncement().textContent).toBe(before);
+      expect(before).not.toBe("");
+    });
+  });
+
   it("asks for a longer message, and sends nothing until it is long enough", async () => {
     const user = userEvent.setup();
     const fetchMock = stubFetch(accepted);

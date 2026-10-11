@@ -62,7 +62,7 @@ Every file passes. Counts are the number of tests in each file.
 | `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
 | `ProjectFilter.test.jsx` | chips, `aria-pressed`, selected technology | 4 | PASS |
 | `Timeline.test.jsx` | order, `<time>` elements, organisation and bullets | 3 | PASS |
-| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, Enter does not send from name or email, sending state, success, error (also for an answer that is not JSON or not `success: true`), retry | 29 | PASS |
+| `ContactForm.test.jsx` | validation, honeypot, spaces trimmed before sending, length limits, a character counter, the screen reader notice near the limit, Enter does not send from name or email, sending state, success, error (also for an answer that is not JSON or not `success: true`), retry | 39 | PASS |
 | `FormField.test.jsx` | label connected to input, textarea, input type, error message | 5 | PASS |
 | `BentoTile.test.jsx` | title and heading level, spotlight | 4 | PASS |
 | `SkillGroup.test.jsx` | heading, list of skills, decorative icons hidden | 2 | PASS |
@@ -114,7 +114,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**47 test files, 379 tests: all PASS** (`npm run test:run`).
+**47 test files, 389 tests: all PASS** (`npm run test:run`).
 
 TODO: screenshot of `npm run test:run` output
 
@@ -153,7 +153,8 @@ TODO: screenshot of `npm run test:run` output
 | Tab to "Send message", press Enter or Space | The message is sent | TODO |
 | Invalid email | Email error | TODO |
 | Message shorter than 20 characters | Error under the message field, nothing is sent | TODO |
-| Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters | TODO |
+| Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | TODO |
+| Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters. The counter under the message shows "2000 / 2000 characters" | TODO |
 | Valid submit (live site) | Success message, email received | PASS |
 | Offline submit | Error message with fallback | TODO |
 | Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | PASS |

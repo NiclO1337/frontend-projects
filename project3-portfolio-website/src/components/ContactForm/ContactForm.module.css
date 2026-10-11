@@ -18,6 +18,16 @@
   gap: var(--space-4);
 }
 
+/* Under the right edge of the message box. Tabular figures keep every digit
+   the same width, so the text doesn't shift while the visitor types. */
+.counter {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-label);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
 .sendError {
   color: var(--color-error);
 }
