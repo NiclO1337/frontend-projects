@@ -125,32 +125,32 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 | Feature | Action | Expected result | Result |
 |---------|--------|-----------------|--------|
-| Sidebar nav | Click each link (desktop) | Correct page, active indicator | TODO |
-| Mobile menu | Open, click link, Escape | Menu works and closes | TODO |
-| Skip link | Tab on load, Enter | Focus jumps to main content | TODO |
-| Refresh on sub-page | Refresh `/projects` on live site | Page loads (no Vercel 404) | TODO |
-| Back button keeps scroll position | Scroll down on Projects, open a card, press the browser Back button | The list is at the same position as before | TODO |
-| New page starts at the top | Scroll down, click a nav link or a card | The new page starts at the top, with the heading focused | TODO |
-| Project links | Click Live and GitHub on every project | Correct site opens in a new tab | TODO |
-| Download CV | Click the button on Home and Resume | PDF downloads | TODO |
-| Social links | Click GitHub and LinkedIn | Correct profiles open | TODO |
+| Sidebar nav | Click each link (desktop) | Correct page, active indicator | PASS |
+| Mobile menu | Open, click link, Escape | Menu works and closes | PASS |
+| Skip link | Tab on load, Enter | Focus jumps to main content | PASS |
+| Refresh on sub-page | Refresh `/projects` on live site | Page loads (no Vercel 404) | PASS |
+| Back button keeps scroll position | Scroll down on Projects, open a card, press the browser Back button | The list is at the same position as before | PASS |
+| New page starts at the top | Scroll down, click a nav link or a card | The new page starts at the top, with the heading focused | PASS |
+| Project links | Click Live and GitHub on every project | Correct site opens in a new tab | PASS |
+| Download CV | Click the button on Home and Resume | PDF downloads | PASS |
+| Social links | Click GitHub and LinkedIn | Correct profiles open | PASS |
 
 ### Projects filter
 
 | Action | Expected result | Result |
 |--------|-----------------|--------|
-| Click a tech chip | Only matching projects, count updates. The page does not jump to the top | TODO |
-| Click "All" | All projects shown, `?tech` removed from URL | TODO |
-| Browser back after filtering | Previous filter restored | TODO |
-| Open `/projects?tech=react` directly | React filter active | TODO |
+| Click a tech chip | Only matching projects, count updates. The page does not jump to the top | PASS |
+| Click "All" | All projects shown, `?tech` removed from URL | PASS |
+| Browser back after filtering | Previous filter restored | PASS |
+| Open `/projects?tech=react` directly | React filter active | PASS |
 
 ### Contact form
 
 | Action | Expected result | Result |
 |--------|-----------------|--------|
-| Submit empty | Errors on all fields | TODO |
-| Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | TODO |
-| Tab to "Send message", press Enter or Space | The message is sent | TODO |
+| Submit empty | Errors on all fields | PASS |
+| Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | PASS |
+| Tab to "Send message", press Enter or Space | The message is sent | PASS |
 | Invalid email | Email error | TODO |
 | Message shorter than 20 characters | Error under the message field, nothing is sent | TODO |
 | Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | TODO |
