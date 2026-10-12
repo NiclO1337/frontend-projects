@@ -167,10 +167,10 @@ TODO update image
 
 | Action | Expected result | Result |
 |--------|-----------------|--------|
-| Toggle theme, reload | Theme remembered, no flash of wrong theme | TODO |
-| Toggle effects off | Trail, custom cursor and animations stop | TODO |
-| OS reduced motion on | Effects off automatically | TODO |
-| Touch device | No trail or custom cursor | TODO |
+| Toggle theme, reload | Theme remembered, no flash of wrong theme | PASS |
+| Toggle effects off | Trail, custom cursor and animations stop | PASS |
+| OS reduced motion on | Effects off automatically | PASS |
+| Touch device | No trail or custom cursor | PASS |
 
 
 ## Responsiveness
@@ -189,10 +189,10 @@ TODO update image
 
 | Browser | Result |
 |---------|--------|
-| Brave | TODO |
-| Chrome | TODO |
-| Firefox | TODO |
-| Edge | TODO |
+| Brave | PASS |
+| Chrome | PASS |
+| Firefox | PASS |
+| Edge | PASS |
 
 
 ## Performance
@@ -319,4 +319,5 @@ Found during testing and left as they are on purpose. Each one is rare, harmless
 - **`/projects?tech=Python` with a capital letter shows "No projects use that technology".** The filter chips always write lower-case links, so only a hand-typed address can do this. The page offers a "Show all projects" button.
 - **Theme and effects choices are not synced between two open tabs.** A change in one tab shows in the other after a reload. It would need a `storage` event listener for a rare case.
 - **Unknown addresses show the 404 page with the HTTP status 200.** The site is a single page app, and Vercel serves the same `index.html` for every address. The page is correct for visitors. Only search engines see the difference.
+- **The cursor trail is shorter in some browsers than in others.** The trail keeps at most 60 positions (`MAX_POINTS`) that each live 600 ms (`LIFETIME`), and whichever limit is reached first decides the length. Browsers send a different number of `pointermove` events per second (about 970 in Brave against about 430 in Chrome in a test with the same mouse), so a browser with many events reaches the 60-position limit before 600 ms and shows a shorter trail. Tried and **reverted:** saving a position only every 16 ms (`MIN_POINT_GAP`), so every browser gets the same length. The trail was then equally long everywhere, but the positions were further apart, and a line is drawn straight between them. Fast circles got sharp, jagged corners. Raising `MAX_POINTS` instead would make the trail longer in Brave, but it would also mean more canvas strokes per frame, and the trail is already the biggest cost in the performance recordings. The trail is smooth and works in every browser, only its length differs, so it was left as it is.
 - **The contact form is emptied if the visitor leaves the page before sending.** The text lives in the form component only. Keeping it would mean saving unsent text, which brings its own privacy questions.

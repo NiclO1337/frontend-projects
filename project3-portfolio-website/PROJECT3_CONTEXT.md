@@ -448,6 +448,15 @@ in an Incognito window). The dev server is slower and not a fair test.
   single cost (about 29%), and the spotlight handler only about 4%.
 - Tried and **reverted:** drawing the trail in 8 batched fade levels (about 5×
   fewer canvas calls). It was not smoother and the trail got sharp, jagged edges.
+- Tried and **reverted:** saving a trail position only every 16 ms
+  (`MIN_POINT_GAP`). Browsers send very different numbers of `pointermove`
+  events (about 970 per second in Brave, about 430 in Chrome), and with many
+  events the 60-position limit cuts the trail shorter than its 600 ms
+  lifetime. The gap gave every browser the same length, but the positions
+  were further apart and the straight lines between them made fast circles
+  jagged. Raising `MAX_POINTS` instead would cost more canvas strokes per
+  frame. The trail length is left to differ between browsers (see
+  `TESTING.md`, Unfixed bugs).
 - Not fixed on purpose: React still dispatches every pointer event through its
   root listeners (about 20% in the recording). It can't be switched off.
 - Rules of thumb that came out of it: no `will-change` or fades on elements
