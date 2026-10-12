@@ -155,12 +155,12 @@ TODO update image
 | Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | PASS |
 | Tab to "Send message", press Enter or Space | The message is sent | PASS |
 | Invalid email | Email error | TODO |
-| Message shorter than 20 characters | Error under the message field, nothing is sent | TODO |
-| Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | TODO |
-| Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters. The counter under the message shows "2000 / 2000 characters" | TODO |
+| Message shorter than 20 characters | Error under the message field, nothing is sent | PASS |
+| Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | PASS |
+| Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters. The counter under the message shows "2000 / 2000 characters" | PASS |
 | Valid submit (live site) | Success message, email received | PASS |
-| After the thank-you message, press "Contact" in the menu again | A new, empty form is shown, as if the page was opened for the first time (bug found earlier, see Bugs) | TODO |
-| Offline submit | Error message with fallback | TODO |
+| After the thank-you message, press "Contact" in the menu again | A new, empty form is shown, as if the page was opened for the first time (bug found earlier, see Bugs) | PASS |
+| Offline submit | Error message with fallback | PASS |
 | Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | PASS |
 
 ### Theme and effects
