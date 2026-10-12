@@ -116,9 +116,6 @@ The tests in `src/test/integration/` render the real routes with a memory router
 ### Test results
 
 **47 test files, 390 tests: all PASS** (`npm run test:run`).
-
-TODO update image
-
 ![Vitest result](./readme-assets/vitest-result.png)
 
 
@@ -215,11 +212,41 @@ What changed because of the testing:
 
 ![Performance result](./readme-assets/performance-result.png)
 
+
 ## Validator testing
 
-- HTML: [W3C Markup Validator](https://validator.w3.org/) on the built pages – TODO
-- CSS: [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) – TODO (CSS Modules output in `dist/`)
-- ESLint: `npm run lint` with no errors – PASS
+### HTML
+
+[W3C Markup Validator](https://validator.w3.org/) – Result for all 7 pages - PASSED
+<br>![Passed without errors](./readme-assets/w3c-html-result.png)
+
+### CSS
+[W3C Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/) – Result for the bundled CSS of the live site – 3 messages, all false positives
+<br>![W3C CSS validator showing 3 errors for container-type and cqi units](./readme-assets/w3c-css-result.png)
+
+All 3 messages come from the Home page intro tile (`HomePage.module.css`): `container-type: inline-size` and two `font-size` values with the `cqi` unit. These are CSS container queries, which every current browser supports, but the validator doesn't know them yet. I kept the CSS as it is, because it lets the intro text size itself from its tile and not from the screen.
+
+**Known validator limitation (not fixed on purpose):** the validator reports 3 messages for the Home page intro tile in `HomePage.module.css`. CSS Modules are bundled into one file, so they also show up when validating other pages, such as the 404 page.
+
+| Selector | Message | Why it is not a real error |
+|----------|---------|----------------------------|
+| `.intro` | Property `container-type` doesn't exist: `inline-size` | Part of CSS container queries. Supported in all current browsers (Baseline 2023), but unknown to the validator |
+| `.jobTitle` | Value Error: `font-size` Parse Error `4.6cqi)` | `cqi` is a container query unit (1% of the container's inline size) that the validator doesn't recognise |
+| `.summary` | Value Error: `font-size` Parse Error `6.5cqi)` | Same as above |
+
+### JavaScript
+[ESLint](https://eslint.org/) (`npm run lint`) – all `.js` and `.jsx` files in the project – PASSED with no errors or warnings.
+
+The rules in `eslint.config.js` are:
+- ESLint's recommended rules (unused variables, undefined variables, unreachable code and so on)
+- the Rules of Hooks (`eslint-plugin-react-hooks`), which catch hooks called in the wrong place or with missing dependencies
+- `eslint-plugin-react-refresh`, which keeps components hot-reloadable in Vite
+- `eslint-config-prettier`, which turns off rules that clash with Prettier's formatting
+- four extra rules of my own: `eqeqeq` (always `===`), `no-console` (no leftover `console.log`), `prefer-const` and `no-var`
+
+ESLint only prints problems, so a clean run shows no "pass" message. The screenshot shows `npm run lint` finishing with no output after the command line.
+
+![Terminal after npm run lint: no errors or warnings listed, command finished cleanly](./readme-assets/lint-result.png)
 
 
 ## Lighthouse
@@ -326,6 +353,7 @@ Every page was tested with Tab, Shift+Tab, Enter, Space and Esc only.
 
 All text pairs were calculated when planning (all pass WCAG AA). WAVE then confirmed it with 0 contrast errors on every page.
 
+
 ## Bugs
 
 ### Fixed bugs
@@ -343,7 +371,6 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - The contact form had no length limits, so a very long text could be sent. The fields now stop at 100 (name), 254 (email) and 2000 (message) characters, and a message needs at least 20.
 - After sending the contact form, pressing "Contact" in the menu again kept showing "Thank you!" instead of a new form. A link to the page you are already on does not remount anything, because it is the same route, so the form kept its `status` of `"success"`. The form now gets `location.key` as its `key`. That is new on every navigation, even to the same page, so React starts a fresh, empty form. Only the form is keyed, not the whole page, so the project filter (`?tech=`) still does not restart its page. A new integration test covers it.
 - **Lighthouse SEO score was 92: "robots.txt is not valid"** (Home): the site had no `robots.txt`, and the SPA rewrite in `vercel.json` sends every unknown address to `index.html`. Lighthouse asked for `/robots.txt`, got the HTML page back and tried to read it as rules. Fixed by adding `public/robots.txt` (`User-agent: *`, `Allow: /`). Vercel serves real files before it applies rewrites, so the file is returned as plain text. SEO is now 100.
-- TODO: add bugs found in later steps
 
 ### Unfixed bugs
 
