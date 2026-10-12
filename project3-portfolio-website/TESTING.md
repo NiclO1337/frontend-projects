@@ -224,35 +224,41 @@ What changed because of the testing:
 
 ## Lighthouse
 
-TODO add screenshot
-
 ![Lighthouse results](./readme-assets/lighthouse-result-home.png)
-
-TODO fill in the scores (run on the live site, in an Incognito window)
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 |------|:-----------:|:-------------:|:--------------:|:---:|
 | **Home page** | | | | |
-| Desktop | 100 | 100 | 100 | 92 |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop (initial) | 100 | 100 | 100 | 92 |
+| Desktop (after optimization) | 100 | 100 | 100 | 100 |
+| Mobile | 97 | 100 | 100 | 100 |
 | **About page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 98 | 100 | 100 | 100 |
 | **Resume page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 98 | 100 | 100 | 100 |
 | **Projects page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 96 | 100 | 100 | 100 |
 | **Project detail page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 96 | 100 | 100 | 100 |
 | **Contact page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 99 | 100 | 100 | 100 |
 | **404 page** | | | | |
-| Desktop | TODO | TODO | TODO | TODO |
-| Mobile | TODO | TODO | TODO | TODO |
+| Desktop | 100 | 100 | 100 | 100 |
+| Mobile | 98 | 100 | 100 | 100 |
+
+**Mobile performance (96–99)**
+
+The small deductions were looked at and left as they are. They come from how a React single page app works, not from mistakes in the code, and the fixes would add more complexity than they are worth.
+
+- **Late discovery of the first image:** the browser cannot see the images until the JavaScript has run and React has drawn the page. Fixing it would need server rendering.
+- **Unused JavaScript (about 98 KiB):** the site is one bundle. Splitting it per route would save little.
+- **Image size:** the images are already WebP (23–76 KB each) and 900 px wide, close to the 720 px a phone needs. A separate phone size would save little.
+- **Forced reflow (34 ms, unscored):** it comes from the Motion library measuring element sizes, not from our code.
 
 
 ## Accessibility
@@ -336,6 +342,7 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - The browser back button always scrolled to the top, so the project list lost its position after opening a card. Scrolling is now left to React Router's `<ScrollRestoration />`: a new page starts at the top, and back and forward restore the old position. The filter chips use `preventScrollReset`, so choosing a filter does not scroll.
 - The contact form had no length limits, so a very long text could be sent. The fields now stop at 100 (name), 254 (email) and 2000 (message) characters, and a message needs at least 20.
 - After sending the contact form, pressing "Contact" in the menu again kept showing "Thank you!" instead of a new form. A link to the page you are already on does not remount anything, because it is the same route, so the form kept its `status` of `"success"`. The form now gets `location.key` as its `key`. That is new on every navigation, even to the same page, so React starts a fresh, empty form. Only the form is keyed, not the whole page, so the project filter (`?tech=`) still does not restart its page. A new integration test covers it.
+- **Lighthouse SEO score was 92: "robots.txt is not valid"** (Home): the site had no `robots.txt`, and the SPA rewrite in `vercel.json` sends every unknown address to `index.html`. Lighthouse asked for `/robots.txt`, got the HTML page back and tried to read it as rules. Fixed by adding `public/robots.txt` (`User-agent: *`, `Allow: /`). Vercel serves real files before it applies rewrites, so the file is returned as plain text. SEO is now 100.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs
