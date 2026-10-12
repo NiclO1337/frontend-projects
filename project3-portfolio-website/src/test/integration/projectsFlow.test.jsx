@@ -34,7 +34,7 @@ const expectPythonListShown = () => {
 
 describe("projects flow", () => {
   it("filters, opens a card, and returns to the same filter", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter(["/projects"]);
 
     await user.click(screen.getByRole("button", { name: "Python" }));
@@ -62,7 +62,7 @@ describe("projects flow", () => {
   });
 
   it("opens a card at the top of the page, with focus on the project's heading", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const scrollTo = vi.spyOn(window, "scrollTo");
     renderWithRouter(["/projects"]);
 
@@ -77,7 +77,7 @@ describe("projects flow", () => {
   });
 
   it("does the same for 'Next project': the new heading gets focus", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const scrollTo = vi.spyOn(window, "scrollTo");
     renderWithRouter([`/projects/${projects[0].slug}`]);
     await screen.findByRole("heading", { level: 1, name: projects[0].title });
@@ -93,7 +93,7 @@ describe("projects flow", () => {
   });
 
   it("returns to the full list when the detail page was opened directly", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter([
       `/projects/${firstPythonProject.slug}`,
     ]);
@@ -113,7 +113,7 @@ describe("projects flow", () => {
   });
 
   it("keeps the filter for the back link while moving between projects", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter(["/projects?tech=python"]);
     await openCard(user, firstPythonProject);
     await screen.findByRole("heading", {
@@ -135,7 +135,7 @@ describe("projects flow", () => {
   });
 
   it("wraps around: 'Previous project' on the first project opens the last", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter([`/projects/${projects[0].slug}`]);
     await screen.findByRole("heading", { level: 1, name: projects[0].title });
 
@@ -150,7 +150,7 @@ describe("projects flow", () => {
   });
 
   it("the browser's back button undoes the filter and the opened card", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter(["/projects"]);
     await user.click(screen.getByRole("button", { name: "Python" }));
     await openCard(user, firstPythonProject);

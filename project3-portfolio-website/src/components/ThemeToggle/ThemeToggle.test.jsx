@@ -22,7 +22,7 @@ describe("ThemeToggle", () => {
   });
 
   it("switches to the light theme and back", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderToggle();
 
     await user.click(getToggle());
@@ -37,7 +37,7 @@ describe("ThemeToggle", () => {
   });
 
   it("saves the choice in localStorage", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderToggle();
 
     await user.click(getToggle());

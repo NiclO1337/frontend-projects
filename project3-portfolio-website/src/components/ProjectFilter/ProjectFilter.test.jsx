@@ -56,7 +56,7 @@ describe("ProjectFilter", () => {
   });
 
   it("reports the slug of a clicked technology, and null for All", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { onChange } = renderFilter({ selected: "python" });
 
     await user.click(screen.getByRole("button", { name: "Next.js" }));

@@ -17,7 +17,7 @@ describe("navigation", () => {
   ])(
     "the %s link opens its page, marks itself active and moves focus to the <h1>",
     async (linkName, headingName) => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       renderWithRouter(["/"]);
 
       await user.click(within(mainNav()).getByRole("link", { name: linkName }));
@@ -34,7 +34,7 @@ describe("navigation", () => {
   );
 
   it("only the link of the current page is active", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/about"]);
 
     await user.click(within(mainNav()).getByRole("link", { name: "Resume" }));
@@ -48,7 +48,7 @@ describe("navigation", () => {
   });
 
   it("the name in the sidebar leads back home", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/contact"]);
 
     // The name is also in the mobile header, so there are two. Both go home.
@@ -61,7 +61,7 @@ describe("navigation", () => {
   });
 
   it("keeps the same layout around every page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/"]);
 
     await user.click(within(mainNav()).getByRole("link", { name: "Projects" }));
@@ -96,7 +96,7 @@ describe("404", () => {
   });
 
   it("the 'See my projects' link opens the projects page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/no-such-page"]);
     await screen.findByRole("heading", { level: 1, name: /404/ });
 
@@ -108,7 +108,7 @@ describe("404", () => {
   });
 
   it("the 'Back to home' link opens the home page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/no-such-page"]);
     await screen.findByRole("heading", { level: 1, name: /404/ });
 

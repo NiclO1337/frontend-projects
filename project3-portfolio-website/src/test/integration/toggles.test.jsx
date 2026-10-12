@@ -38,7 +38,7 @@ afterEach(() => {
 
 describe("theme toggle", () => {
   it("keeps the chosen theme on every page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/"]);
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
 
@@ -53,7 +53,7 @@ describe("theme toggle", () => {
   });
 
   it("is still the chosen theme when the site is opened again", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { unmount } = renderWithRouter(["/"]);
     await user.click(getThemeToggle());
     unmount();
@@ -69,7 +69,7 @@ describe("theme toggle", () => {
 
 describe("effects toggle", () => {
   it("turns the cursor effects off on every page, and on again", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     mockMatchMedia({ [MOUSE]: true });
     const { container } = renderWithRouter(["/"]);
     await screen.findByRole("heading", { level: 1 });
@@ -88,7 +88,7 @@ describe("effects toggle", () => {
   });
 
   it("is still off when the site is opened again", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     mockMatchMedia({ [MOUSE]: true });
     const { unmount } = renderWithRouter(["/"]);
     await user.click(getEffectsToggle());
@@ -124,7 +124,7 @@ describe("effects toggle", () => {
   });
 
   it("remembers that the visitor turned the effects off, through a reduced motion change", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const media = mockMatchMedia({ [MOUSE]: true });
     const { container } = renderWithRouter(["/"]);
     await user.click(getEffectsToggle());

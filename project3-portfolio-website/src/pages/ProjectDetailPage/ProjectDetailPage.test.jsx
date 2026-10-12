@@ -96,7 +96,7 @@ describe("ProjectDetailPage", () => {
   });
 
   it("goes back to the same filter the visitor came from", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/projects?tech=python"]);
 
     await user.click(
@@ -111,7 +111,7 @@ describe("ProjectDetailPage", () => {
   });
 
   it("links to the previous and next project, and follows them", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = await renderProjectPage();
     const { previous, next } = getAdjacentProjects(project.slug);
     const pager = within(

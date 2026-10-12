@@ -31,7 +31,7 @@ describe("EffectsToggle", () => {
   });
 
   it("turns the effects off and on, and saves the choice", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     mockMatchMedia({ [MOUSE]: true });
     renderToggle();
 

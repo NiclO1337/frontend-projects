@@ -61,7 +61,7 @@ describe("ContactForm", () => {
   });
 
   it("stops the visitor from typing more than a field allows", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     for (const [field, max] of [
@@ -76,7 +76,7 @@ describe("ContactForm", () => {
   });
 
   it("counts the characters of the message while the visitor types", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
     expect(screen.getByText("0 / 2000 characters")).toBeInTheDocument();
 
@@ -88,7 +88,7 @@ describe("ContactForm", () => {
   });
 
   it("shows that the limit is reached when the message is full", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await user.click(getMessage());
@@ -103,7 +103,7 @@ describe("ContactForm", () => {
     const getAnnouncement = () => screen.getByRole("status");
 
     it("is on the page but says nothing while there is plenty of room", async () => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       renderForm();
       expect(getAnnouncement()).toBeEmptyDOMElement();
 
@@ -120,7 +120,7 @@ describe("ContactForm", () => {
       [1999, "About 100 characters left."],
       [2000, "Character limit reached."],
     ])("with %i characters it says %j", async (length, notice) => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       renderForm();
 
       await user.click(getMessage());
@@ -132,7 +132,7 @@ describe("ContactForm", () => {
     // A live region is read out whenever its text changes. The same text
     // again is silent, so typing inside a band must not change it.
     it("keeps the same text while the visitor types inside a band", async () => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       renderForm();
       await user.click(getMessage());
       await user.paste("a".repeat(1850));
@@ -146,7 +146,7 @@ describe("ContactForm", () => {
   });
 
   it("asks for a longer message, and sends nothing until it is long enough", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
     await user.type(getName(), "Ada Lovelace");
@@ -180,7 +180,7 @@ describe("ContactForm", () => {
   });
 
   it("shows an error under every empty field on submit, and focuses the first", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await clickSend(user);
@@ -197,7 +197,7 @@ describe("ContactForm", () => {
   });
 
   it("focuses the first field with a problem, not just the first field", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await user.type(getName(), "Ada");
@@ -208,7 +208,7 @@ describe("ContactForm", () => {
   });
 
   it("checks a field when the visitor leaves it", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await user.click(getEmail());
@@ -225,7 +225,7 @@ describe("ContactForm", () => {
   });
 
   it("explains an email that is not valid", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await user.type(getEmail(), "not-an-email");
@@ -235,7 +235,7 @@ describe("ContactForm", () => {
   });
 
   it("removes the error as soon as the problem is fixed", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
     await user.type(getEmail(), "not-an-email");
     await user.tab();
@@ -248,7 +248,7 @@ describe("ContactForm", () => {
   });
 
   it("does not send anything while a field has a problem", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
 
@@ -259,7 +259,7 @@ describe("ContactForm", () => {
   });
 
   it("sends the message to Web3Forms as JSON, with the access key", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
 
@@ -278,7 +278,7 @@ describe("ContactForm", () => {
   });
 
   it("sends the text without spaces around it, but keeps what was typed in the form", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(answer({ success: false }));
     renderForm();
 
@@ -299,7 +299,7 @@ describe("ContactForm", () => {
   });
 
   it("tells Web3Forms when the honeypot was ticked", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
 
@@ -311,7 +311,7 @@ describe("ContactForm", () => {
   });
 
   it("does not mention the honeypot for a normal visitor", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
 
@@ -323,7 +323,7 @@ describe("ContactForm", () => {
   });
 
   it("shows that it is sending, and ignores a second click meanwhile", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     // A promise that never finishes: the message stays "on its way".
     const fetchMock = stubFetch(() => new Promise(() => {}));
     renderForm();
@@ -340,7 +340,7 @@ describe("ContactForm", () => {
   });
 
   it("replaces the form with a thank-you message, and moves focus to it", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderForm();
 
     await fillInAndSend(user);
@@ -354,7 +354,7 @@ describe("ContactForm", () => {
   });
 
   it("shows an error and keeps the text when Web3Forms says no", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch(answer({ success: false, message: "Invalid access key" }));
     renderForm();
 
@@ -371,7 +371,7 @@ describe("ContactForm", () => {
   });
 
   it("shows the same error when the network fails", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch(() => Promise.reject(new TypeError("Failed to fetch")));
     renderForm();
 
@@ -383,7 +383,7 @@ describe("ContactForm", () => {
   });
 
   it("shows the same error when the answer is not JSON, like an error page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch(() =>
       Promise.resolve({
         json: () => Promise.reject(new SyntaxError("Unexpected token <")),
@@ -404,7 +404,7 @@ describe("ContactForm", () => {
     ["says success as text", { success: "true" }],
     ["has no content", null],
   ])("shows the error when the answer %s", async (_label, body) => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch(answer(body));
     renderForm();
 
@@ -426,7 +426,7 @@ describe("ContactForm", () => {
   ])(
     "does not send the form when Enter is pressed in the %s field",
     async (_label, getField) => {
-      const user = userEvent.setup();
+      const user = userEvent.setup({ delay: null });
       const fetchMock = stubFetch(accepted);
       renderForm();
       await user.type(getName(), "Ada Lovelace");
@@ -446,7 +446,7 @@ describe("ContactForm", () => {
   );
 
   it("adds a new line when Enter is pressed in the message, and does not send", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
     await user.type(getName(), "Ada Lovelace");
@@ -459,7 +459,7 @@ describe("ContactForm", () => {
   });
 
   it("still sends the form when Enter is pressed on the send button", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(accepted);
     renderForm();
     await user.type(getName(), "Ada Lovelace");
@@ -478,7 +478,7 @@ describe("ContactForm", () => {
   });
 
   it("hides the old error while the message is sent again", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(answer({ success: false }));
     renderForm();
     await fillInAndSend(user);
@@ -495,7 +495,7 @@ describe("ContactForm", () => {
   });
 
   it("offers LinkedIn as another way to get in touch, and no email address", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch(answer({ success: false }));
     renderForm();
 
@@ -510,7 +510,7 @@ describe("ContactForm", () => {
   });
 
   it("can be sent again after an error", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch(answer({ success: false }));
     renderForm();
     await fillInAndSend(user);

@@ -46,7 +46,7 @@ afterEach(() => {
 
 describe("contact", () => {
   it("sends the message and thanks the visitor", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch({ success: true });
     renderWithRouter(["/"]);
 
@@ -67,7 +67,7 @@ describe("contact", () => {
   });
 
   it("can be sent again after an error, and then thanks the visitor", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const fetchMock = stubFetch({ success: false });
     renderWithRouter(["/"]);
     await openContactPageAndFillIn(user);
@@ -94,7 +94,7 @@ describe("contact", () => {
   });
 
   it("shows an error inside the page, with the navigation still usable", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     stubFetch({ success: false });
     renderWithRouter(["/"]);
 

@@ -40,7 +40,7 @@ describe("ProjectsPage", () => {
   });
 
   it("filters by technology, and keeps the choice in the URL", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter(["/projects"]);
 
     await user.click(screen.getByRole("button", { name: "Python" }));
@@ -73,7 +73,7 @@ describe("ProjectsPage", () => {
   });
 
   it("shows every project again with the All chip, and clears the URL", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderWithRouter(["/projects?tech=python"]);
 
     await user.click(screen.getByRole("button", { name: "All" }));
@@ -83,7 +83,7 @@ describe("ProjectsPage", () => {
   });
 
   it("explains when no project uses the technology, and offers to show all", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/projects?tech=cobol"]);
 
     expect(

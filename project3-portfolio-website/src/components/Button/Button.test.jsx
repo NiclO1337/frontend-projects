@@ -12,7 +12,7 @@ function renderButton(button) {
 
 describe("Button", () => {
   it("renders a <button> that does not submit forms by default", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const onClick = vi.fn();
     renderButton(<Button onClick={onClick}>Save</Button>);
 

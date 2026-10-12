@@ -52,7 +52,7 @@ describe("the theme script in index.html", () => {
   });
 
   it("reads what the app saves when the visitor changes the theme", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { unmount } = renderWithRouter(["/"]);
     await user.click(screen.getByRole("button", { name: "Dark mode" }));
     // Closing the tab: the page is gone, only localStorage is left.

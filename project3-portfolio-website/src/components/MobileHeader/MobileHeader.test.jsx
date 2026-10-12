@@ -41,7 +41,7 @@ describe("MobileHeader", () => {
   });
 
   it("opens the menu with the button and moves focus to the first link", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -54,7 +54,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes with the button", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -65,7 +65,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes on Escape and gives focus back to the button", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -76,7 +76,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes when a menu link is clicked", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -86,7 +86,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes when the link of the current page is clicked", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader("/about");
 
     await user.click(getMenuButton());
@@ -96,7 +96,7 @@ describe("MobileHeader", () => {
   });
 
   it("gives focus back to the button when the link of the current page is used", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader("/about");
 
     // Opening the menu focuses the first link, which is "About". Enter on it
@@ -109,7 +109,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes when the route changes without a click, like browser back", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     const { router } = renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -119,7 +119,7 @@ describe("MobileHeader", () => {
   });
 
   it("closes when the empty space around the links is clicked", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());
@@ -130,7 +130,7 @@ describe("MobileHeader", () => {
   });
 
   it("stays open when the theme toggle in the menu is clicked", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderMobileHeader();
 
     await user.click(getMenuButton());

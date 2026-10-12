@@ -27,7 +27,7 @@ afterEach(() => {
 
 describe("scrolling", () => {
   it("starts a new page at the top", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/"]);
     scrolledTo = 400;
 
@@ -50,7 +50,7 @@ describe("scrolling", () => {
   });
 
   it("does not jump to the top when a filter is chosen", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/projects"]);
     scrolledTo = 300;
     scrollTo.mockClear();

@@ -73,7 +73,7 @@ describe("unexpected errors", () => {
   });
 
   it("'Back to home' leads out of the error page", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     vi.mocked(getFeaturedProject).mockImplementation(crash);
     renderWithRouter(["/"]);
     await screen.findByRole("heading", { name: "Something went wrong" });

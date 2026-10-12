@@ -41,7 +41,7 @@ describe("Reveal", () => {
   });
 
   it("shows content that is still hidden when the visitor turns the effects off", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     mockMatchMedia({ [MOUSE]: true });
     // The visitor can switch the effects off before scrolling down to it.
     function EffectsOffButton() {

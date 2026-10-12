@@ -4,7 +4,7 @@ import { renderWithRouter } from "../../test/renderWithRouter.jsx";
 
 describe("SkipLink", () => {
   it("is the first thing Tab reaches and points to the main content", async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ delay: null });
     renderWithRouter(["/"]);
 
     await user.tab();
