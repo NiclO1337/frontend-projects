@@ -97,9 +97,10 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | | Previous/next with wrap-around, filter kept while moving between projects | | |
 | | Browser back button undoes the filter and the opened card | | |
 | | Opening a card or pressing "Next project" scrolls to the top and moves focus to the new `<h1>` | | |
-| `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 3 | PASS |
+| `contact.test.jsx` | Sends the message (mocked `fetch`) and thanks the visitor | 4 | PASS |
 | | Shows an error inside the page, with the navigation still usable | | |
 | | After an error the same message can be sent again, and then the visitor is thanked | | |
+| | Pressing "Contact" again after sending shows a new, empty form | | |
 | `scrolling.test.jsx` | A new page starts at the top | 3 | PASS |
 | | The browser back button puts the page back where it was (the list keeps its scroll position) | | |
 | | Choosing a project filter does not jump to the top | | |
@@ -114,7 +115,9 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 ### Test results
 
-**47 test files, 389 tests: all PASS** (`npm run test:run`).
+**47 test files, 390 tests: all PASS** (`npm run test:run`).
+
+TODO update image
 
 ![Vitest result](./readme-assets/vitest-result.png)
 
@@ -156,6 +159,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | TODO |
 | Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters. The counter under the message shows "2000 / 2000 characters" | TODO |
 | Valid submit (live site) | Success message, email received | PASS |
+| After the thank-you message, press "Contact" in the menu again | A new, empty form is shown, as if the page was opened for the first time (bug found earlier, see Bugs) | TODO |
 | Offline submit | Error message with fallback | TODO |
 | Vercel → Settings → Environment Variables | `VITE_WEB3FORMS_KEY` exists for Production. Redeploy after adding or changing it: Vite puts the value into the build, and without it every message fails with "could not be sent" | PASS |
 
@@ -304,6 +308,7 @@ All text pairs were calculated when planning (all pass WCAG AA). WAVE then confi
 - Spaces around the name and message were sent as typed (`"  Ada  "`), although the validation ignores them. The copy that is sent is now trimmed, and the form keeps what the visitor typed.
 - The browser back button always scrolled to the top, so the project list lost its position after opening a card. Scrolling is now left to React Router's `<ScrollRestoration />`: a new page starts at the top, and back and forward restore the old position. The filter chips use `preventScrollReset`, so choosing a filter does not scroll.
 - The contact form had no length limits, so a very long text could be sent. The fields now stop at 100 (name), 254 (email) and 2000 (message) characters, and a message needs at least 20.
+- After sending the contact form, pressing "Contact" in the menu again kept showing "Thank you!" instead of a new form. A link to the page you are already on does not remount anything, because it is the same route, so the form kept its `status` of `"success"`. The form now gets `location.key` as its `key`. That is new on every navigation, even to the same page, so React starts a fresh, empty form. Only the form is keyed, not the whole page, so the project filter (`?tech=`) still does not restart its page. A new integration test covers it.
 - TODO: add bugs found in later steps
 
 ### Unfixed bugs

@@ -93,6 +93,28 @@ describe("contact", () => {
     );
   });
 
+  it("shows a new, empty form when Contact is pressed again after sending", async () => {
+    const user = userEvent.setup({ delay: null });
+    stubFetch({ success: true });
+    renderWithRouter(["/"]);
+    await openContactPageAndFillIn(user);
+    await screen.findByRole("heading", { name: "Thank you!" });
+
+    await user.click(
+      within(screen.getByRole("navigation", { name: "Main" })).getByRole(
+        "link",
+        { name: "Contact" },
+      ),
+    );
+
+    const main = within(screen.getByRole("main"));
+    expect(
+      screen.queryByRole("heading", { name: "Thank you!" }),
+    ).not.toBeInTheDocument();
+    expect(main.getByLabelText("Name")).toHaveValue("");
+    expect(main.getByLabelText("Message")).toHaveValue("");
+  });
+
   it("shows an error inside the page, with the navigation still usable", async () => {
     const user = userEvent.setup({ delay: null });
     stubFetch({ success: false });
