@@ -154,7 +154,7 @@ TODO update image
 | Submit empty | Errors on all fields | PASS |
 | Fill in everything, then press Enter in Name or Email | Nothing is sent. Enter in Message adds a new line | PASS |
 | Tab to "Send message", press Enter or Space | The message is sent | PASS |
-| Invalid email | Email error | TODO |
+| Invalid email | Email error | PASS |
 | Message shorter than 20 characters | Error under the message field, nothing is sent | PASS |
 | Screen reader (NVDA): type past 1800 characters in the message | "About 200 characters left" is read out once, not on every key. Again at 1900 ("About 100 characters left") and at 2000 ("Character limit reached") | PASS |
 | Paste a very long text into each field | Typing stops at 100 (name), 254 (email) and 2000 (message) characters. The counter under the message shows "2000 / 2000 characters" | PASS |
@@ -213,8 +213,7 @@ What changed because of the testing:
 - The spotlight was removed from the project cards. Removing their glow transition instead changed little, so the glow stayed.
 - Drawing the trail in batched fade levels was tried and reverted: it was not smoother and looked jagged.
 
-TODO: screenshot of a Performance recording
-
+![Performance result](./readme-assets/performance-result.png)
 
 ## Validator testing
 
@@ -225,7 +224,35 @@ TODO: screenshot of a Performance recording
 
 ## Lighthouse
 
-TODO: mobile and desktop scores + screenshots
+TODO add screenshot
+
+![Lighthouse results](./readme-assets/lighthouse-result-home.png)
+
+TODO fill in the scores (run on the live site, in an Incognito window)
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|------|:-----------:|:-------------:|:--------------:|:---:|
+| **Home page** | | | | |
+| Desktop | 100 | 100 | 100 | 92 |
+| Mobile | TODO | TODO | TODO | TODO |
+| **About page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
+| **Resume page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
+| **Projects page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
+| **Project detail page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
+| **Contact page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
+| **404 page** | | | | |
+| Desktop | TODO | TODO | TODO | TODO |
+| Mobile | TODO | TODO | TODO | TODO |
 
 
 ## Accessibility
