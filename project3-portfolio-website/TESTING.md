@@ -116,7 +116,7 @@ The tests in `src/test/integration/` render the real routes with a memory router
 
 **47 test files, 389 tests: all PASS** (`npm run test:run`).
 
-TODO: screenshot of `npm run test:run` output
+![Vitest result](./readme-assets/vitest-result.png)
 
 
 ## Manual testing
