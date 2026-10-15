@@ -1,5 +1,6 @@
 import bananaPalaceImg from "../assets/projects/banana-palace.webp";
 import bunIntendedImg from "../assets/projects/bun-intended.webp";
+import developerPortfolioImg from "../assets/projects/developer-portfolio.webp";
 import dreamAchieverImg from "../assets/projects/dream-achiever.webp";
 import modernCvImg from "../assets/projects/modern-cv.webp";
 import purrfectPawsImg from "../assets/projects/purrfect-paws-predictor.webp";
@@ -15,6 +16,35 @@ import weightliftingCalculatorImg from "../assets/projects/weightlifting-calcula
 // part of it that becomes a chip in "Filter by technology", so every name in
 // `filters` must also be in `tech` (a test checks this).
 export const projects = [
+  {
+    slug: "developer-portfolio",
+    title: "Developer Portfolio",
+    year: 2026,
+    type: "Lexicon – Project 3",
+    featured: false,
+    summary:
+      "This portfolio: a multi-page React app with a project filter, a contact form that really sends messages, light and dark themes and neon cursor effects.",
+    description: [
+      "My personal developer portfolio, the site you are looking at. It is a multi-page React app with a deep dark blue theme, light-blue neon effects and a split layout with bento grids.",
+      "Built as Project 3 of the frontend part of the C# course at Lexicon, to practise React, React Router, reusable components, state and automated testing.",
+    ],
+    highlights: [
+      "Project list filtered by technology, with the filter stored in the URL",
+      "A detail page for every project",
+      "Contact form that validates every field and sends through Web3Forms",
+      "Light and dark themes, and effects that can be switched off",
+      "Cursor trail and spotlight tuned with 4× CPU throttling",
+      "Automated unit and integration tests with Vitest",
+    ],
+    tech: ["React", "JavaScript", "React Router", "Vite", "Vitest"],
+    filters: ["React", "JavaScript"],
+    image: developerPortfolioImg,
+    imageAlt:
+      "Developer Portfolio website on a monitor, laptop, tablet and phone, showing the Projects page",
+    liveUrl: "https://frontend-projects-phi-topaz.vercel.app/",
+    repoUrl:
+      "https://github.com/NiclO1337/frontend-projects/tree/main/project3-portfolio-website",
+  },
   {
     slug: "bun-intended",
     title: "Bun Intended",
