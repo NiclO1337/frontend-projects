@@ -1,8 +1,6 @@
 # Niclas Hugdahl – Developer Portfolio
 
-TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.png`
-
-<!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
+![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png)
 
 Link to live website: [Niclas Portfolio](https://frontend-projects-phi-topaz.vercel.app/)
 
@@ -146,11 +144,21 @@ and anyone can switch them off with the effects toggle. They were tuned with
 Chrome's 4× CPU throttling, which is why, for example, the spotlight is only
 on the bento tiles and not on the project cards.
 
-TODO: GIF of the cursor trail and hover effects
+![Neon cursor trail following the mouse and glowing hover effects on tiles and buttons](readme-assets/screenshots/cursor-trail-hover-effects.gif)
+
 
 ### Images
 
-TODO: profile photo + how project screenshots were made (Am I Responsive, resized, WebP)
+- The **profile photo** is a portrait of me, cropped to a square in Paint.NET
+  and converted to WebP with Squoosh.
+- The **project screenshots** were made with
+  [Am I Responsive](https://ui.dev/amiresponsive), which shows a site on
+  several devices in one image. For the two projects built at Lexicon I took
+  new screenshots, since they had no older ones.
+- All images were resized to about 1200 px wide and converted to **WebP** with
+  Squoosh, because WebP files are much smaller than PNG or JPG and the site
+  loads faster. Every image has `width` and `height` set so the page doesn't
+  jump while images load, and meaningful `alt` text.
 
 ### Wireframes
 
@@ -178,26 +186,72 @@ Simple wireframes were made before coding. The final design may differ.
 - All animations respect reduced-motion settings and can be turned off
 - WCAG AA colour contrast in both themes
 
-TODO: add screenshot examples of responsive behaviour
+<details><summary>Example of responsive behaviour</summary> <p align="left"><img src="readme-assets/screenshots/responsive-examples.png" alt="The home page on a phone, a tablet and a desktop screen showing how the layout adapts" width="600"/></p> </details>
 
 
 ## Features
 
 ### Navigation and layout
 
-TODO: description + screenshot (desktop sidebar + mobile menu)
+On desktop the left column stays fixed while the page scrolls. It holds my
+name (a link home), my title, a short tagline, the navigation, social icons
+and the theme and effects toggles. The active page is marked with a line
+that grows and glows.
+
+On tablet and mobile the left column becomes a top bar with a menu button.
+The button opens a full-screen menu with the same links and toggles. The menu
+closes on Escape, on a click and when the page changes. Focus moves into the
+menu when it opens and back to the button when it closes, so it works well with
+a keyboard and a screen reader. A "Skip to content" link lets keyboard users
+jump straight to the page.
+
+<details><summary>Picture of Navigation and layout</summary>
+<img src="readme-assets/screenshots/navigation-desktop-mobile.png" alt="Desktop sidebar with name, navigation links and toggles, next to the open full-screen mobile menu" width="600"/>
+</details>
 
 ### Home bento grid
 
-TODO: description + screenshot
+The home page is a **bento grid** of tiles in different sizes: an intro with
+my name, title and two buttons (View projects and Contact me), a portrait, what
+I'm studying right now, a Download CV button, a featured project, a row of
+tech icons and my location and languages. The grid has 4 columns on desktop,
+2 on tablet and 1 on mobile.
+
+The tech stack tile is a slow, endless **marquee**. It shows the technologies
+and frameworks in a new random order on every visit, and it pauses when the
+mouse is over it and when effects are off. Screen readers skip the repeated
+copy of the list. The tiles also have the mouse spotlight described under
+[Effects and animations](#effects-and-animations).
+
+<details><summary>Picture of Home bento grid</summary>
+<img src="readme-assets/screenshots/home-desktop.png" alt="Home page bento grid with intro, profile photo, tech stack, featured project and download CV tiles" width="600"/>
+</details>
 
 ### About and skills
 
-TODO: description + screenshot
+The About page tells who I am: building practical apps, ten years of
+back-office experience and what I do outside of work. Below the text is a
+**skills bento grid** with one tile per group (technologies, frameworks,
+databases, version control, agile, tools and AI tools). Every skill has its
+logo. I chose plain items with icons instead of progress bars, because a
+percentage says very little about real skill.
+
+<details><summary>Picture of About and skills page</summary>
+<img src="readme-assets/screenshots/about-desktop.png" alt="About page with the biography and a bento grid of skill groups with technology icons" width="600"/>
+</details>
 
 ### Resume
 
-TODO: description + screenshot
+The Resume page has two timelines, **Experience** and **Education**, with the
+dates on the left and the details on the right on desktop. Both are built from
+the same `Timeline` component and the data files in `src/data/`. At the top is
+a **Download CV** button that downloads the same PDF CV as in Project 1.
+The timelines fade in when they scroll into view.
+
+<details><summary>Picture of Resume page</summary>
+<img src="readme-assets/screenshots/resume-desktop.png" alt="Resume page with experience and education timelines and a Download CV button" width="600"/>
+</details>
+
 
 ### Projects and filter
 
@@ -206,7 +260,10 @@ selected filter is stored in the URL (for example `/projects?tech=react`),
 so it survives a page refresh, works with the browser's back button and
 can be shared as a link.
 
-TODO: screenshot
+<details><summary>Picture of Projects and filter</summary>
+<img src="readme-assets/screenshots/projects-filter-desktop.png" alt="Projects page with technology filter chips and a grid of project cards" width="600"/>
+</details>
+
 
 ### Project detail pages
 
@@ -214,7 +271,10 @@ Each project has its own page (`/projects/banana-palace`) with a larger
 screenshot, description, highlights, technologies and links to the live
 demo and source code.
 
-TODO: screenshot
+<details><summary>Picture of Project detail pages</summary>
+<img src="readme-assets/screenshots/project-detail-desktop.png" alt="Project detail page for Banana Palace with screenshot, highlights, technologies and links" width="600"/>
+</details>
+
 
 ### Contact form
 
@@ -222,19 +282,40 @@ The contact form validates every field and really sends the message
 through Web3Forms. While it is sending the button shows a loading state,
 and visitors see a clear success or error message afterwards.
 
-TODO: screenshot
+<details><summary>Picture of Contact form</summary>
+<img src="readme-assets/screenshots/contact-form-validation.png" alt="Contact form with validation errors under the name, email and message fields" width="600"/>
+</details>
 
 ### Theme and effects toggles
 
-TODO: description + screenshot of dark vs light mode
+Two toggle buttons sit next to each other, in the sidebar on desktop and in
+the full-screen menu on mobile.
+
+- **Dark mode** switches between the dark and the light theme. The choice is
+  saved in `localStorage`, and a tiny script in `index.html` sets the saved
+  theme before React loads, so the page never flashes the wrong colours.
+- **Effects** turns the cursor trail, the custom cursor and the animations on
+  or off. It is hidden on touch devices and when the visitor prefers reduced
+  motion, because the effects are already off there.
+
+Both buttons keep the same label and only change `aria-pressed`, so a screen
+reader says "Dark mode, pressed" instead of a confusing changing label.
+
+<details><summary>Picture of Theme and effects toggles</summary>
+<img src="readme-assets/screenshots/theme-dark-vs-light.png" alt="The home page in dark mode next to the same page in light mode" width="600"/>
+</details>
 
 ### 404 page
 
-TODO: description + screenshot
+Any address that doesn't exist, for example `/nope`, shows a "404 – Lost in
+the void" page with links back to Home and to the projects. It renders inside
+the normal layout, so the navigation stays visible. The same page is shown
+when a project address such as `/projects/nope` isn't found, thanks to the
+route loader.
 
-### The footer
-
-TODO: description + screenshot
+<details><summary>Picture of 404 page</summary>
+<img src="readme-assets/screenshots/404-page.png" alt="404 page with the heading Lost in the void and links to Home and Projects" width="600"/>
+</details>
 
 
 ## React structure
@@ -255,7 +336,21 @@ plain JavaScript data files in `src/data/`, and reusable components render
 it as lists. Every component has its own folder with a JSX file, a
 **CSS Module** and a test file.
 
-TODO: short folder tree when the project is finished
+```
+src/
+├── main.jsx          app start: providers and router
+├── routes.jsx        all routes in one file
+├── components/       reusable parts (Button, BentoTile, ProjectCard …)
+├── effects/          cursor trail, custom cursor, spotlight
+├── context/          theme and effects context + providers
+├── hooks/            useLocalStorage, useMediaQuery, useRouteFocus
+├── layouts/          RootLayout (sidebar, content, footer)
+├── pages/            one folder per page
+├── data/             profile, skills, experience, education, projects
+├── utils/            small pure helper functions
+├── styles/           design tokens and global CSS
+└── assets/           profile photo and project screenshots
+```
 
 ### State and context
 
@@ -265,7 +360,10 @@ TODO: short folder tree when the project is finished
 
 
 ## Future features
-- TODO: add ideas that come up during development (GitHub stats, blog, Swedish translation …)
+- A GitHub stats tile on the home page (public repos and top languages, from the GitHub API)
+- A blog or short write-ups about what I learn
+- A Swedish translation of the site
+- Bring the mouse spotlight to the project cards, if a way is found to keep it smooth
 
 
 ## Technologies used
@@ -293,10 +391,8 @@ TODO: short folder tree when the project is finished
 - ESLint and Prettier
 - Claude (planning)
 - Claude Code (implementation)
-<!-- - ChatGPT (image edit) -->
 - Paint.NET (cropping images)
 - Squoosh (resizing / WebP conversion)
-- TODO: add other tools used
 
 ## Testing
 
@@ -359,7 +455,6 @@ npm test                  # run the tests
 - All text is my own, based on my CV.
 
 ### Media
-- TODO: profile photo
 - Project screenshots made with [Am I Responsive](https://ui.dev/amiresponsive)
 - Icons from [React Icons](https://react-icons.github.io/react-icons/) (Font Awesome and Simple Icons)
 - Fonts: Space Grotesk, Inter and JetBrains Mono via [Fontsource](https://fontsource.org/)
@@ -370,4 +465,3 @@ npm test                  # run the tests
 - [Motion documentation](https://motion.dev/)
 - [Vitest](https://vitest.dev/) and [Testing Library](https://testing-library.com/) documentation
 - Took inspiration from Kera Cudmore's very comprehensive README guide: [Readme examples.](https://github.com/kera-cudmore/readme-examples)
-- TODO: add tutorials, videos or articles used during development
