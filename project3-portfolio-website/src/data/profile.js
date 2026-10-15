@@ -4,7 +4,6 @@ import photo from "../assets/images/niclas.webp";
 // Personal details, copied from Project 1. Components only render this data.
 export const profile = {
   name: "Niclas Hugdahl",
-  // Placeholder portrait from Project 1. TODO: swap for the real photo at the end.
   photo,
   photoAlt: "Portrait of Niclas Hugdahl",
   title: "Junior Fullstack Software Developer",

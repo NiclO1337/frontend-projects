@@ -1,8 +1,6 @@
 # Modern CV – Niclas Hugdahl
 
-TODO: Am I Responsive screenshot → `readme-assets/screenshots/am-i-responsive.png`
-
-<!-- ![Am I Responsive image](readme-assets/screenshots/am-i-responsive.png) -->
+![Am I Responsive image](readme-assets/screenshots/am-i-responsive.webp)
 
 Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.vercel.app/)
 
@@ -99,9 +97,6 @@ Two modern, very readable Google Fonts:
 - **Sora** is used for headings: geometric and modern, with strong character in the name and section titles (sans-serif as backup font)
 - **Inter** is used for body text: designed for screens and easy to read at small sizes (sans-serif as backup font)
 
-### Images
-
-TODO: describe the profile photo (currently a placeholder) and the favicon.
 
 ### Wireframes
 
@@ -125,9 +120,7 @@ WCAG AA in both light and dark mode.
 Hover effects are only used on buttons. Nothing else changes on hover, so
 users are never misled into thinking a heading or the photo is clickable.
 
-TODO: add screenshot examples of responsive behaviour from mobile to tablet to desktop.
-
-<!-- <details><summary>Screenshot examples of responsive behavior</summary> <p align="left"><img src="readme-assets/screenshots/responsive.png" alt="examples of responsive behavior" width="700"/></p> </details> -->
+<details><summary>Screenshot examples of responsive behavior</summary> <p align="left"><img src="readme-assets/screenshots/responsive.png" alt="examples of responsive behavior" width="700"/></p> </details>
 
 
 ## Features
@@ -138,19 +131,13 @@ The profile header sits at the top of the navy sidebar. It shows the
 profile photo, name, professional title and a short summary, so visitors
 see the most important information first.
 
-TODO: screenshot
-
 ### The sidebar: contact, skills and languages
 
 The sidebar holds contact details (placeholders), grouped skills with icons,
 and languages. On desktop it is a full-height navy column. On tablet the
 three sections sit side by side, and on mobile they stack.
 
-TODO: screenshot
-
 ### About me
-
-TODO: short description + screenshot
 
 ### Experience and education timeline
 
@@ -158,30 +145,18 @@ Experience and education are shown as a vertical timeline with a line and
 a dot for each entry, made with CSS pseudo-elements. Role, organisation and
 dates are easy to scan.
 
-TODO: screenshot
-
 ### Dark mode
 
 A theme toggle button switches between light and dark mode. By default the
 site follows the visitor's operating system setting, and the choice is saved
 in the browser so it is remembered on the next visit.
 
-TODO: screenshot of light vs dark
-
 ### Download CV
 
 The Download CV button downloads a PDF version of the CV. The PDF contains
 the same placeholder contact information as the website.
 
-TODO: screenshot
-
 ### The footer
-
-TODO: short description + screenshot
-
-
-## Future features
-- TODO: add ideas that come up during development
 
 
 ## Technologies used
@@ -199,8 +174,11 @@ TODO: short description + screenshot
 - Google Fonts
 - Font Awesome
 - VS Code
-- Claude Code
-- TODO: add any other tools used (favicon generator, image converter, etc.)
+- Claude (planning)
+- Claude Code (implementation)
+- ChatGPT (image edit)
+- Paint.NET (cropping images)
+- Squoosh (resizing / WebP conversion)
 
 ## Testing
 
@@ -246,11 +224,9 @@ Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.ve
 - All CV content is my own.
 
 ### Media
-- TODO: profile photo credit (own photo or placeholder source)
 - Icons from [Font Awesome](https://fontawesome.com/)
 - Fonts from [Google Fonts](https://fonts.google.com/): Sora and Inter
 
 ### Code
 - Layout inspired by modern CV templates on [Canva](https://www.canva.com/)
 - Took inspiration from Kera Cudmore's very comprehensive README guide: [Readme examples.](https://github.com/kera-cudmore/readme-examples)
-- TODO: add tutorials, videos or articles used during development

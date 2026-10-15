@@ -42,7 +42,7 @@ Tested with Chrome DevTools and on real devices.
 | 1440px+ (desktop) | Two-column CV, card centred | PASS |
 | Real phone: Galaxy Fold 5 | | PASS |
 
-TODO: screenshots
+![Examples of responsive behavior](readme-assets/screenshots/responsive.png)
 
 
 ## Browser compatibility
@@ -67,13 +67,23 @@ TODO: screenshots
 
 ## Lighthouse
 
-TODO: mobile and desktop scores (Performance, Accessibility, Best Practices, SEO) + screenshots
+### Desktop result:
 
+![Lighthouse results](./readme-assets/lighthouse-result.png)
+
+### Mobile result:
+
+![Lighthouse results](./readme-assets/lighthouse-result-mobile.png)
 
 ## Accessibility
 
-- [WAVE](https://wave.webaim.org/) – TODO result
-- Colour contrast was checked when planning (all text passes WCAG AA). TODO confirm with WAVE/DevTools.
+[WAVE](https://wave.webaim.org/) was run on lightmode and darkmode. WAVE sorts its findings into errors (real failures) and alerts (things a human should check). Errors must be 0. Each alert was checked by hand.
+
+![WAVE result](./readme-assets/wave-result.png)
+
+| Page | Alert | Count | Where | Decision |
+|------|-------|:-----:|-------|----------|
+| Link to PDF document | 1 per page | "Download CV" | Left as is: the link text already says it is a file download, which is what the alert asks for. WAVE cannot check the PDF itself. The CV is a tagged PDF with real text, exported from Word. |
 
 
 ## Bugs
@@ -87,7 +97,6 @@ TODO: mobile and desktop scores (Performance, Accessibility, Best Practices, SEO
   but rejected every version with `var()` in the calculation. The fix was to remove the
   calculation. The side space now comes from `padding-inline` on `body`, and the toolbar and card
   use `max-width: 1100px` with automatic side margins. The layout looks the same as before.
-- TODO: other bugs found during testing
 
 ### Unfixed bugs
-- TODO
+- None known
