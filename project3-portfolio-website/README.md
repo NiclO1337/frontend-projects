@@ -317,6 +317,13 @@ route loader.
 <img src="readme-assets/screenshots/404-page.png" alt="404 page with the heading Lost in the void and links to Home and Projects" width="600"/>
 </details>
 
+### The footer
+
+The footer sits at the bottom of the content column on every page. It says
+who designed and built the site, and shows the copyright year. The year is
+read from the current date when the page renders, so it never goes out of
+date.
+
 
 ## React structure
 
