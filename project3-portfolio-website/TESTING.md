@@ -110,12 +110,13 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | | An unknown project still shows the 404 inside the layout, and "Back to home" leads out of the error page | | |
 | `themeScript.test.jsx` | The script in `index.html` applies a saved light or dark theme, ignores missing, broken or unknown values, survives blocked storage | 7 | PASS |
 | | It reads what the app saves when the visitor changes the theme (same key and format) | | |
-| `pageRules.test.jsx` | Every page (all 15, including every project) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 91 | PASS |
-| | Every image has alt text, every link, button and field has a name, every link to another site opens in a new tab with `rel="noopener"`, and no two pages share a title | | |
+| `pageRules.test.jsx` | Every page type (Home, About, Resume, Projects, one project page, Contact, 404) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 43 | PASS |
+| | Every image has alt text, every link, button and field has a name, and every link to another site opens in a new tab with `rel="noopener"`. All project pages use the same component, so only one is checked here (the data of every project is checked in `data.test.js`), which means the number of tests does not grow when a project is added | | |
+| | No two pages share a title, checked on every page including every project | | |
 
 ### Test results
 
-**47 test files, 396 tests: all PASS** (`npm run test:run`).
+**47 test files, 348 tests: all PASS** (`npm run test:run`).
 ![Vitest result](./readme-assets/vitest-result.png)
 
 

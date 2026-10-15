@@ -7,15 +7,25 @@ import { renderWithRouter } from "../renderWithRouter.jsx";
 // component. These tests visit every page through the real routes, so a page
 // or a data change that breaks a rule is found wherever it happens.
 
+// Every project page is the same component with different data, so the rules
+// below run on one project page (the newest), not on all of them. This keeps
+// the number of tests the same when a project is added. What can differ
+// between projects is checked in data.test.js, and the titles of all of them
+// are compared in the last test.
+const projectUrls = projects.map((project) => `/projects/${project.slug}`);
+
 const urls = [
   "/",
   "/about",
   "/resume",
   "/projects",
-  ...projects.map((project) => `/projects/${project.slug}`),
+  projectUrls[0],
   "/contact",
   "/no-such-page",
 ];
+
+// Every page, for the one rule that needs all of them: no two share a title.
+const allUrls = [...new Set([...urls, ...projectUrls])];
 
 // Renders a page and waits until it is there (project pages load first).
 async function openPage(url) {
@@ -91,7 +101,7 @@ describe("all pages", () => {
   it("each have their own title", async () => {
     const titles = [];
 
-    for (const url of urls) {
+    for (const url of allUrls) {
       const { unmount } = await openPage(url);
       titles.push(document.title);
       unmount();
