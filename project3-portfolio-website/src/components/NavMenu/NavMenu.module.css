@@ -8,7 +8,7 @@
 }
 
 /* fit-content: only the visible link is clickable, so empty space beside it
-   counts as "outside the menu" (the mobile menu closes when you click there).
+   counts as "outside the menu" (the mobile menu closes when you click there). */
 .link {
   display: flex;
   width: fit-content;
