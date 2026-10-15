@@ -316,7 +316,8 @@ The WAVE extension does not run with JavaScript turned off. The "JavaScript is r
 
 | Page | Error | Count | Where | Decision |
 |------|-------|:-----:|-------|----------|
-| Contact | Missing form label | 1 | Hidden spam-trap checkbox above "Send message" | Fixed: the checkbox is hidden from everyone (`display: none`, `aria-hidden`), but WAVE still reports an input without a label. It now has an `aria-label`. |
+| Contact | Missing form label | 1 | Hidden spam-trap checkbox above "Send message" | Fixed: the checkbox is hidden with the `visually-hidden` class (off-screen, not `display: none`, which some bots skip) and with `aria-hidden="true"` and `tabindex="-1"`, so screen readers and the Tab key skip it. WAVE still reports an input without a label, so it has an `aria-label`. |
+
 
 **Alerts**
 
