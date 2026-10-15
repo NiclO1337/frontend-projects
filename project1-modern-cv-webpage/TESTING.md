@@ -40,9 +40,9 @@ Tested with Chrome DevTools and on real devices.
 | 768px (tablet) | Sidebar sections side by side | PASS |
 | 1024px (laptop) | Two-column CV | PASS |
 | 1440px+ (desktop) | Two-column CV, card centred | PASS |
-| Real phone: Galaxy Fold 5 | | PASS |
+| Real phone: Galaxy Fold 5 | One column, no horizontal scroll | PASS |
 
-![Examples of responsive behavior](readme-assets/screenshots/responsive.png)
+![Examples of responsive behaviour](readme-assets/screenshots/responsive.png)
 
 
 ## Browser compatibility
@@ -81,8 +81,8 @@ Tested with Chrome DevTools and on real devices.
 
 ![WAVE result](./readme-assets/wave-result.png)
 
-| Page | Alert | Count | Where | Decision |
-|------|-------|:-----:|-------|----------|
+| Alert | Count | Where | Decision |
+|-------|:-----:|-------|----------|
 | Link to PDF document | 1 per page | "Download CV" | Left as is: the link text already says it is a file download, which is what the alert asks for. WAVE cannot check the PDF itself. The CV is a tagged PDF with real text, exported from Word. |
 
 

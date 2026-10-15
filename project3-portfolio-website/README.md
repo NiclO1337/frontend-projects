@@ -410,8 +410,7 @@ Testing made in separate file [TESTING.md](TESTING.md)
 
 This project lives in the monorepo
 [frontend-projects](https://github.com/NiclO1337/frontend-projects), in the
-folder `project3-portfolio-website`. Changes were continuously pushed to
-GitHub for source control.<br>
+folder `project3-portfolio-website`.<br>
 The site is deployed to Vercel as its own project. The steps to deploy are as follows:
 - Log in to Vercel with GitHub, click **Add New → Project** and import the `frontend-projects` repository
 - Set **Root Directory** to `project3-portfolio-website`

@@ -15,7 +15,6 @@ Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.ve
 * [Design](#design)
     * [Colours](#colours)
     * [Typography](#typography)
-    * [Images](#images)
     * [Wireframes](#wireframes)
     * [Accessibility](#accessibility)
 * [Features](#features)
@@ -26,7 +25,6 @@ Link to live website: [Modern CV](https://frontend-projects-project1-modern-c.ve
     * [Dark mode](#dark-mode)
     * [Download CV](#download-cv)
     * [The footer](#the-footer)
-* [Future features](#future-features)
 * [Technologies used](#technologies-used)
     * [Languages](#languages)
     * [Frameworks & Tools](#frameworks--tools)
@@ -189,8 +187,7 @@ Testing made in separate file [TESTING.md](TESTING.md)
 
 This project lives in the monorepo
 [frontend-projects](https://github.com/NiclO1337/frontend-projects), in the
-folder `project1-modern-cv-webpage`. Changes were continuously pushed to
-GitHub for source control.<br>
+folder `project1-modern-cv-webpage`.<br>
 The site is deployed to Vercel as its own project. The steps to deploy are as follows:
 - Log in to Vercel with GitHub, click **Add New → Project** and import the `frontend-projects` repository
 - Set **Root Directory** to `project1-modern-cv-webpage`

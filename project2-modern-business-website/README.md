@@ -227,6 +227,12 @@ shows whether the restaurant is **open right now** and when it closes or
 opens next. It's calculated from the opening hours in Stockholm time, so it
 is correct even for visitors in another time zone.
 
+The hours table helps visitors find the right day. JavaScript splits
+"Monday – Thursday" into one row per day, marks today's row with "Today" and
+highlights it, and labels the next day "Tomorrow". The labels move on by
+themselves when the clock passes midnight. Without JavaScript the table still
+works, with "Monday – Thursday" grouped in one row and no labels.
+
 ![Hours & location page](readme-assets/hours-and-location.png)
 
 ### The booking form

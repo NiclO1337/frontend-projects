@@ -56,7 +56,7 @@ Every file passes. Counts are the number of tests in each file.
 | `ThemeToggle.test.jsx` | dark by default, switch back and forth, saved choice | 4 | PASS |
 | `EffectsToggle.test.jsx` | on by default, toggle and save, hidden on touch and reduced motion | 5 | PASS |
 | `NavMenu.test.jsx` | links, `aria-current` on the current page | 2 | PASS |
-| `MobileHeader.test.jsx` | open and close, closes on link click, route change and click outside | 9 | PASS |
+| `MobileHeader.test.jsx` | open and close, closes on link click, route change and click outside | 10 | PASS |
 | `SkipLink.test.jsx` | first thing Tab reaches, points to the main content | 1 | PASS |
 | `Button.test.jsx` | element type, internal link, external link attributes, file download | 5 | PASS |
 | `ProjectCard.test.jsx` | content, image alt, links, optional live and GitHub buttons | 7 | PASS |
@@ -110,12 +110,12 @@ The tests in `src/test/integration/` render the real routes with a memory router
 | | An unknown project still shows the 404 inside the layout, and "Back to home" leads out of the error page | | |
 | `themeScript.test.jsx` | The script in `index.html` applies a saved light or dark theme, ignores missing, broken or unknown values, survives blocked storage | 7 | PASS |
 | | It reads what the app saves when the visitor changes the theme (same key and format) | | |
-| `pageRules.test.jsx` | Every page (all 14, including every project) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 85 | PASS |
+| `pageRules.test.jsx` | Every page (all 15, including every project) has one `<h1>` and no skipped heading level, one `<main>` that the skip link leads to, no repeated ids | 91 | PASS |
 | | Every image has alt text, every link, button and field has a name, every link to another site opens in a new tab with `rel="noopener"`, and no two pages share a title | | |
 
 ### Test results
 
-**47 test files, 390 tests: all PASS** (`npm run test:run`).
+**47 test files, 396 tests: all PASS** (`npm run test:run`).
 ![Vitest result](./readme-assets/vitest-result.png)
 
 
@@ -327,7 +327,7 @@ Two alerts appear on every page, because they come from the shared layout and `i
 | All pages | Noscript element | 1 | `<noscript>` in `index.html` | Left as is: it is the "JavaScript is required" message for visitors with JavaScript turned off. Without it they would see an empty page, because React builds everything in the browser using JavaScript. |
 | Home | Long alternative text | 1 | Featured project image | Fixed: the alt text was over 100 characters. All project alt texts are now 100 characters or less (for example "Bun Intended website on a monitor, laptop, tablet and phone, showing the Our Story page"), and a data test fails if a new one is longer. |
 | Home, Resume | Link to PDF document | 1 per page | "Download CV" | Left as is: the link text already says it is a file download, which is what the alert asks for. WAVE cannot check the PDF itself. The CV is a tagged PDF with real text, exported from Word. |
-| Projects | Redundant link | 8 | The title link on each project card | Left as is: each card links to its details page from the image, the title and the "Details" button. The image link is hidden from screen readers and the Tab key, so only the title and the button are left. The title is the heading, and the button gives a clear action with its own name ("Details of …"). |
+| Projects | Redundant link | 9 | The title link on each project card | Left as is: each card links to its details page from the image, the title and the "Details" button. The image link is hidden from screen readers and the Tab key, so only the title and the button are left. The title is the heading, and the button gives a clear action with its own name ("Details of …"). |
 
 ### Keyboard-only walkthrough
 
