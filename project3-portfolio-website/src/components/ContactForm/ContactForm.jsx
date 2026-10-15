@@ -228,14 +228,17 @@ export default function ContactForm() {
         </p>
       </div>
 
-      {/* Honeypot: a trap for spam bots. People never see or reach it
-          (display: none, no Tab stop), but bots fill in every field they find.
-          The mail service ignores messages where it is ticked. The aria-label
-          is only there because WAVE reports every input without a label. */}
+      {/* Honeypot: a trap for spam bots. People never see or reach it (visually
+          hidden, hidden from screen readers, no Tab stop), but bots fill in
+          every field they find. It is hidden with the visually-hidden class
+          instead of display: none, because some bots skip fields that are
+          display: none. The mail service ignores messages where it is ticked.
+          The aria-label is only there because WAVE reports every input
+          without a label. */}
       <input
         type="checkbox"
         name="botcheck"
-        className={styles.honeypot}
+        className="visually-hidden"
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
