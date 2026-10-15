@@ -50,15 +50,30 @@
   gap: var(--space-3);
 }
 
-/* Photo tile: the picture fills the tile and gets a neon ring. */
+/* Photo tile: the picture gets a neon ring. Below 1024px it is a square (the
+   height follows the width). object-fit: cover crops the tall photo instead of
+   squashing it, and object-position picks which part stays visible.
+   `height: auto` is needed because the height attribute in the HTML would
+   otherwise set a fixed height, and aspect-ratio is ignored when both width
+   and height are fixed. */
 .photo {
-  flex: 1;
   width: 100%;
-  min-height: 0;
+  height: auto;
+  aspect-ratio: 1;
   object-fit: cover;
+  object-position: bottom;
   border: 2px solid var(--color-accent);
   border-radius: var(--radius);
   box-shadow: var(--glow-lg);
+}
+
+/* From 1024px the picture is tall: it fills the whole height of the tile. */
+@media (min-width: 1024px) {
+  .photo {
+    flex: 1;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
 }
 
 /* Featured project tile: the screenshot fills the free space (like the photo)

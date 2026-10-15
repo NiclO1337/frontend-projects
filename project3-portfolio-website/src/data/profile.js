@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import photo from "../assets/images/profile-placeholder.svg";
+import photo from "../assets/images/niclas.webp";
 
 // Personal details, copied from Project 1. Components only render this data.
 export const profile = {
