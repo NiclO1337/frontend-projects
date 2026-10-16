@@ -378,16 +378,16 @@ borders meet 3:1.
 
 | Token | Dark (default) | Light | Notes |
 |-------|----------------|-------|-------|
-| `--color-bg` | `#060d1f` | `#f3f7ff` | Deep dark blue |
+| `--color-bg` | `#060d1f` | `#dfe8f7` | Deep dark blue |
 | `--color-surface` | `#0b1630` | `#ffffff` | Tiles, cards, sidebar panels |
 | `--color-surface-2` | `#112042` | `#e6eefc` | Inputs, chips, raised areas |
-| `--color-text` | `#dbe7ff` | `#0b1630` | 15.6 / 16.7 on bg |
-| `--color-text-muted` | `#8fa3c7` | `#46597d` | 7.6 / 6.6 on bg |
+| `--color-text` | `#dbe7ff` | `#0b1630` | 15.6 / 14.7 on bg |
+| `--color-text-muted` | `#8fa3c7` | `#46597d` | 7.6 / 5.7 on bg |
 | `--color-accent` | `#5ce1ff` | `#0369a1` | **Neon light blue**. Links, active nav, focus |
 | `--color-on-accent` | `#060d1f` | `#ffffff` | Text on accent buttons (12.6 / 5.9) |
 | `--color-accent-2` | `#a99bff` | `#5b43d6` | Soft violet, gradients and secondary tags only |
-| `--color-cursor` | `#5ce1ff` | `#0284c7` | Trail and custom cursor only (3.8:1 on bg) |
-| `--color-border` | `#1d2d52` | `#d3def2` | Decorative borders |
+| `--color-cursor` | `#5ce1ff` | `#0284c7` | Trail and custom cursor only (3.3:1 on bg) |
+| `--color-border` | `#1d2d52` | `#c3d1ea` | Decorative borders |
 | `--color-input-border` | `#4f6a99` | `#7d90b3` | Form controls (≥ 3:1) |
 | `--glow-sm` | `0 0 8px rgb(92 225 255 / .45)` | `0 0 6px rgb(3 105 161 / .25)` | Hover glow |
 | `--glow-lg` | `0 0 24px rgb(92 225 255 / .35), 0 0 2px #5ce1ff` | `0 4px 18px rgb(3 105 161 / .18)` | Cards, active elements |

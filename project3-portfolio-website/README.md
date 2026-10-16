@@ -115,7 +115,7 @@ so text stays readable.
 
 | Role | Dark (default) | Light |
 |------|----------------|-------|
-| Background | `#060d1f` | `#f3f7ff` |
+| Background | `#060d1f` | `#dfe8f7` |
 | Surface | `#0b1630` | `#ffffff` |
 | Text | `#dbe7ff` | `#0b1630` |
 | Muted text | `#8fa3c7` | `#46597d` |
