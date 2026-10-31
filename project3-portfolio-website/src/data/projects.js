@@ -28,7 +28,7 @@ export const projects = [
       "Food delivery site for students at Malmö University, built by a team of five. Find restaurants on a map, fill the cart and check out. I was the scrum master.",
     description: [
       "A food delivery site for students at Malmö University. Students find local restaurants on a map, see at a glance if they are open, pick meals, drinks and sides, and order for delivery by bicycle or pickup. The checkout has a student discount, and the Swish payment is a demo with no real payment.",
-      "A school project built by a team of five. I was the scrum master: I set up the tasks, kept us on track to finish before the deadline, and made sure everyone had something to do and knew how to do it.",
+      "A school project built by a team of five. I was the scrum master: I set up the tasks on a Kanban Board using Miro, kept us on track to finish before the deadline, and made sure everyone had something to do and knew how to do it.",
     ],
     highlights: [
       "Team of five, with me as scrum master",
