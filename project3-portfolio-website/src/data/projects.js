@@ -2,6 +2,7 @@ import bananaPalaceImg from "../assets/projects/banana-palace.webp";
 import bunIntendedImg from "../assets/projects/bun-intended.webp";
 import campusEatsImg from "../assets/projects/campus-eats.webp";
 import developerPortfolioImg from "../assets/projects/developer-portfolio.webp";
+import dragonsLedgerImg from "../assets/projects/dragons-ledger.webp";
 import dreamAchieverImg from "../assets/projects/dream-achiever.webp";
 import modernCvImg from "../assets/projects/modern-cv.webp";
 import purrfectPawsImg from "../assets/projects/purrfect-paws-predictor.webp";
@@ -135,6 +136,33 @@ export const projects = [
     liveUrl: "https://frontend-projects-project1-modern-c.vercel.app/",
     repoUrl:
       "https://github.com/NiclO1337/frontend-projects/tree/main/project1-modern-cv-webpage",
+  },
+  {
+    slug: "dragons-ledger",
+    title: "Dragon's Ledger",
+    year: 2026,
+    type: "Lexicon – C# milestone project",
+    featured: false,
+    summary:
+      "C# console app for tracking income and expenses by month, with sorting, filtering, editing and autosave to a JSON file.",
+    description: [
+      "A console application written in C# on .NET 10, where a dragon guards your gold. You record incomes and expenses, give each one a month, and review them through a text menu. Entries can be listed, sorted, filtered, edited and removed, and the data is saved to a JSON file and restored the next time the app starts.",
+      "Built as the milestone project of the C# course at Lexicon. It is split into separate projects for the domain, the saving and the user interface, so the compiler stops the domain code from reaching into the saving or the UI. It is a console app, so there is no live demo, but the source code is public.",
+    ],
+    highlights: [
+      "Income and expense as subclasses, so no calculation needs an if on the type",
+      "Sort, filter and search by title in paginated lists",
+      "Balance summary for all time or per month",
+      "Autosave, with crash-safe writes through a temporary file",
+      "Repository behind an interface, so the domain can be tested without files",
+      "Money stored as decimal, never double, so the arithmetic is exact",
+    ],
+    tech: ["C#", ".NET", "JSON", "xUnit"],
+    filters: ["C#"],
+    image: dragonsLedgerImg,
+    imageAlt:
+      "Dragon's Ledger in three terminal windows, showing the welcome screen, a monthly summary and editing",
+    repoUrl: "https://github.com/NiclO1337/Csharp-milestone-project",
   },
   {
     slug: "weightlifting-calculator",
