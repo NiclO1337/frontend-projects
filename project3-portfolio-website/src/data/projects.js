@@ -1,5 +1,6 @@
 import bananaPalaceImg from "../assets/projects/banana-palace.webp";
 import bunIntendedImg from "../assets/projects/bun-intended.webp";
+import campusEatsImg from "../assets/projects/campus-eats.webp";
 import developerPortfolioImg from "../assets/projects/developer-portfolio.webp";
 import dreamAchieverImg from "../assets/projects/dream-achiever.webp";
 import modernCvImg from "../assets/projects/modern-cv.webp";
@@ -16,6 +17,41 @@ import weightliftingCalculatorImg from "../assets/projects/weightlifting-calcula
 // part of it that becomes a chip in "Filter by technology", so every name in
 // `filters` must also be in `tech` (a test checks this).
 export const projects = [
+  {
+    slug: "campus-eats",
+    title: "Campus Eats",
+    year: 2026,
+    type: "Lexicon – Group project",
+    featured: false,
+    summary:
+      "Food delivery site for students at Malmö University, built by a team of five. Find restaurants on a map, fill the cart and check out. I was the scrum master.",
+    description: [
+      "A food delivery site for students at Malmö University. Students find local restaurants on a map, see at a glance if they are open, pick meals, drinks and sides, and order for delivery by bicycle or pickup. The checkout has a student discount, and the Swish payment is a demo with no real payment.",
+      "A school project built by a team of five. I was the scrum master: I set up the tasks, kept us on track to finish before the deadline, and made sure everyone had something to do and knew how to do it.",
+    ],
+    highlights: [
+      "Team of five, with me as scrum master",
+      "Map of the restaurants around the university",
+      "Restaurant search with dietary filters and an open/closed label",
+      "Cart and checkout with student discount, delivery or pickup",
+      "Accessibility rules checked by the linter",
+      "Tests with Vitest, and CI/CD with GitHub Actions",
+    ],
+    tech: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Material UI",
+      "React Router",
+      "MapLibre",
+      "Vitest",
+    ],
+    filters: ["React", "TypeScript"],
+    image: campusEatsImg,
+    imageAlt:
+      "Campus Eats website on a monitor, laptop, tablet and phone, showing the restaurant map and list",
+    liveUrl: "https://niclo1337.github.io/campus-eats/",
+  },
   {
     slug: "developer-portfolio",
     title: "Developer Portfolio",
