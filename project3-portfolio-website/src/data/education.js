@@ -21,6 +21,7 @@ export const education = [
     bullets: [
       "Comprehensive foundation: Python, Django, JavaScript, and databases.",
       "Specialization: Data Engineering, Predictive Analytics and AI. Final grade: Distinction. Accredited by the University of the West of Scotland.",
+      "Won first prize in two hackathons: as a team member in the first and as scrum master in the second.",
     ],
   },
   {
