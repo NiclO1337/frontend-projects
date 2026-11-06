@@ -9,6 +9,7 @@ export const education = [
     end: null,
     bullets: [
       "ASP.NET Core, Entity Framework Core, SQL Server, frontend technologies (React, TypeScript), security best practices, Agile methodologies, and AI-assisted development tools.",
+      "Includes Microsoft Azure cloud fundamentals, with the AZ-900 (Azure Fundamentals) certification exam planned for January 2027.",
     ],
   },
   {
