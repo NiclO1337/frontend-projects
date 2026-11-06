@@ -24,14 +24,14 @@ export default function ResumePage() {
         </Button>
       </div>
 
-      <h2 className={styles.sectionHeading}>Experience</h2>
-      <Reveal>
-        <Timeline entries={experience} />
-      </Reveal>
-
       <h2 className={styles.sectionHeading}>Education</h2>
       <Reveal>
         <Timeline entries={education} />
+      </Reveal>
+
+      <h2 className={styles.sectionHeading}>Experience</h2>
+      <Reveal>
+        <Timeline entries={experience} />
       </Reveal>
     </>
   );

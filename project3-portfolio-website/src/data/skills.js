@@ -33,7 +33,7 @@ import {
   SiTypescript,
   SiVercel,
 } from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
+import { VscAzure, VscVscode } from "react-icons/vsc";
 
 // Skill groups from Project 1. `icon` is the icon component to render.
 // Brands without an icon in the library get a generic one (Scrum, Kanban,
@@ -66,19 +66,21 @@ export const skillGroups = [
     ],
   },
   {
+    id: "cloud-and-deployment",
+    name: "Cloud & Deployment",
+    items: [
+      { name: "Azure", icon: VscAzure },
+      { name: "GitHub Pages", icon: SiGithubpages },
+      { name: "Vercel", icon: SiVercel },
+      { name: "Heroku", icon: BiLogoHeroku },
+    ],
+  },
+  {
     id: "databases",
     name: "Databases",
     items: [
       { name: "PostgreSQL", icon: SiPostgresql },
       { name: "SQL Server", icon: DiMsqlServer },
-    ],
-  },
-  {
-    id: "agile",
-    name: "Agile",
-    items: [
-      { name: "Scrum", icon: FaArrowsRotate },
-      { name: "Kanban", icon: FaTableColumns },
     ],
   },
   {
@@ -91,9 +93,18 @@ export const skillGroups = [
     ],
   },
   {
+    id: "agile",
+    name: "Agile",
+    items: [
+      { name: "Scrum", icon: FaArrowsRotate },
+      { name: "Kanban", icon: FaTableColumns },
+    ],
+  },
+  {
     id: "tools",
     name: "Tools",
     items: [
+      { name: "Miro", icon: SiMiro },
       { name: "Visual Studio", icon: DiVisualstudio },
       { name: "VS Code", icon: VscVscode },
       { name: "Gitpod", icon: SiGitpod },
@@ -101,10 +112,6 @@ export const skillGroups = [
       { name: "Balsamiq", icon: FaPenRuler },
       { name: "Figma", icon: SiFigma },
       { name: "Lucidchart", icon: FaDiagramProject },
-      { name: "Miro", icon: SiMiro },
-      { name: "GitHub Pages", icon: SiGithubpages },
-      { name: "Heroku", icon: BiLogoHeroku },
-      { name: "Vercel", icon: SiVercel },
     ],
   },
   {
